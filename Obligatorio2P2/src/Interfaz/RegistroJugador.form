@@ -200,7 +200,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/obligatorio2p2/pepe.jpg"/>
+          <Image iconType="3" name="/Interfaz/pepe.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pepe"/>
       </Properties>
@@ -211,7 +211,7 @@
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/obligatorio2p2/sartori.jpeg"/>
+          <Image iconType="3" name="/Interfaz/sartori.jpeg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Juan"/>
       </Properties>
@@ -222,7 +222,7 @@
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/obligatorio2p2/Untitled.png"/>
+          <Image iconType="3" name="/Interfaz/Untitled.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Maneco"/>
         <Property name="autoscrolls" type="boolean" value="true"/>
@@ -231,7 +231,7 @@
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/obligatorio2p2/maduro.jpg"/>
+          <Image iconType="3" name="/Interfaz/maduro.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Maduro"/>
       </Properties>

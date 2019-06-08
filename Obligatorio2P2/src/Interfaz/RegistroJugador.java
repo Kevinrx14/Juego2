@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package obligatorio2p2;
+package Interfaz;
 
 /**
  *
@@ -103,7 +103,7 @@ public class RegistroJugador extends javax.swing.JFrame {
 
         jLabel5.setText("Elige tu avatar");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obligatorio2p2/pepe.jpg"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/pepe.jpg"))); // NOI18N
         jButton1.setText("Pepe");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +111,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obligatorio2p2/sartori.jpeg"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/sartori.jpeg"))); // NOI18N
         jButton2.setText("Juan");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,11 +119,11 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obligatorio2p2/Untitled.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Untitled.png"))); // NOI18N
         jButton3.setText("Maneco");
         jButton3.setAutoscrolls(true);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obligatorio2p2/maduro.jpg"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/maduro.jpg"))); // NOI18N
         jButton4.setText("Maduro");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

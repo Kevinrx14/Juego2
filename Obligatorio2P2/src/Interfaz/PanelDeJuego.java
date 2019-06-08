@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package obligatorio2p2;
+package Interfaz;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -112,22 +112,22 @@ public class PanelDeJuego extends javax.swing.JFrame {
             .addGap(0, 351, Short.MAX_VALUE)
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obligatorio2p2/index.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/index.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         jLabel2.setText("Nombre Jugador");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obligatorio2p2/index.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/index.png"))); // NOI18N
         jLabel3.setText("jLabel1");
 
         jLabel4.setText("Nombre Jugador");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obligatorio2p2/index.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/index.png"))); // NOI18N
         jLabel5.setText("jLabel1");
 
         jLabel6.setText("Nombre Jugador");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obligatorio2p2/index.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/index.png"))); // NOI18N
         jLabel7.setText("jLabel1");
 
         jLabel8.setText("Nombre Jugador");
