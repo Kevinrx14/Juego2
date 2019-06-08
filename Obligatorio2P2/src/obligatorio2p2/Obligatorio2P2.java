@@ -1,4 +1,4 @@
-package Interfaz;
+package obligatorio2p2;
 
 public class Obligatorio2P2 {
 
