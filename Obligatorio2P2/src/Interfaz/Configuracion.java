@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package Interfaz;
-
+import obligatorio2p2.Aves;
 /**
  *
  * @author ezequiellopez
  */
 public class Configuracion extends javax.swing.JFrame {
-
+    Aves a=new Aves();
     /**
      * Creates new form Configuracion
      */
@@ -156,7 +156,24 @@ public class Configuracion extends javax.swing.JFrame {
     }//GEN-LAST:event_cantJugActionPerformed
 
     private void setearConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setearConfigActionPerformed
-        // TODO add your handling code here:
+        try{
+        int jug=Integer.parseInt((String)(cantJug.getSelectedItem()));
+        int aves=Integer.parseInt((String)(cantAves.getText()));
+        int tipoTerm=0;
+        switch ((String)formaTerm.getSelectedItem()){
+            case "Terminar turnos":
+                tipoTerm=2;
+                break;
+            case "Cantidad de aves":
+                tipoTerm=1;
+                break;
+        }
+        int turnos=Integer.parseInt((String)blankTurn.getText());
+        a.setConfig(jug, aves, tipoTerm, turnos);
+        }catch(Exception e){
+            VentanaError v=new VentanaError("Por favor, verifica los datos ingresados");
+            v.setVisible(true);
+        }
     }//GEN-LAST:event_setearConfigActionPerformed
 
     private void configDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configDefectoActionPerformed

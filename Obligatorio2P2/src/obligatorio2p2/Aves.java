@@ -31,7 +31,11 @@ public class Aves {
     public void setUnaConfiguracion(int i, int configuracion) {
         this.configuracion[i] = configuracion;
     }
-
+    
+    public void setConfig(int a, int b, int c, int d) {
+        this.configuracion = new int[]{a, b, c, d};
+    }
+    
     public ArrayList<Partida> getPartidas() {
         return this.partidas;
     }
