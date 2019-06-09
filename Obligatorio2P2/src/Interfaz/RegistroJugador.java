@@ -79,7 +79,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(6, 28, 100, 26);
+        name.setBounds(50, 80, 100, 26);
 
         age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +87,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(age);
-        age.setBounds(6, 146, 100, 26);
+        age.setBounds(50, 150, 100, 26);
 
         alias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,19 +95,19 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(alias);
-        alias.setBounds(6, 241, 100, 26);
+        alias.setBounds(50, 220, 100, 26);
 
         jLabel1.setText("Nombre");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(118, 33, 50, 16);
+        jLabel1.setBounds(70, 60, 50, 16);
 
         jLabel2.setText("Edad");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(118, 151, 30, 16);
+        jLabel2.setBounds(80, 130, 30, 16);
 
         jLabel3.setText("Alias");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(112, 246, 31, 16);
+        jLabel3.setBounds(80, 200, 31, 16);
 
         register.setText("Registrar");
         getContentPane().add(register);
@@ -124,7 +124,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(208, 28, 191, 29);
+        jButton1.setBounds(208, 28, 191, 140);
 
         jButton2.setText("Juan");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -133,16 +133,16 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(405, 28, 189, 29);
+        jButton2.setBounds(405, 28, 189, 140);
 
         jButton3.setText("Maneco");
         jButton3.setAutoscrolls(true);
         getContentPane().add(jButton3);
-        jButton3.setBounds(210, 174, 85, 29);
+        jButton3.setBounds(210, 174, 190, 140);
 
         jButton4.setText("Maduro");
         getContentPane().add(jButton4);
-        jButton4.setBounds(405, 174, 85, 29);
+        jButton4.setBounds(405, 174, 190, 140);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
