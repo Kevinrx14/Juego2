@@ -1,27 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import obligatorio2p2.*;
 
-/**
- *
- * @author ezequiellopez
- */
 public class PanelDeJuego extends javax.swing.JFrame {
 
     private JButton[][] botones;
+    private Tablero tablero;
 
-    /**
-     * Creates new form Ventana
-     */
     public PanelDeJuego() {
-        initComponents();
+        this.initComponents();
+        this.tablero = new Tablero();
         panelJuego.setLayout(new GridLayout(11, 11));
         botones = new JButton[11][11];
         for (int i = 1; i <= 10; i++) {
@@ -33,6 +24,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         }
 
+        this.pintarBotones();
+
         botones[1][1].setBackground(Color.RED);
         botones[1][2].setBackground(Color.BLUE);
         botones[2][1].setBackground(Color.GREEN);
@@ -42,6 +35,20 @@ public class PanelDeJuego extends javax.swing.JFrame {
         botones[1][4].setBackground(Color.YELLOW);
         botones[2][3].setBackground(Color.RED);
         botones[2][4].setBackground(Color.BLUE);
+    }
+
+    private void pintarBotones() {
+        Color[] colores;
+
+        for (int i = 1; i <= 10; i += 2) {
+            for (int j = 1; j <= 10; j += 2) {
+                colores = this.tablero.getColoresRandom();
+                botones[i][j].setBackground(colores[0]);
+                botones[i][j + 1].setBackground(colores[1]);
+                botones[i + 1][j].setBackground(colores[2]);
+                botones[i + 1][j + 1].setBackground(colores[3]);
+            }
+        }
     }
 
     private class ListenerBoton implements ActionListener {
@@ -62,10 +69,44 @@ public class PanelDeJuego extends javax.swing.JFrame {
     }
 
     private void clickBoton(int fila, int columna) {
-// Método a completar!.
-// En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
-// fila 1 y columna 1 corresponden a la posición de arriba a la izquierda.
-// Debe indicarse cómo responder al click de ese botón.
+        if (this.tablero.getMovimientoDisponible()) {
+            if (this.tablero.getBotonesApretados() == 0) {
+                this.tablero.setFila1(fila);
+                this.tablero.setColumna1(columna);
+                this.tablero.setBotonesApretados();
+            } else {
+                if (this.tablero.getBotonesApretados() == 1) {
+                    this.tablero.setFila2(fila);
+                    this.tablero.setColumna2(columna);
+                    this.tablero.setBotonesApretados();
+                    if (this.tablero.conectar(this.botones)) {
+                        this.ponerAves();
+                    }
+                }
+            }
+        } else {
+            //mensajeError.setText("No tienes movimientos disponibles");
+        }
+    }
+
+    public void ponerAves() {
+        int fila1 = this.tablero.getFila1();
+        int fila2 = this.tablero.getFila2();
+        int columna1 = this.tablero.getColumna1();
+        int columna2 = this.tablero.getColumna2();
+        Color color = this.botones[fila1][columna1].getBackground();
+
+        if (this.tablero.validarFila()) {
+            for (int i = columna1; i <= columna2; i++) {
+                this.botones[fila1][i].setText("X");
+                this.botones[fila1][i].setBackground(color);
+            }
+        } else {
+            for (int i = fila1; i <= fila2; i++) {
+                this.botones[i][columna1].setText("X");
+                this.botones[i][columna1].setBackground(color);
+            }
+        }
     }
 
     /**
@@ -79,14 +120,14 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         panelJuego = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        avatarJugador1 = new javax.swing.JLabel();
+        nombreJugador1 = new javax.swing.JLabel();
+        avatarJugador2 = new javax.swing.JLabel();
+        nombreJugador2 = new javax.swing.JLabel();
+        avatarJugador3 = new javax.swing.JLabel();
+        nombreJugador3 = new javax.swing.JLabel();
+        avatarJugador4 = new javax.swing.JLabel();
+        nombreJugador4 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,28 +150,25 @@ public class PanelDeJuego extends javax.swing.JFrame {
         );
         panelJuegoLayout.setVerticalGroup(
             panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGap(0, 422, Short.MAX_VALUE)
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/index.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        avatarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/index.png"))); // NOI18N
+        avatarJugador1.setText("jLabel1");
 
-        jLabel2.setText("Nombre Jugador");
+        nombreJugador1.setText("Nombre Jugador");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/index.png"))); // NOI18N
-        jLabel3.setText("jLabel1");
+        avatarJugador2.setText("jLabel1");
 
-        jLabel4.setText("Nombre Jugador");
+        nombreJugador2.setText("Nombre Jugador");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/index.png"))); // NOI18N
-        jLabel5.setText("jLabel1");
+        avatarJugador3.setText("jLabel1");
 
-        jLabel6.setText("Nombre Jugador");
+        nombreJugador3.setText("Nombre Jugador");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/index.png"))); // NOI18N
-        jLabel7.setText("jLabel1");
+        avatarJugador4.setText("jLabel1");
 
-        jLabel8.setText("Nombre Jugador");
+        nombreJugador4.setText("Nombre Jugador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,28 +180,28 @@ public class PanelDeJuego extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(avatarJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
-                                .addComponent(jLabel2)))
+                                .addComponent(nombreJugador1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))
+                                .addComponent(avatarJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombreJugador2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6))
+                                .addComponent(avatarJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombreJugador3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel8))
+                                .addComponent(avatarJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombreJugador4))
                         .addGap(0, 27, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -177,21 +215,21 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(avatarJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(7, 7, 7)
-                            .addComponent(jLabel2))
+                            .addComponent(nombreJugador1))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(avatarJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(7, 7, 7)
-                            .addComponent(jLabel4)))
+                            .addComponent(nombreJugador2)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(avatarJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
-                        .addComponent(jLabel6))
+                        .addComponent(nombreJugador3))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(avatarJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
-                        .addComponent(jLabel8)))
+                        .addComponent(nombreJugador4)))
                 .addGap(18, 18, 18)
                 .addComponent(panelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -214,16 +252,24 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PanelDeJuego.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PanelDeJuego.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PanelDeJuego.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PanelDeJuego.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -236,15 +282,15 @@ public class PanelDeJuego extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel avatarJugador1;
+    private javax.swing.JLabel avatarJugador2;
+    private javax.swing.JLabel avatarJugador3;
+    private javax.swing.JLabel avatarJugador4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel nombreJugador1;
+    private javax.swing.JLabel nombreJugador2;
+    private javax.swing.JLabel nombreJugador3;
+    private javax.swing.JLabel nombreJugador4;
     private javax.swing.JPanel panelJuego;
     // End of variables declaration//GEN-END:variables
 }
