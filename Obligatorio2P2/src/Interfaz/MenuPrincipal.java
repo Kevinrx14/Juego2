@@ -13,10 +13,6 @@ import java.awt.event.*;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
     public String hola;
-    public JFrame ingresoJug;
-    /**
-     * Creates new form MenuPrincipal
-     */
     public MenuPrincipal() {
         this.setTitle("Aves v2.0 Beta");
         setSize(400,400);
@@ -42,11 +38,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton4 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton4.setText("Configuracion");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +53,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("jLabel4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -86,12 +87,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3);
         jButton3.setBounds(134, 390, 267, 29);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/ezequiellopez/Desktop/Dibujo20140712-upside-down-bird-on-cable-national-geographic-hideta-nagai-1024x768.jpg")); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 540, 500);
+        jLabel2.setBounds(0, 0, 0, 0);
 
-        pack();
+        jLabel5.setFont(new java.awt.Font("Marker Felt", 1, 48)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("AVES 2.0");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(130, 10, 290, 130);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/ezequiellopez/Desktop/Dibujo20140712-upside-down-bird-on-cable-national-geographic-hideta-nagai-1024x768.jpg")); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 540, 500);
+
+        setBounds(0, 0, 536, 524);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -155,5 +165,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
