@@ -69,7 +69,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
     }
 
     private void clickBoton(int fila, int columna) {
-        if (this.tablero.getMovimientoDisponible()) {
+        //if (this.tablero.getMovimientoDisponible()) {
             if (this.tablero.getBotonesApretados() == 0) {
                 this.tablero.setFila1(fila);
                 this.tablero.setColumna1(columna);
@@ -79,14 +79,14 @@ public class PanelDeJuego extends javax.swing.JFrame {
                     this.tablero.setFila2(fila);
                     this.tablero.setColumna2(columna);
                     this.tablero.setBotonesApretados();
-                    if (this.tablero.conectar(this.botones)) {
+                    if (this.tablero.movimiento(this.botones)) {
                         this.ponerAves();
                     }
                 }
             }
-        } else {
+        //} else {
             //mensajeError.setText("No tienes movimientos disponibles");
-        }
+        //}
     }
 
     public void ponerAves() {
