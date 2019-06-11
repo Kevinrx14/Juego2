@@ -7,24 +7,19 @@ package Interfaz;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import obligatorio2p2.*;
 /**
  *
  * @author ezequiellopez
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+    public Aves a;
+    public Partida p;
     public String hola;
     public MenuPrincipal() {
-        this.setTitle("Aves v2.0 Beta");
-        setSize(400,400);
-        setVisible(true);
-
-        setLayout(new BorderLayout());
-
-        JLabel background=new JLabel(new ImageIcon("https://francis.naukas.com/files/2014/07/Dibujo20140712-upside-down-bird-on-cable-national-geographic-hideta-nagai.jpg"));
-
-        add(background);
-
         initComponents();
+        this.setTitle("Aves v2.0 Beta");
+        a = new Aves();
         
     }
 
@@ -101,15 +96,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 540, 500);
 
-        setBounds(0, 0, 536, 524);
+        setBounds(0, 0, 539, 524);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+        SeleccionarJugadores sel=new SeleccionarJugadores(a, p);
+        sel.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PanelDeJuego panel=new PanelDeJuego();
+        SeleccionarJugadores panel=new SeleccionarJugadores(a, p);
         panel.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

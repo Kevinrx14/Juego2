@@ -15,9 +15,13 @@ public class Aves {
     private int[] configuracion;
 
     public Aves() {
+        Jugador j=new Jugador("Alberto",21,"alv", "RED");
+        Jugador a=new Jugador("Ernesto",32,"ern","BLUE");
         this.setPartidas();
         this.setJugadores();
         this.setDefaultConfig();
+        this.jugadores.add(a);
+        this.jugadores.add(j);
     }
 
     public int[] getConfiguracion() {

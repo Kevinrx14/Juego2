@@ -10,7 +10,7 @@ import java.util.*;
  * @author ezequiellopez
  */
 public class Partida {
-     private ArrayList<Jugador> jugadores;
+    private ArrayList<Jugador> jugadores;
     private Tablero tablero;
     private int cantJug;
     private int cantAves;

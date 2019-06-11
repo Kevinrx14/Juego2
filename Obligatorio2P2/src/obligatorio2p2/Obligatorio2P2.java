@@ -5,8 +5,8 @@ public class Obligatorio2P2 {
     public static void main(String[] args) {
 //       MenuPrincipal m=new MenuPrincipal();
 //       m.setVisible(true);
-    PanelDeJuego panel = new PanelDeJuego();
-    panel.setVisible(true);
+    MenuPrincipal menu=new MenuPrincipal();
+    menu.setVisible(true);
     }
     
 }
