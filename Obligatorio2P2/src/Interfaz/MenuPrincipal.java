@@ -20,6 +20,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setTitle("Aves v2.0 Beta");
         a = new Aves();
         this.setResizable(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     
     public Aves getAves(){

@@ -12,6 +12,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     public PanelDeJuego() {
         this.initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setResizable(false);
         this.tablero = new Tablero();
         panelJuego.setLayout(new GridLayout(11, 11));

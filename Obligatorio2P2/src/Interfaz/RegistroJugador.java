@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaz;
-
+import java.awt.*;
 /**
  *
  * @author ezequiellopez
@@ -17,6 +17,8 @@ public class RegistroJugador extends javax.swing.JFrame {
     public RegistroJugador() {
         initComponents();
         this.setResizable(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
     /**

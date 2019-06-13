@@ -5,6 +5,7 @@
  */
 package Interfaz;
 import obligatorio2p2.*;
+import java.awt.*;
 /**
  *
  * @author ezequiellopez
@@ -17,12 +18,16 @@ public class Configuracion extends javax.swing.JFrame {
      */
     public Configuracion() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         blankTurn.setVisible(false);
         labTurn.setVisible(false);
         this.setResizable(false);
     }
     public Configuracion(Aves ave, Partida part){
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setResizable(false);
         blankTurn.setVisible(false);
         labTurn.setVisible(false);

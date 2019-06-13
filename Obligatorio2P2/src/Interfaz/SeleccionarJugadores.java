@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaz;
-import java.awt.MenuComponent;
+import java.awt.*;
 import obligatorio2p2.*;
 import javax.swing.*;
 import java.util.*;
@@ -21,6 +21,8 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         initComponents();
         jugar.setVisible(false);
         this.setResizable(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     
     public SeleccionarJugadores(Aves a){
@@ -30,6 +32,8 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         this.jList2.setListData(this.av.getJugadores().toArray());
         juga=new ArrayList();
         this.setResizable(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     /**
      * This method is called from within the constructor to initialize the form.
