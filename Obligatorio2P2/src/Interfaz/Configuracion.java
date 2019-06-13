@@ -193,11 +193,12 @@ public class Configuracion extends javax.swing.JFrame {
         }
         int turnos=Integer.parseInt((String)blankTurn.getText());
         a.setConfig(jug, aves, tipoTerm, turnos);
+        this.setVisible(false);
         }catch(Exception e){
             VentanaError v=new VentanaError("Por favor, verifica los datos ingresados");
             v.setVisible(true);
         }
-        this.setVisible(false);
+        
     }//GEN-LAST:event_setearConfigActionPerformed
 
     private void configDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configDefectoActionPerformed

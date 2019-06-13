@@ -5,6 +5,7 @@
  */
 package Interfaz;
 import java.awt.*;
+import obligatorio2p2.*;
 /**
  *
  * @author ezequiellopez
@@ -14,6 +15,7 @@ public class RegistroJugador extends javax.swing.JFrame {
     /**
      * Creates new form RegistroJugador
      */
+    private String image;
     public RegistroJugador() {
         initComponents();
         this.setResizable(false);
@@ -43,10 +45,10 @@ public class RegistroJugador extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         register = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        avatar1 = new javax.swing.JButton();
+        avatar2 = new javax.swing.JButton();
+        avatar3 = new javax.swing.JButton();
+        avatar4 = new javax.swing.JButton();
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -120,34 +122,34 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(365, 6, 89, 16);
 
-        jButton1.setText("Pepe");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        avatar1.setText("Pepe");
+        avatar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                avatar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(208, 28, 191, 140);
+        getContentPane().add(avatar1);
+        avatar1.setBounds(208, 28, 191, 140);
 
-        jButton2.setText("Juan");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        avatar2.setText("Juan");
+        avatar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                avatar2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(405, 28, 189, 140);
+        getContentPane().add(avatar2);
+        avatar2.setBounds(405, 28, 189, 140);
 
-        jButton3.setText("Maneco");
-        jButton3.setAutoscrolls(true);
-        getContentPane().add(jButton3);
-        jButton3.setBounds(210, 174, 190, 140);
+        avatar3.setText("Maneco");
+        avatar3.setAutoscrolls(true);
+        getContentPane().add(avatar3);
+        avatar3.setBounds(210, 174, 190, 140);
 
-        jButton4.setText("Maduro");
-        getContentPane().add(jButton4);
-        jButton4.setBounds(405, 174, 190, 140);
+        avatar4.setText("Maduro");
+        getContentPane().add(avatar4);
+        avatar4.setBounds(405, 174, 190, 140);
 
-        pack();
+        setBounds(0, 0, 597, 369);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
@@ -168,21 +170,26 @@ public class RegistroJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_configActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        RegistroJugador registro=new RegistroJugador();
-        registro.setVisible(true);
+        try{
+            int edad=Integer.parseInt(age.getText());
+            Jugador j = new Jugador(name.getText(), edad, alias.getText(), image);
+        }catch(Exception e){
+            VentanaError error=new VentanaError("Verifica los datos ingresados");
+            error.setVisible(true);
+        }
     }//GEN-LAST:event_registrarActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jugarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
+        
+    }//GEN-LAST:event_avatar1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void avatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_avatar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,11 +229,11 @@ public class RegistroJugador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField age;
     private javax.swing.JTextField alias;
+    private javax.swing.JButton avatar1;
+    private javax.swing.JButton avatar2;
+    private javax.swing.JButton avatar3;
+    private javax.swing.JButton avatar4;
     private javax.swing.JButton config;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
