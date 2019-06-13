@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaz;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import obligatorio2p2.*;
 /**
  *
@@ -110,11 +108,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
 
-       try{
-        SeleccionarJugadores panel=new SeleccionarJugadores(a);
-        panel.setVisible(true);
-        }catch(Exception e){
-            VentanaError vent=new VentanaError("Por favor, revisa la configuracion");
+        
+           System.out.println("Flag config jug "+ a.getConfiguracion()[0]);
+           System.out.println("Flag cant jug "+a.getJugadores().size());
+        if(a.getConfiguracion()[0]<=a.getJugadores().size()){
+            SeleccionarJugadores panel=new SeleccionarJugadores(a);
+        panel.setVisible(true); 
+        }else{
+        VentanaError vent=new VentanaError("Por favor, revisa la configuracion");
             vent.setVisible(true);
         }
     }//GEN-LAST:event_jugarActionPerformed
@@ -125,7 +126,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_registroActionPerformed
 
     private void configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configActionPerformed
-        Configuracion config=new Configuracion();
+        Configuracion config=new Configuracion(a);
         config.setVisible(true);
     }//GEN-LAST:event_configActionPerformed
 

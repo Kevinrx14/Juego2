@@ -13,8 +13,10 @@ import java.util.*;
  * @author ezequiellopez
  */
 public class SeleccionarJugadores extends javax.swing.JFrame {
-    private Aves av;
-    private ArrayList<Jugador> juga;
+    private Aves aves;
+    private ArrayList<Jugador> juegan;
+    private ArrayList<Jugador> listaJug;
+    
 
     public SeleccionarJugadores() {
         initComponents();
@@ -26,10 +28,11 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
     
     public SeleccionarJugadores(Aves a){
         initComponents();
-        this.av=a;
+        this.aves=a;
         jugar.setVisible(false);
-        this.jList2.setListData(this.av.getJugadores().toArray());
-        juga=new ArrayList();
+        juegan=new ArrayList();
+        listaJug=new ArrayList(aves.getJugadores());
+        this.jList2.setListData(this.listaJug.toArray());
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -90,19 +93,22 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
 
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
         int remover=jList2.getSelectedIndex();
-        if(av.getConfiguracion().length>juga.size()){
-           juga.add((Jugador)jList2.getSelectedValue());
+        
+        if(aves.getConfiguracion().length>juegan.size()){
+           juegan.add((Jugador)jList2.getSelectedValue());
         }
-        if (av.getConfiguracion()[0]==juga.size()){
+        if (aves.getConfiguracion()[0]==juegan.size()){
             jugar.setVisible(true);
         }
-        jList2.remove(remover);
+        listaJug.remove(remover);
+        jList2.setListData(this.listaJug.toArray());
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
-        Partida p=new Partida(av.getConfiguracion()[0],av.getConfiguracion()[1],av.getConfiguracion()[2],av.getConfiguracion()[3], juga);
+        Partida p=new Partida(aves.getConfiguracion()[0],aves.getConfiguracion()[1],aves.getConfiguracion()[2],aves.getConfiguracion()[3], juegan);
         PanelDeJuego pan=new PanelDeJuego();
         pan.setVisible(true);
+
     }//GEN-LAST:event_jugarActionPerformed
 
     /**
