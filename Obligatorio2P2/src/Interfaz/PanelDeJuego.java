@@ -12,6 +12,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     public PanelDeJuego() {
         this.initComponents();
+        this.setResizable(false);
         this.tablero = new Tablero();
         panelJuego.setLayout(new GridLayout(11, 11));
         botones = new JButton[11][11];

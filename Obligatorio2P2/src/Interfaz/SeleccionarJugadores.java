@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaz;
+import java.awt.MenuComponent;
 import obligatorio2p2.*;
 import javax.swing.*;
 import java.util.*;
@@ -12,24 +13,24 @@ import java.util.*;
  * @author ezequiellopez
  */
 public class SeleccionarJugadores extends javax.swing.JFrame {
-    
+    private Partida p;
     private Aves av;
-    private Partida pa;
     private ArrayList<Jugador> juga;
 
     public SeleccionarJugadores() {
         initComponents();
         jugar.setVisible(false);
+        this.setResizable(false);
     }
-    public SeleccionarJugadores(Aves a, Partida p){
+    
+    public SeleccionarJugadores(Aves a){
         initComponents();
         this.av=a;
-        this.pa=p;
-        pa.;
         jugar.setVisible(false);
         this.jList2.setListData(this.av.getJugadores().toArray());
+        juga=new ArrayList();
+        this.setResizable(false);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +46,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         seleccionar = new javax.swing.JButton();
         jugar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel1.setText("Selecciona los jugadores");
@@ -84,12 +85,16 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
-        if(pa.getJugadores().size()<=pa.getCantJug()){
-            pa.getJugadores().add((Jugador)jList2.getSelectedValue());
+        int remover=jList2.getSelectedIndex();
+        if(av.getConfiguracion().length>juga.size()){
+           juga.add((Jugador)jList2.getSelectedValue());
         }
-        if (pa.getJugadores().size()==pa.getCantJug()){
+        if (av.getConfiguracion().length==juga.size()){
             jugar.setVisible(true);
         }
+        jList2.remove(remover);
+        p=new Partida(av.getConfiguracion()[0],av.getConfiguracion()[1],av.getConfiguracion()[2],av.getConfiguracion()[3],juga);
+
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed

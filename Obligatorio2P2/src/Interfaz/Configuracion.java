@@ -4,22 +4,40 @@
  * and open the template in the editor.
  */
 package Interfaz;
-import obligatorio2p2.Aves;
+import obligatorio2p2.*;
 /**
  *
  * @author ezequiellopez
  */
 public class Configuracion extends javax.swing.JFrame {
     Aves a=new Aves();
-    /**
+    public Partida p;    
+    /*
      * Creates new form Configuracion
      */
     public Configuracion() {
         initComponents();
         blankTurn.setVisible(false);
         labTurn.setVisible(false);
+        this.setResizable(false);
     }
-
+    public Configuracion(Aves ave, Partida part){
+        initComponents();
+        this.setResizable(false);
+        blankTurn.setVisible(false);
+        labTurn.setVisible(false);
+        a=ave;
+        p=part;
+        
+    }
+    public Partida getPartida(){
+        return this.p;
+    }
+    
+    public Aves getAves(){
+        return this.a;
+    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

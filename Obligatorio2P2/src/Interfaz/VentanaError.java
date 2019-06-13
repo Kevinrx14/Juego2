@@ -16,10 +16,12 @@ public class VentanaError extends javax.swing.JFrame {
      */
     public VentanaError(String strg) {
         initComponents();
+        this.setResizable(false);
         texto.setText(strg);
     }
     public VentanaError() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

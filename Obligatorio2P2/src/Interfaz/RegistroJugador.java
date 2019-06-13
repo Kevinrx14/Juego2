@@ -16,6 +16,7 @@ public class RegistroJugador extends javax.swing.JFrame {
      */
     public RegistroJugador() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

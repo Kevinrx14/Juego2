@@ -33,6 +33,17 @@ public class Partida {
         this.setConfigJugadores();
     }
 
+    public Partida(){
+        ArrayList<Jugador> jug=new ArrayList();
+        this.setCantJug(2);
+        this.setCantAves(20);
+        this.setTipoTerm(1);
+        this.setCantTurnos(5);
+        this.setTablero();
+        this.setJugadores(jug);
+        this.setConfigJugadores();
+    }
+    
     public int getCantTurnos() {
         return this.cantTurnos;
     }
