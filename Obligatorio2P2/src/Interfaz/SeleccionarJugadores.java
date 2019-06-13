@@ -13,7 +13,6 @@ import java.util.*;
  * @author ezequiellopez
  */
 public class SeleccionarJugadores extends javax.swing.JFrame {
-    private Partida p;
     private Aves av;
     private ArrayList<Jugador> juga;
 
@@ -34,6 +33,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,16 +93,16 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         if(av.getConfiguracion().length>juga.size()){
            juga.add((Jugador)jList2.getSelectedValue());
         }
-        if (av.getConfiguracion().length==juga.size()){
+        if (av.getConfiguracion()[0]==juga.size()){
             jugar.setVisible(true);
         }
         jList2.remove(remover);
-        p=new Partida(av.getConfiguracion()[0],av.getConfiguracion()[1],av.getConfiguracion()[2],av.getConfiguracion()[3],juga);
-
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
-        // TODO add your handling code here:
+        Partida p=new Partida(av.getConfiguracion()[0],av.getConfiguracion()[1],av.getConfiguracion()[2],av.getConfiguracion()[3], juga);
+        PanelDeJuego pan=new PanelDeJuego();
+        pan.setVisible(true);
     }//GEN-LAST:event_jugarActionPerformed
 
     /**

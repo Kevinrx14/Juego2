@@ -356,4 +356,7 @@ public class Partida {
             System.out.println("");
         }
     }
+    public void iniciarPartida(){
+        
+    }
 }

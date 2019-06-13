@@ -110,11 +110,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
 
-        try{
+       try{
         SeleccionarJugadores panel=new SeleccionarJugadores(a);
         panel.setVisible(true);
-        }catch(Exception NullPointerException){
+        }catch(Exception e){
             VentanaError vent=new VentanaError("Por favor, revisa la configuracion");
+            vent.setVisible(true);
         }
     }//GEN-LAST:event_jugarActionPerformed
 

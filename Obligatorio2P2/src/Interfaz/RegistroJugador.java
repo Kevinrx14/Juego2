@@ -123,7 +123,6 @@ public class RegistroJugador extends javax.swing.JFrame {
         jLabel5.setBounds(365, 6, 89, 16);
 
         avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/pepe.jpg"))); // NOI18N
-        avatar1.setText("Pepe");
         avatar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar1ActionPerformed(evt);
@@ -133,7 +132,6 @@ public class RegistroJugador extends javax.swing.JFrame {
         avatar1.setBounds(208, 28, 191, 140);
 
         avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/sartori.jpeg"))); // NOI18N
-        avatar2.setText("Juan");
         avatar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar2ActionPerformed(evt);
@@ -143,13 +141,11 @@ public class RegistroJugador extends javax.swing.JFrame {
         avatar2.setBounds(405, 28, 189, 140);
 
         avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/Untitled.png"))); // NOI18N
-        avatar3.setText("Maneco");
         avatar3.setAutoscrolls(true);
         getContentPane().add(avatar3);
         avatar3.setBounds(210, 174, 190, 140);
 
         avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/maduro.jpg"))); // NOI18N
-        avatar4.setText("Maduro");
         getContentPane().add(avatar4);
         avatar4.setBounds(405, 174, 190, 140);
 
