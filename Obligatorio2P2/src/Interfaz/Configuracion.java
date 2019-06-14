@@ -110,6 +110,7 @@ public class Configuracion extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(201, 0, 89, 16);
 
+        cantAves.setText("20");
         cantAves.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cantAvesActionPerformed(evt);

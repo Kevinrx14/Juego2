@@ -99,6 +99,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         }
         if (aves.getConfiguracion()[0]==juegan.size()){
             jugar.setVisible(true);
+            seleccionar.setVisible(false);
         }
         listaJug.remove(remover);
         jList2.setListData(this.listaJug.toArray());
