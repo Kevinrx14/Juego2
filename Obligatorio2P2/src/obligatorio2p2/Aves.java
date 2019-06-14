@@ -125,4 +125,75 @@ public class Aves {
             partida.iniciar();
         }
     }
+    public void darDiferentes(String entrada){
+	ArchivoGrabacion arch=new ArchivoGrabacion("DIFERENTES.txt");
+	ArchivoLectura lect=new ArchivoLectura(entrada);
+	while (lect.hayMasLineas()){
+		String validador=lect.linea();
+		boolean grabar=true;
+		for (int i =0; i<jugadores.size(); i++){
+			if (compararString(validador, jugadores.get(i).getNombre())){
+				grabar=false;
+			}
+		}
+		if (grabar){
+			arch.grabarLinea(validador);
+		}
+	}
+	arch.cerrar();
+	lect.cerrar();
+}
+
+public boolean compararString(String a, String b){
+	boolean retorno=true;
+	int contador=0;
+	boolean inflexion=false;
+	if(a.length() == b.length() || a.length()-1==b.length() || a.length()+1==b.length()){
+		if(a.length() == b.length()){
+			for (int i=0; i<a.length(); i++){
+				if(a.charAt(i)!=b.charAt(i)){
+					contador++;
+				}
+			}
+			if (contador>1){
+				retorno=false;
+			}
+		}
+		if(a.length()-1==b.length()){
+			for (int i=0; i<b.length(); i++){
+				if(!inflexion){
+					if(a.charAt(i)!=b.charAt(i)){
+						inflexion=true;
+						contador++;
+					}
+				}else{
+					if(a.charAt(i)!=b.charAt(i-1)){
+						contador++;
+					}
+				}
+			}
+			if (contador>1){
+				retorno=false;
+			}
+		}
+		if(a.length()+1==b.length()){
+			for (int i=0; i<b.length(); i++){
+				if(!inflexion){
+					if(a.charAt(i)!=b.charAt(i)){
+						inflexion=true;
+						contador++;
+					}
+				}else{
+					if(a.charAt(i)!=b.charAt(i+1)){
+						contador++;
+					}
+				}
+			}
+			if (contador>1){
+				retorno=false;
+			}
+		}
+	}
+        return retorno;
+}
 }
