@@ -15,7 +15,6 @@ public class PanelDeJuego extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setResizable(false);
-        this.tablero = new Tablero();
         panelJuego.setLayout(new GridLayout(11, 11));
         botones = new JButton[11][11];
         for (int i = 1; i <= 10; i++) {
@@ -26,7 +25,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 botones[i][j] = jButton;
             }
         }
-
+        
+        this.tablero = new Tablero(botones);
         this.pintarBotones();
 
         botones[1][1].setBackground(Color.RED);

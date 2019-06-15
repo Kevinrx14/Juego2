@@ -7,6 +7,7 @@ import javax.swing.*;
 
 public class Tablero {
 
+    private JButton botones[][];
     private boolean movimientoDisponible;
     private int botonesApretados;
     private int fila1;
@@ -14,8 +15,17 @@ public class Tablero {
     private int fila2;
     private int columna2;
 
-    public Tablero() {
+    public Tablero(JButton[][] matBotones) {
         this.setMovimientoDisponible(true);
+        this.setBotones(matBotones);
+    }
+
+    public void setBotones(JButton[][] matBotones) {
+        this.botones = matBotones;
+    }
+
+    public JButton[][] getBotones() {
+        return this.botones;
     }
 
     public void setFila1(int fila) {
@@ -264,9 +274,11 @@ public class Tablero {
         String color1 = this.getColoresBotones(botones)[this.getFila1()][this.getColumna1()];
         String color2 = this.getColoresBotones(botones)[this.getFila2()][this.getColumna2()];
 
-        if (this.validarColumna() || this.validarFila()) {
-            if (this.validarColor(color1, color2)) {
-                validador = true;
+        if (!this.sonElMismoBoton()) {
+            if (this.validarColumna() || this.validarFila()) {
+                if (this.validarColor(color1, color2)) {
+                    validador = true;
+                }
             }
         }
 
@@ -314,7 +326,17 @@ public class Tablero {
 
         return validador;
     }
-    
+
+    public boolean sonElMismoBoton() {
+        boolean validador = false;
+
+        if (this.validarFila() && this.validarColumna()) {
+            validador = true;
+        }
+
+        return validador;
+    }
+
 //    discutir si es necesario verificar si hay aves al lado para extender
 //    ya que para tener un ave si o si vas a tener otra al lado    
 //    public boolean hayAveAlLado(JButton[][] botones) {
@@ -328,5 +350,4 @@ public class Tablero {
 //        
 //        return hayAve;
 //    }
-            
 }

@@ -28,7 +28,7 @@ public class Partida {
         this.setCantAves(avesXjug);
         this.setTipoTerm(tipoTerm);
         this.setCantTurnos(cantTurnos);
-        this.setTablero();
+//        this.setTablero();
         this.setJugadores(jugadores);
         this.setConfigJugadores();
     }
@@ -39,7 +39,7 @@ public class Partida {
         this.setCantAves(20);
         this.setTipoTerm(1);
         this.setCantTurnos(5);
-        this.setTablero();
+//        this.setTablero();
         this.setJugadores(jug);
         this.setConfigJugadores();
     }
@@ -119,9 +119,9 @@ public class Partida {
         return this.tablero;
     }
 
-    public void setTablero() {
-        this.tablero = new Tablero();
-    }
+//    public void setTablero() {
+//        this.tablero = new Tablero();
+//    }
 
     public int getCantJug() {
         return this.cantJug;
