@@ -94,7 +94,7 @@ public class Jugador implements Comparable {
 
     @Override
     public String toString() {
-        return this.getNombre();
+        return this.getAlias();
     }
 }  
 

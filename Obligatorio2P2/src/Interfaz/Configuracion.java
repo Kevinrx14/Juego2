@@ -4,22 +4,36 @@
  * and open the template in the editor.
  */
 package Interfaz;
-import obligatorio2p2.Aves;
+import obligatorio2p2.*;
+import java.awt.*;
 /**
  *
  * @author ezequiellopez
  */
 public class Configuracion extends javax.swing.JFrame {
-    Aves a=new Aves();
-    /**
+    public Aves a;
+    /*
      * Creates new form Configuracion
      */
     public Configuracion() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         blankTurn.setVisible(false);
         labTurn.setVisible(false);
+        this.setResizable(false);
     }
-
+    public Configuracion(Aves ave){
+        initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setResizable(false);
+        blankTurn.setVisible(true);
+        labTurn.setVisible(true);
+        a=ave;
+    }
+    
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,13 +56,16 @@ public class Configuracion extends javax.swing.JFrame {
         labTurn = new javax.swing.JLabel();
 
         setTitle("Aves 2.0 - Configuración");
+        getContentPane().setLayout(null);
 
-        cantJug.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        cantJug.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4" }));
         cantJug.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cantJugActionPerformed(evt);
             }
         });
+        getContentPane().add(cantJug);
+        cantJug.setBounds(66, 44, 264, 27);
 
         formaTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terminar turnos", "Cantidad de aves"}));
         formaTerm.addActionListener(new java.awt.event.ActionListener() {
@@ -56,12 +73,20 @@ public class Configuracion extends javax.swing.JFrame {
                 formaTermActionPerformed(evt);
             }
         });
+        getContentPane().add(formaTerm);
+        formaTerm.setBounds(66, 154, 264, 27);
 
         jLabel1.setText("Cantidad de jugadores ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(336, 48, 145, 16);
 
         jLabel2.setText("Cantidad de aves");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(336, 102, 107, 16);
 
         jLabel3.setText("Forma de terminacion");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(336, 158, 137, 16);
 
         setearConfig.setText("Listo");
         setearConfig.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +94,8 @@ public class Configuracion extends javax.swing.JFrame {
                 setearConfigActionPerformed(evt);
             }
         });
+        getContentPane().add(setearConfig);
+        setearConfig.setBounds(6, 257, 173, 37);
 
         configDefecto.setText("Configuración por defecto");
         configDefecto.addActionListener(new java.awt.event.ActionListener() {
@@ -76,79 +103,36 @@ public class Configuracion extends javax.swing.JFrame {
                 configDefectoActionPerformed(evt);
             }
         });
+        getContentPane().add(configDefecto);
+        configDefecto.setBounds(302, 257, 179, 37);
 
         jLabel4.setText("Configuración");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(201, 0, 89, 16);
 
+        cantAves.setText("20");
         cantAves.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cantAvesActionPerformed(evt);
             }
         });
+        getContentPane().add(cantAves);
+        cantAves.setBounds(66, 97, 264, 26);
 
-        blankTurn.setText("     ");
+        blankTurn.setText("5");
+        blankTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blankTurnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(blankTurn);
+        blankTurn.setBounds(66, 199, 264, 26);
 
         labTurn.setText("Cantidad de turnos");
+        getContentPane().add(labTurn);
+        labTurn.setBounds(353, 204, 120, 16);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(setearConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(configDefecto, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cantAves)
-                            .addComponent(cantJug, 0, 264, Short.MAX_VALUE)
-                            .addComponent(blankTurn)
-                            .addComponent(formaTerm, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(labTurn)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(197, 197, 197))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cantJug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cantAves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formaTerm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(blankTurn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labTurn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(setearConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(configDefecto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        pack();
+        setBounds(0, 0, 487, 322);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cantJugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantJugActionPerformed
@@ -157,7 +141,7 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void setearConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setearConfigActionPerformed
         try{
-        int jug=Integer.parseInt((String)(cantJug.getSelectedItem()));
+        int jug=cantJug.getSelectedIndex()+2;
         int aves=Integer.parseInt((String)(cantAves.getText()));
         int tipoTerm=0;
         switch ((String)formaTerm.getSelectedItem()){
@@ -170,11 +154,12 @@ public class Configuracion extends javax.swing.JFrame {
         }
         int turnos=Integer.parseInt((String)blankTurn.getText());
         a.setConfig(jug, aves, tipoTerm, turnos);
+        this.setVisible(false);
         }catch(Exception e){
             VentanaError v=new VentanaError("Por favor, verifica los datos ingresados");
             v.setVisible(true);
         }
-        this.setVisible(false);
+        
     }//GEN-LAST:event_setearConfigActionPerformed
 
     private void configDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configDefectoActionPerformed
@@ -198,6 +183,10 @@ public class Configuracion extends javax.swing.JFrame {
             labTurn.setVisible(false);
         }
     }//GEN-LAST:event_formaTermActionPerformed
+
+    private void blankTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blankTurnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blankTurnActionPerformed
 
     /**
      * @param args the command line arguments

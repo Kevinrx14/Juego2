@@ -12,6 +12,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     public PanelDeJuego() {
         this.initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setResizable(false);
         this.tablero = new Tablero();
         panelJuego.setLayout(new GridLayout(11, 11));
         botones = new JButton[11][11];
@@ -140,7 +143,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         javax.swing.GroupLayout panelJuegoLayout = new javax.swing.GroupLayout(panelJuego);
         panelJuego.setLayout(panelJuegoLayout);
@@ -153,89 +157,43 @@ public class PanelDeJuego extends javax.swing.JFrame {
             .addGap(0, 422, Short.MAX_VALUE)
         );
 
+        getContentPane().add(panelJuego);
+        panelJuego.setBounds(6, 133, 484, 422);
+
         avatarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/index.png"))); // NOI18N
         avatarJugador1.setText("jLabel1");
+        getContentPane().add(avatarJugador1);
+        avatarJugador1.setBounds(43, 24, 74, 68);
 
         nombreJugador1.setText("Nombre Jugador");
+        getContentPane().add(nombreJugador1);
+        nombreJugador1.setBounds(31, 99, 102, 16);
 
         avatarJugador2.setText("jLabel1");
+        getContentPane().add(avatarJugador2);
+        avatarJugador2.setBounds(157, 24, 74, 68);
 
         nombreJugador2.setText("Nombre Jugador");
+        getContentPane().add(nombreJugador2);
+        nombreJugador2.setBounds(145, 99, 102, 16);
 
         avatarJugador3.setText("jLabel1");
+        getContentPane().add(avatarJugador3);
+        avatarJugador3.setBounds(265, 24, 74, 68);
 
         nombreJugador3.setText("Nombre Jugador");
+        getContentPane().add(nombreJugador3);
+        nombreJugador3.setBounds(253, 99, 102, 16);
 
         avatarJugador4.setText("jLabel1");
+        getContentPane().add(avatarJugador4);
+        avatarJugador4.setBounds(373, 24, 74, 68);
 
         nombreJugador4.setText("Nombre Jugador");
+        getContentPane().add(nombreJugador4);
+        nombreJugador4.setBounds(361, 99, 102, 16);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(avatarJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(nombreJugador1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(avatarJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nombreJugador2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(avatarJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nombreJugador3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(avatarJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nombreJugador4))
-                        .addGap(0, 27, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(avatarJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(7, 7, 7)
-                            .addComponent(nombreJugador1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(avatarJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(7, 7, 7)
-                            .addComponent(nombreJugador2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(avatarJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(nombreJugador3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(avatarJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(nombreJugador4)))
-                .addGap(18, 18, 18)
-                .addComponent(panelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pack();
+        setBounds(0, 0, 496, 583);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

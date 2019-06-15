@@ -10,7 +10,7 @@ import java.util.*;
  * @author ezequiellopez
  */
 public class Partida {
-     private ArrayList<Jugador> jugadores;
+    private ArrayList<Jugador> jugadores;
     private Tablero tablero;
     private int cantJug;
     private int cantAves;
@@ -33,6 +33,17 @@ public class Partida {
         this.setConfigJugadores();
     }
 
+    public Partida(){
+        ArrayList<Jugador> jug=new ArrayList();
+        this.setCantJug(2);
+        this.setCantAves(20);
+        this.setTipoTerm(1);
+        this.setCantTurnos(5);
+        this.setTablero();
+        this.setJugadores(jug);
+        this.setConfigJugadores();
+    }
+    
     public int getCantTurnos() {
         return this.cantTurnos;
     }
@@ -344,5 +355,8 @@ public class Partida {
             }
             System.out.println("");
         }
+    }
+    public void iniciarPartida(){
+        
     }
 }

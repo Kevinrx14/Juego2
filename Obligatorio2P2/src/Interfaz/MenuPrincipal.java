@@ -4,30 +4,29 @@
  * and open the template in the editor.
  */
 package Interfaz;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import obligatorio2p2.*;
 /**
  *
  * @author ezequiellopez
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+    public Aves a;
     public String hola;
+    boolean onTop;
     public MenuPrincipal() {
-        this.setTitle("Aves v2.0 Beta");
-        setSize(400,400);
-        setVisible(true);
-
-        setLayout(new BorderLayout());
-
-        JLabel background=new JLabel(new ImageIcon("https://francis.naukas.com/files/2014/07/Dibujo20140712-upside-down-bird-on-cable-national-geographic-hideta-nagai.jpg"));
-
-        add(background);
-
         initComponents();
-        
+        this.setTitle("Aves v2.0 Beta");
+        a = new Aves();
+        onTop=false;
+        this.setResizable(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
-
+    
+    public Aves getAves(){
+        return this.a;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,12 +39,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jugar = new javax.swing.JButton();
+        registro = new javax.swing.JButton();
+        config = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        texto = new javax.swing.JLabel();
+        diferentes = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
+        fondoImg = new javax.swing.JLabel();
 
         jButton4.setText("Configuracion");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -61,67 +63,102 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(26, 14, 0, 0);
 
-        jButton1.setText("Jugar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jugar.setText("Jugar");
+        jugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jugarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(134, 243, 267, 29);
+        getContentPane().add(jugar);
+        jugar.setBounds(140, 130, 267, 29);
 
-        jButton2.setText("¡Registrate!");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        registro.setText("¡Registrate!");
+        registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                registroActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(134, 318, 267, 29);
+        getContentPane().add(registro);
+        registro.setBounds(140, 210, 267, 29);
 
-        jButton3.setText("Configuración");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        config.setText("Configuración");
+        config.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                configActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(134, 390, 267, 29);
+        getContentPane().add(config);
+        config.setBounds(140, 280, 267, 29);
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 0, 0);
 
-        jLabel5.setFont(new java.awt.Font("Marker Felt", 1, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("AVES 2.0");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(130, 10, 290, 130);
+        texto.setFont(new java.awt.Font("Marker Felt", 1, 48)); // NOI18N
+        texto.setForeground(new java.awt.Color(0, 153, 153));
+        texto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        texto.setText("AVES 2.0");
+        getContentPane().add(texto);
+        texto.setBounds(130, 10, 290, 130);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/ezequiellopez/Desktop/Dibujo20140712-upside-down-bird-on-cable-national-geographic-hideta-nagai-1024x768.jpg")); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 540, 500);
+        diferentes.setText("Diferencia de nombres");
+        diferentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diferentesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(diferentes);
+        diferentes.setBounds(290, 330, 170, 100);
 
-        setBounds(0, 0, 536, 524);
+        jButton2.setText("Puntuaciones");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(80, 330, 170, 100);
+
+        salir.setBackground(new java.awt.Color(255, 51, 51));
+        salir.setText("Salir");
+        getContentPane().add(salir);
+        salir.setBounds(210, 470, 120, 29);
+
+        fondoImg.setIcon(new javax.swing.ImageIcon("/Users/ezequiellopez/Desktop/Dibujo20140712-upside-down-bird-on-cable-national-geographic-hideta-nagai-1024x768.jpg")); // NOI18N
+        getContentPane().add(fondoImg);
+        fondoImg.setBounds(0, 0, 540, 500);
+
+        setBounds(0, 0, 539, 524);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+        SeleccionarJugadores sel=new SeleccionarJugadores(a);
+        sel.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PanelDeJuego panel=new PanelDeJuego();
-        panel.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
+        if(a.getConfiguracion()[0]<=a.getJugadores().size()){
+            SeleccionarJugadores panel=new SeleccionarJugadores(a);
+        panel.setVisible(true); 
+        }else{
+        VentanaError vent=new VentanaError("Por favor, revisa la configuracion");
+            vent.setVisible(true);
+        }
+    }//GEN-LAST:event_jugarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
         RegistroJugador registro=new RegistroJugador();
         registro.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_registroActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Configuracion config=new Configuracion();
+    private void configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configActionPerformed
+        Configuracion config=new Configuracion(a);
         config.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_configActionPerformed
+
+    private void diferentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diferentesActionPerformed
+        if(!onTop){
+        SelectArch dif=new SelectArch();
+        dif.setVisible(true);
+        onTop=true;
+        }else{
+            
+        }
+        
+    }//GEN-LAST:event_diferentesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,14 +196,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton config;
+    private javax.swing.JButton diferentes;
+    private javax.swing.JLabel fondoImg;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton jugar;
+    private javax.swing.JButton registro;
+    private javax.swing.JButton salir;
+    private javax.swing.JLabel texto;
     // End of variables declaration//GEN-END:variables
 }
