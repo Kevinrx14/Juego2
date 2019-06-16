@@ -98,11 +98,11 @@ public class PanelDeJuego extends javax.swing.JFrame {
                     this.tablero.setFila2(fila);
                     this.tablero.setColumna2(columna);
                     this.tablero.aumentarBotonesApretados();
-                    if (this.tablero.conectar(this.botones)) {
+                    if (this.tablero.conectar()) {
                         System.out.println("flag se pudo conectar");
-                        this.ponerAves();
+                        this.ponerAvesConectar();
                         this.movimiento = "no";
-                        
+
                     }
                 }
             }
@@ -120,15 +120,15 @@ public class PanelDeJuego extends javax.swing.JFrame {
         }
     }
 
-    public void ponerAves() {
+    public void ponerAvesConectar() {
         int fila1 = this.tablero.getFila1();
         int fila2 = this.tablero.getFila2();
         int columna1 = this.tablero.getColumna1();
         int columna2 = this.tablero.getColumna2();
         Color color = this.botones[fila1][columna1].getBackground();
-        
+
         if (this.tablero.validarFila()) {
-            if(this.tablero.columnaDecreciente()) {
+            if (this.tablero.columnaDecreciente()) {
                 int aux = columna1;
                 columna1 = columna2;
                 columna2 = aux;
@@ -138,7 +138,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.botones[fila1][i].setBackground(color);
             }
         } else {
-            if(this.tablero.filaDecreciente()) {
+            if (this.tablero.filaDecreciente()) {
                 int aux = fila1;
                 fila1 = fila2;
                 fila2 = aux;
@@ -147,6 +147,40 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.botones[i][columna1].setText("X");
                 this.botones[i][columna1].setBackground(color);
             }
+        }
+    }
+
+    public void ponerAvesExtender(char direccion) {
+        int[] extenderHasta = this.tablero.extenderHasta(direccion);
+        int fila1 = this.tablero.getFila1();
+        int columna1 = this.tablero.getColumna1();
+        Color color = this.botones[fila1][columna1].getBackground();
+
+        switch (direccion) {
+            case 'A':
+                for (int i = fila1; i >= extenderHasta[0]; i--) {
+                    this.botones[i][columna1].setText("X");
+                    this.botones[i][columna1].setBackground(color);
+                }
+                break;
+            case 'B':
+                for (int i = fila1; i <= extenderHasta[0]; i++) {
+                    this.botones[i][columna1].setText("X");
+                    this.botones[i][columna1].setBackground(color);
+                }
+                break;
+            case 'I':
+                for (int i = columna1; i >= extenderHasta[1]; i--) {
+                    this.botones[fila1][i].setText("X");
+                    this.botones[fila1][i].setBackground(color);
+                }
+                break;
+            case 'D':
+                for (int i = columna1; i >= extenderHasta[1]; i++) {
+                    this.botones[fila1][i].setText("X");
+                    this.botones[fila1][i].setBackground(color);
+                }
+                break;
         }
     }
 
@@ -320,8 +354,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     private void botonExtenderIzquierdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExtenderIzquierdaActionPerformed
         if (this.tablero.getBotonesApretados() == 1) {
-            if (this.tablero.extender(botones)) {
-                //this.ponerAves();
+            if (this.tablero.extender('I')) {
+                this.ponerAvesExtender('I');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
             }
@@ -330,8 +364,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     private void botonExtenderArribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExtenderArribaActionPerformed
         if (this.tablero.getBotonesApretados() == 1) {
-            if (this.tablero.extender(botones)) {
-                //this.ponerAves();
+            if (this.tablero.extender('A')) {
+                this.ponerAvesExtender('A');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
             }
@@ -340,8 +374,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     private void botonExtenderDerechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExtenderDerechaActionPerformed
         if (this.tablero.getBotonesApretados() == 1) {
-            if (this.tablero.extender(botones)) {
-                //this.ponerAves();
+            if (this.tablero.extender('D')) {
+                this.ponerAvesExtender('D');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
             }
@@ -350,8 +384,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     private void botonExtenderAbajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExtenderAbajoActionPerformed
         if (this.tablero.getBotonesApretados() == 1) {
-            if (this.tablero.extender(botones)) {
-                //this.ponerAves();
+            if (this.tablero.extender('B')) {
+                this.ponerAvesExtender('B');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
             }
