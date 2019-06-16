@@ -68,7 +68,7 @@ public class Partida {
         for (int i = 0; i < jugadores.size(); i++) {
             jugadores.get(i).setCantAves(this.getCantAves());
         }
-        this.setColorJugadores();
+        //this.setColorJugadores();
     }
 
     public Color getColorJugador(int indice) {
@@ -210,9 +210,9 @@ public class Partida {
     }
 
     public void mostrarColorYJugador(int indice) {
-        String colorJug = this.getColorJugador(indice);
+        //String colorJug = this.getColorJugador(indice);
         String alias = this.getJugadores().get(indice).getAlias();
-        System.out.println(colorJug + " - " + alias);
+      //  System.out.println(colorJug + " - " + alias);
     }
 
     public char[] indColores(String movimiento) {
