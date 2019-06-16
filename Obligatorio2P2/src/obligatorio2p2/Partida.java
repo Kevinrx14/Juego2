@@ -16,6 +16,7 @@ public class Partida {
     private int cantAves;
     private int tipoTerm;
     private int cantTurnos;
+    private boolean turno;
 
     public Partida(
             int cantJugadores,
@@ -42,6 +43,14 @@ public class Partida {
 //        this.setTablero();
         this.setJugadores(jug);
         this.setConfigJugadores();
+    }
+    
+    public boolean getTurno(){
+        return this.turno;
+    }
+    
+    public void setTurno(boolean empezado) {
+        this.turno = empezado;
     }
     
     public int getCantTurnos() {
@@ -359,4 +368,6 @@ public class Partida {
     public void iniciarPartida(){
         
     }
+    
+    
 }

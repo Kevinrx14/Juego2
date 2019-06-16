@@ -68,11 +68,15 @@ public class Tablero {
         return this.movimientoDisponible;
     }
 
-    public void setBotonesApretados() {
-        this.botonesApretados++;
-        if (this.botonesApretados > 1) {
+    public void setBotonesApretados(int num) {
+        this.botonesApretados = num;
+    }
+
+    public void aumentarBotonesApretados() {
+        this.setBotonesApretados(this.getBotonesApretados()+ 1);
+        if (this.getBotonesApretados() > 1) {
             this.setMovimientoDisponible(false);
-            this.botonesApretados = 0;
+            this.setBotonesApretados(0);
         }
     }
 
@@ -84,13 +88,14 @@ public class Tablero {
         String color1 = this.getColoresBotones(botones)[this.getFila1()][this.getColumna1()];
         boolean sePuedeConectar = false;
 
-        if (validarFila()) {
-            sePuedeConectar = this.sePuedeConectarFila(botones, color1);
-        } else {
-            if (validarColumna()) {
-                sePuedeConectar = this.sePuedeConectarColumna(botones, color1);
+        if (this.validadorDeJugada(botones)) {
+            if (this.validarFila()) {
+                sePuedeConectar = this.sePuedeConectarFila(botones, color1);
+            } else {
+                if (this.validarColumna()) {
+                    sePuedeConectar = this.sePuedeConectarColumna(botones, color1);
+                }
             }
-
         }
 
         return sePuedeConectar;
@@ -253,22 +258,6 @@ public class Tablero {
         return colores;
     }
 
-    public boolean movimiento(JButton[][] botones) {
-        boolean validador = false;
-        String boton1 = this.getTextoBotones(botones)[this.getFila1()][this.getColumna1()];
-        String boton2 = this.getTextoBotones(botones)[this.getFila2()][this.getColumna2()];
-
-        if (this.validadorDeJugada(botones)) {
-            if (boton1.equals("X") && boton2.isEmpty() || boton1.isEmpty() && boton2.equals("X")) {
-                validador = this.extender(botones);
-            } else {
-                validador = this.conectar(botones);
-            }
-        }
-
-        return validador;
-    }
-
     public boolean validadorDeJugada(JButton[][] botones) {
         boolean validador = false;
         String color1 = this.getColoresBotones(botones)[this.getFila1()][this.getColumna1()];
@@ -335,6 +324,14 @@ public class Tablero {
         }
 
         return validador;
+    }
+    
+    public boolean filaDecreciente() {
+        return this.getFila1() > this.getFila2();
+    }
+    
+    public boolean columnaDecreciente() {
+        return this.getColumna1() > this.getColumna2();
     }
 
 //    discutir si es necesario verificar si hay aves al lado para extender
