@@ -5,12 +5,17 @@
  */
 package Interfaz;
 import java.awt.*;
+import java.io.*;
+import javax.swing.JFileChooser;
+import obligatorio2p2.*;
 /**
  *
  * @author ezequiellopez
  */
 public class SelectArch extends javax.swing.JFrame {
-
+    private File arch;
+    private Aves a;
+            
     /**
      * Creates new form SelectArch
      */
@@ -18,10 +23,21 @@ public class SelectArch extends javax.swing.JFrame {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        filechooser.setVisible(true);
-        this.setAlwaysOnTop(true);
     }
-
+    public SelectArch(Aves av) {
+        initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setVisible(false);
+        a=av;
+        
+    }
+    public File getArchivo(){
+        return this.arch;
+    }
+    public JFileChooser getChooser(){
+        return filechooser;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,18 +76,22 @@ public class SelectArch extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        filechooser.setAcceptAllFileFilterUsed(false);
         filechooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filechooserActionPerformed(evt);
             }
         });
-        getContentPane().add(filechooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
+        getContentPane().add(filechooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void filechooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filechooserActionPerformed
-        filechooser.getSelectedFile();
+            arch=filechooser.getSelectedFile();
+            System.out.println("flag "+this.arch.getAbsolutePath());
+            a.darDiferentes(this.arch.getAbsolutePath());
+            System.out.println("flag "+this.arch.getAbsolutePath());
     }//GEN-LAST:event_filechooserActionPerformed
 
     /**

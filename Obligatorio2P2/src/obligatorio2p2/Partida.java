@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package obligatorio2p2;
+import java.awt.Color;
 import java.util.*;
 /**
  *
@@ -70,11 +71,11 @@ public class Partida {
         this.setColorJugadores();
     }
 
-    public String getColorJugador(int indice) {
+    public Color getColorJugador(int indice) {
         return this.getJugadores().get(indice).getColorJugador();
     }
 
-    public void setColorJugadores() {
+   /* public void setColorJugadores() {
         Random rand = new Random();
         String aux = "";
         int[] colores = new int[this.getCantJug()];
@@ -113,7 +114,7 @@ public class Partida {
 
             this.getJugadores().get(i).setColorJug(aux);
         }
-    }
+    }*/
 
     public Tablero getTablero() {
         return this.tablero;

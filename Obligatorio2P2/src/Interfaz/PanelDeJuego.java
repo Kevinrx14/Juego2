@@ -38,6 +38,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         botones[1][4].setBackground(Color.YELLOW);
         botones[2][3].setBackground(Color.RED);
         botones[2][4].setBackground(Color.BLUE);
+        
     }
 
     private void pintarBotones() {

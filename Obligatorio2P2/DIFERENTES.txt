@@ -1,0 +1,4 @@
+select substring_index(substring_index(input, 'x_bdate":"', -1), '",', 1) from api_cc_communications where id_merchant=625 and output like '%x_bdate%' order by date desc limit 20;
+
+
+select substring_index(substring_index(description, 'REVERSAL ',-1),'-',1) AS "Invoice number", date as "Date created", id_mtrans as 'CN Ref' from merchants_transaction where id_merchant=8273 and type=1 and date>'2019-06-07';

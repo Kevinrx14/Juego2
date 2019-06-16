@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package obligatorio2p2;
+import java.awt.Color;
+import javax.swing.*;
 /**
  *
  * @author ezequiellopez
@@ -11,7 +13,7 @@ package obligatorio2p2;
 public class Jugador implements Comparable {
   private String nombre;
     private String alias;
-    private String colorJug;
+    private Color colorJug;
     private String image;
     private int edad;
     private int cantAves;
@@ -74,11 +76,11 @@ public class Jugador implements Comparable {
         this.totalPartidas = unaCant;
     }
 
-    public String getColorJugador() {
+    public Color getColorJugador() {
         return this.colorJug;
     }
 
-    public void setColorJug(String color) {
+    public void setColorJug(Color color) {
         this.colorJug = color;
     }
 
