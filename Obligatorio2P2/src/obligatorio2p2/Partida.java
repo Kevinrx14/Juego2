@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package obligatorio2p2;
+import java.awt.Color;
 import java.util.*;
 /**
  *
@@ -76,14 +77,14 @@ public class Partida {
         for (int i = 0; i < jugadores.size(); i++) {
             jugadores.get(i).setCantAves(this.getCantAves());
         }
-        this.setColorJugadores();
+        //this.setColorJugadores();
     }
 
-    public String getColorJugador(int indice) {
+    public Color getColorJugador(int indice) {
         return this.getJugadores().get(indice).getColorJugador();
     }
 
-    public void setColorJugadores() {
+   /* public void setColorJugadores() {
         Random rand = new Random();
         String aux = "";
         int[] colores = new int[this.getCantJug()];
@@ -122,7 +123,7 @@ public class Partida {
 
             this.getJugadores().get(i).setColorJug(aux);
         }
-    }
+    }*/
 
     public Tablero getTablero() {
         return this.tablero;
@@ -218,9 +219,9 @@ public class Partida {
     }
 
     public void mostrarColorYJugador(int indice) {
-        String colorJug = this.getColorJugador(indice);
+        //String colorJug = this.getColorJugador(indice);
         String alias = this.getJugadores().get(indice).getAlias();
-        System.out.println(colorJug + " - " + alias);
+      //  System.out.println(colorJug + " - " + alias);
     }
 
     public char[] indColores(String movimiento) {

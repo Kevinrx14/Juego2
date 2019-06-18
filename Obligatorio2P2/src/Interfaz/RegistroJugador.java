@@ -6,6 +6,7 @@
 package Interfaz;
 import java.awt.*;
 import obligatorio2p2.*;
+import javax.swing.*;
 /**
  *
  * @author ezequiellopez
@@ -15,9 +16,17 @@ public class RegistroJugador extends javax.swing.JFrame {
     /**
      * Creates new form RegistroJugador
      */
+    private Aves a;
     private String image;
     public RegistroJugador() {
         initComponents();
+        this.setResizable(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+    }
+    public RegistroJugador(Aves av) {
+        initComponents();
+        a=av;
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -115,6 +124,11 @@ public class RegistroJugador extends javax.swing.JFrame {
         jLabel3.setBounds(80, 200, 31, 16);
 
         register.setText("Registrar");
+        register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerActionPerformed(evt);
+            }
+        });
         getContentPane().add(register);
         register.setBounds(6, 314, 588, 29);
 
@@ -142,10 +156,20 @@ public class RegistroJugador extends javax.swing.JFrame {
 
         avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/Untitled.png"))); // NOI18N
         avatar3.setAutoscrolls(true);
+        avatar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avatar3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(avatar3);
         avatar3.setBounds(210, 174, 190, 140);
 
         avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/maduro.jpg"))); // NOI18N
+        avatar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avatar4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(avatar4);
         avatar4.setBounds(405, 174, 190, 140);
 
@@ -170,13 +194,7 @@ public class RegistroJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_configActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        try{
-            int edad=Integer.parseInt(age.getText());
-            Jugador j = new Jugador(name.getText(), edad, alias.getText(), image);
-        }catch(Exception e){
-            VentanaError error=new VentanaError("Verifica los datos ingresados");
-            error.setVisible(true);
-        }
+        
     }//GEN-LAST:event_registrarActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
@@ -184,12 +202,40 @@ public class RegistroJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_jugarActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
-        
+        image="pepe.jpg";
     }//GEN-LAST:event_avatar1ActionPerformed
 
     private void avatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar2ActionPerformed
-        // TODO add your handling code here:
+        image="sartori.jpeg";
     }//GEN-LAST:event_avatar2ActionPerformed
+
+    private void avatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar3ActionPerformed
+        image="Untitled.png";
+    }//GEN-LAST:event_avatar3ActionPerformed
+
+    private void avatar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar4ActionPerformed
+        image="maduro.jpg";
+    }//GEN-LAST:event_avatar4ActionPerformed
+
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+        try{
+            int edad=Integer.parseInt(age.getText());
+            Jugador j = new Jugador(name.getText(), edad, alias.getText(), image);
+            a.getJugadores().add(j);
+            System.out.println("flag");
+        }catch(NullPointerException e){
+            VentanaError error=new VentanaError("Selecciona un avatar antes de registrarte");
+            error.setVisible(true);
+        }catch(Exception e){
+            VentanaError error=new VentanaError("Por favor, verifica los datos");
+            error.setVisible(true);
+        }
+        System.out.println("flag2");
+        for (int i=0; i<a.getJugadores().size();i++){
+            System.out.println(a.getJugadores().get(i).toString());
+        }
+        
+    }//GEN-LAST:event_registerActionPerformed
 
     /**
      * @param args the command line arguments

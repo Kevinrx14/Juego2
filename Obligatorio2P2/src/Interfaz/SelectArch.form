@@ -58,6 +58,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JFileChooser" name="filechooser">
+      <Properties>
+        <Property name="acceptAllFileFilterUsed" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="filechooserActionPerformed"/>
       </Events>

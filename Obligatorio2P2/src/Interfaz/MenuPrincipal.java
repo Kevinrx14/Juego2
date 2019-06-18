@@ -6,6 +6,7 @@
 package Interfaz;
 import java.awt.*;
 import obligatorio2p2.*;
+import java.io.*;
 /**
  *
  * @author ezequiellopez
@@ -13,12 +14,18 @@ import obligatorio2p2.*;
 public class MenuPrincipal extends javax.swing.JFrame {
     public Aves a;
     public String hola;
-    boolean onTop;
     public MenuPrincipal() {
         initComponents();
         this.setTitle("Aves v2.0 Beta");
         a = new Aves();
-        onTop=false;
+        this.setResizable(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+    }
+    public MenuPrincipal(Aves av) {
+        initComponents();
+        this.setTitle("Aves v2.0 Beta");
+        a = av;
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -114,6 +121,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         salir.setBackground(new java.awt.Color(255, 51, 51));
         salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
         getContentPane().add(salir);
         salir.setBounds(210, 470, 120, 29);
 
@@ -134,13 +146,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             SeleccionarJugadores panel=new SeleccionarJugadores(a);
         panel.setVisible(true); 
         }else{
-        VentanaError vent=new VentanaError("Por favor, revisa la configuracion");
+        VentanaError vent=new VentanaError("No hay suficientes jugadores registrados");
             vent.setVisible(true);
         }
     }//GEN-LAST:event_jugarActionPerformed
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
-        RegistroJugador registro=new RegistroJugador();
+        RegistroJugador registro=new RegistroJugador(a);
         registro.setVisible(true);
     }//GEN-LAST:event_registroActionPerformed
 
@@ -150,15 +162,36 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_configActionPerformed
 
     private void diferentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diferentesActionPerformed
-        if(!onTop){
-        SelectArch dif=new SelectArch();
-        dif.setVisible(true);
-        onTop=true;
-        }else{
-            
+        try{
+            SelectArch sel=new SelectArch(a);
+            sel.setVisible(true);
         }
+        catch(NullPointerException e){
+            VentanaError vent=new VentanaError("Selecciona un archivo por favor");
+            vent.setVisible(true);
+        }
+
         
     }//GEN-LAST:event_diferentesActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        ArchivoGrabacion jug=new ArchivoGrabacion("Jugadores.txt");
+        for (int i=0; i<a.getJugadores().size(); i++){
+            jug.grabarLinea(a.getJugadores().get(i).getNombre()+","+a.getJugadores().get(i).getEdad()+","+a.getJugadores().get(i).getImage()+","+a.getJugadores().get(i).getAlias()+","+a.getJugadores().get(i).getTotalPartidas());
+        }
+        jug.cerrar();
+        ArchivoGrabacion part=new ArchivoGrabacion("Partidas.txt");
+        String partida="";
+        for (int i=0; i<a.getPartidas().size(); i++){
+            for(int j=0; j<a.getPartidas().get(i).getJugadores().size();j++){
+                partida=partida+"|"+a.getPartidas().get(i).getJugadores().get(j).getAlias();
+            }
+            partida=partida+","+a.getPartidas().get(i).getCantJug()+","+a.getPartidas().get(i).getTipoTerm()+","+a.getPartidas().get(i).getCantTurnos()+","+a.getPartidas().get(i).getCantAves();
+            part.grabarLinea(partida);
+        }
+        part.cerrar();
+        this.dispose();
+    }//GEN-LAST:event_salirActionPerformed
 
     /**
      * @param args the command line arguments

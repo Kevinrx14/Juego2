@@ -5,6 +5,7 @@
  */
 package obligatorio2p2;
 import java.util.*;
+import javax.swing.*;
 /**
  *
  * @author ezequiellopez
@@ -15,13 +16,9 @@ public class Aves {
     private int[] configuracion;
 
     public Aves() {
-        Jugador j=new Jugador("Alberto",21,"alv", "RED");
-        Jugador a=new Jugador("Ernesto",32,"ern","BLUE");
         this.setPartidas();
         this.setJugadores();
         this.setDefaultConfig();
-        this.jugadores.add(a);
-        this.jugadores.add(j);
     }
 
     public int[] getConfiguracion() {
@@ -132,7 +129,7 @@ public class Aves {
 		String validador=lect.linea();
 		boolean grabar=true;
 		for (int i =0; i<jugadores.size(); i++){
-			if (compararString(validador, jugadores.get(i).getNombre())){
+			if (!compararString(validador, jugadores.get(i).getNombre())){
 				grabar=false;
 			}
 		}
