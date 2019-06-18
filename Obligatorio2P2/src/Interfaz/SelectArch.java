@@ -82,16 +82,17 @@ public class SelectArch extends javax.swing.JFrame {
                 filechooserActionPerformed(evt);
             }
         });
-        getContentPane().add(filechooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, 390));
+        getContentPane().add(filechooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void filechooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filechooserActionPerformed
             arch=filechooser.getSelectedFile();
-            System.out.println("flag "+this.arch.getAbsolutePath());
             a.darDiferentes(this.arch.getAbsolutePath());
-            System.out.println("flag "+this.arch.getAbsolutePath());
+            this.dispose();
+            VentanaError vent=new VentanaError("Archivo generado");
+            vent.setVisible(true);
     }//GEN-LAST:event_filechooserActionPerformed
 
     /**

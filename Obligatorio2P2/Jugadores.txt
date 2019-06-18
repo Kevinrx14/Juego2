@@ -1,5 +1,3 @@
-asd,21,pepe.jpg,qwe,0
-asdee,21,sartori.jpeg,qwe,0
-Maria,21,maduro.jpg,qwe,0
-Merie,21,maduro.jpg,qwe,0
-Merie,21,sartori.jpeg,qwe,0
+kj,65,Untitled.png,poi,0
+kj,65,pepe.jpg,oi,0
+kj,65,maduro.jpg,oi,0

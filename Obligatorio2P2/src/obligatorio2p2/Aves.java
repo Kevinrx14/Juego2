@@ -129,7 +129,7 @@ public class Aves {
 		String validador=lect.linea();
 		boolean grabar=true;
 		for (int i =0; i<jugadores.size(); i++){
-			if (compararString(validador, jugadores.get(i).getNombre())){
+			if (!compararString(validador, jugadores.get(i).getNombre())){
 				grabar=false;
 			}
 		}
