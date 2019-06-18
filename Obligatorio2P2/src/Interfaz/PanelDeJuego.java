@@ -3,16 +3,34 @@ package Interfaz;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.*;
 import obligatorio2p2.*;
 
 public class PanelDeJuego extends javax.swing.JFrame {
 
     private JButton[][] botones;
     private Tablero tablero;
-//    private Partida partida;
+    private Partida partida;
     private String movimiento;
 
-    public PanelDeJuego(/*Partida nuevaPartida*/) {
+    public PanelDeJuego() {
+        this.initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.setResizable(false);
+        panelJuego.setLayout(new GridLayout(11, 11));
+        botones = new JButton[11][11];
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
+                JButton jButton = new JButton();
+                jButton.addActionListener(new ListenerBoton(i, j));
+                panelJuego.add(jButton);
+                botones[i][j] = jButton;
+            }
+        }
+    }
+
+    public PanelDeJuego(Partida nuevaPartida) {
         this.initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -28,7 +46,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         }
 
-//        this.partida = nuevaPartida;
+        this.partida = nuevaPartida;
         this.tablero = new Tablero(botones);
         this.pintarBotones();
 
@@ -44,6 +62,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         this.movimiento = "no";
         this.mostrarBotonesExtender(false);
+        this.setJugadores();
     }
 
     private void pintarBotones() {
@@ -58,6 +77,42 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 botones[i + 1][j + 1].setBackground(colores[3]);
             }
         }
+    }
+
+    private void setJugadores() {
+        ArrayList<Jugador> jugadores = this.partida.getJugadores();
+        int cantJugadores = jugadores.size();
+
+        ImageIcon imagen1 = new ImageIcon(jugadores.get(0).getImage());
+        this.avatarJugador1.setIcon(imagen1);
+        this.nombreJugador1.setText(jugadores.get(0).getAlias());
+        System.out.println(jugadores.get(0).getImage());
+        this.avatarJugador1.setVisible(true);
+        this.nombreJugador1.setVisible(true);
+
+        ImageIcon imagen2 = new ImageIcon(jugadores.get(1).getImage());
+        System.out.println(jugadores.get(1).getImage());
+        this.avatarJugador2.setIcon(imagen2);
+        this.nombreJugador2.setText(jugadores.get(1).getAlias());
+        this.avatarJugador2.setVisible(true);
+        this.nombreJugador2.setVisible(true);
+
+        if (cantJugadores > 2) {
+            ImageIcon imagen3 = new ImageIcon(jugadores.get(2).getImage());
+            this.avatarJugador3.setIcon(imagen3);
+            this.nombreJugador3.setText(jugadores.get(2).getAlias());
+            this.avatarJugador3.setVisible(true);
+            this.nombreJugador3.setVisible(true);
+        }
+
+        if (cantJugadores > 3) {
+            ImageIcon imagen4 = new ImageIcon(jugadores.get(3).getImage());
+            this.avatarJugador4.setIcon(imagen4);
+            this.nombreJugador4.setText(jugadores.get(3).getAlias());
+            this.avatarJugador4.setVisible(true);
+            this.nombreJugador4.setVisible(true);
+        }
+
     }
 
     private void mostrarBotonesExtender(boolean mostrar) {
@@ -244,34 +299,42 @@ public class PanelDeJuego extends javax.swing.JFrame {
         avatarJugador1.setText("jLabel1");
         getContentPane().add(avatarJugador1);
         avatarJugador1.setBounds(43, 24, 74, 68);
+        avatarJugador1.setVisible(false);
 
         nombreJugador1.setText("Nombre Jugador");
         getContentPane().add(nombreJugador1);
         nombreJugador1.setBounds(31, 99, 95, 16);
+        nombreJugador1.setVisible(false);
 
         avatarJugador2.setText("jLabel1");
         getContentPane().add(avatarJugador2);
         avatarJugador2.setBounds(200, 20, 74, 68);
+        avatarJugador2.setVisible(false);
 
         nombreJugador2.setText("Nombre Jugador");
         getContentPane().add(nombreJugador2);
         nombreJugador2.setBounds(180, 100, 95, 16);
+        nombreJugador2.setVisible(false);
 
         avatarJugador3.setText("jLabel1");
         getContentPane().add(avatarJugador3);
         avatarJugador3.setBounds(360, 30, 74, 68);
+        avatarJugador3.setVisible(false);
 
         nombreJugador3.setText("Nombre Jugador");
         getContentPane().add(nombreJugador3);
         nombreJugador3.setBounds(340, 100, 95, 16);
+        nombreJugador3.setVisible(false);
 
         avatarJugador4.setText("jLabel1");
         getContentPane().add(avatarJugador4);
         avatarJugador4.setBounds(530, 30, 74, 68);
+        avatarJugador4.setVisible(false);
 
         nombreJugador4.setText("Nombre Jugador");
         getContentPane().add(nombreJugador4);
         nombreJugador4.setBounds(510, 100, 95, 16);
+        nombreJugador4.setVisible(false);
 
         botonConectar.setText("Conectar");
         botonConectar.addActionListener(new java.awt.event.ActionListener() {
