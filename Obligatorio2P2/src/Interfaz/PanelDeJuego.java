@@ -82,37 +82,39 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private void setJugadores() {
         ArrayList<Jugador> jugadores = this.partida.getJugadores();
         int cantJugadores = jugadores.size();
+        String ubicacion = "/avatares/";
 
-        ImageIcon imagen1 = new ImageIcon(jugadores.get(0).getImage());
-        this.avatarJugador1.setIcon(imagen1);
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource(ubicacion + jugadores.get(0).getImage()));
+        Icon avatar1 = new ImageIcon(imagen1.getImage().getScaledInstance(avatarJugador1.getWidth(), avatarJugador1.getHeight(), Image.SCALE_DEFAULT));
+        this.avatarJugador1.setIcon(avatar1);
         this.nombreJugador1.setText(jugadores.get(0).getAlias());
-        System.out.println(jugadores.get(0).getImage());
         this.avatarJugador1.setVisible(true);
         this.nombreJugador1.setVisible(true);
 
-        ImageIcon imagen2 = new ImageIcon(jugadores.get(1).getImage());
-        System.out.println(jugadores.get(1).getImage());
-        this.avatarJugador2.setIcon(imagen2);
+        ImageIcon imagen2 = new ImageIcon(getClass().getResource(ubicacion + jugadores.get(1).getImage()));
+        Icon avatar2 = new ImageIcon(imagen2.getImage().getScaledInstance(avatarJugador2.getWidth(), avatarJugador2.getHeight(), Image.SCALE_DEFAULT));
+        this.avatarJugador2.setIcon(avatar2);
         this.nombreJugador2.setText(jugadores.get(1).getAlias());
         this.avatarJugador2.setVisible(true);
         this.nombreJugador2.setVisible(true);
 
         if (cantJugadores > 2) {
-            ImageIcon imagen3 = new ImageIcon(jugadores.get(2).getImage());
-            this.avatarJugador3.setIcon(imagen3);
+            ImageIcon imagen3 = new ImageIcon(getClass().getResource(ubicacion + jugadores.get(2).getImage()));
+            Icon avatar3 = new ImageIcon(imagen3.getImage().getScaledInstance(avatarJugador3.getWidth(), avatarJugador3.getHeight(), Image.SCALE_DEFAULT));
+            this.avatarJugador3.setIcon(avatar3);
             this.nombreJugador3.setText(jugadores.get(2).getAlias());
             this.avatarJugador3.setVisible(true);
             this.nombreJugador3.setVisible(true);
         }
 
         if (cantJugadores > 3) {
-            ImageIcon imagen4 = new ImageIcon(jugadores.get(3).getImage());
-            this.avatarJugador4.setIcon(imagen4);
+            ImageIcon imagen4 = new ImageIcon(getClass().getResource(ubicacion + jugadores.get(3).getImage()));
+            Icon avatar4 = new ImageIcon(imagen4.getImage().getScaledInstance(avatarJugador4.getWidth(), avatarJugador4.getHeight(), Image.SCALE_DEFAULT));
+            this.avatarJugador4.setIcon(avatar4);
             this.nombreJugador4.setText(jugadores.get(3).getAlias());
             this.avatarJugador4.setVisible(true);
             this.nombreJugador4.setVisible(true);
         }
-
     }
 
     private void mostrarBotonesExtender(boolean mostrar) {

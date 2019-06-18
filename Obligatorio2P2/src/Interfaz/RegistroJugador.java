@@ -93,7 +93,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(50, 80, 100, 26);
+        name.setBounds(50, 80, 100, 24);
 
         age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +101,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(age);
-        age.setBounds(50, 150, 100, 26);
+        age.setBounds(50, 150, 100, 24);
 
         alias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,19 +109,19 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(alias);
-        alias.setBounds(50, 220, 100, 26);
+        alias.setBounds(50, 220, 100, 24);
 
         jLabel1.setText("Nombre");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 60, 50, 16);
+        jLabel1.setBounds(70, 60, 45, 16);
 
         jLabel2.setText("Edad");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(80, 130, 30, 16);
+        jLabel2.setBounds(80, 130, 28, 16);
 
         jLabel3.setText("Alias");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(80, 200, 31, 16);
+        jLabel3.setBounds(80, 200, 28, 16);
 
         register.setText("Registrar");
         register.addActionListener(new java.awt.event.ActionListener() {
@@ -130,13 +130,13 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(register);
-        register.setBounds(6, 314, 588, 29);
+        register.setBounds(6, 314, 588, 32);
 
         jLabel5.setText("Elige tu avatar");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(365, 6, 89, 16);
+        jLabel5.setBounds(365, 6, 80, 16);
 
-        avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/pepe.jpg"))); // NOI18N
+        avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/pepe.jpg"))); // NOI18N
         avatar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar1ActionPerformed(evt);
@@ -145,7 +145,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar1);
         avatar1.setBounds(208, 28, 191, 140);
 
-        avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/sartori.jpeg"))); // NOI18N
+        avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/sartori.jpeg"))); // NOI18N
         avatar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar2ActionPerformed(evt);
@@ -154,7 +154,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar2);
         avatar2.setBounds(405, 28, 189, 140);
 
-        avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/Untitled.png"))); // NOI18N
+        avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/Untitled.png"))); // NOI18N
         avatar3.setAutoscrolls(true);
         avatar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +164,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar3);
         avatar3.setBounds(210, 174, 190, 140);
 
-        avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/maduro.jpg"))); // NOI18N
+        avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/maduro.jpg"))); // NOI18N
         avatar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar4ActionPerformed(evt);
@@ -173,7 +173,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar4);
         avatar4.setBounds(405, 174, 190, 140);
 
-        setBounds(0, 0, 597, 369);
+        setBounds(0, 0, 618, 391);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
