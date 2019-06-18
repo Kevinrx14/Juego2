@@ -15,8 +15,7 @@ import java.util.*;
 public class SeleccionarJugadores extends javax.swing.JFrame {
     private Aves aves;
     private ArrayList<Jugador> juegan;
-    private ArrayList<Jugador> listaJug;
-    
+    private ArrayList<Jugador> listaJug;    
 
     public SeleccionarJugadores() {
         initComponents();
@@ -107,7 +106,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         Partida p=new Partida(aves.getConfiguracion()[0],aves.getConfiguracion()[1],aves.getConfiguracion()[2],aves.getConfiguracion()[3], juegan);
-        PanelDeJuego pan=new PanelDeJuego();
+        PanelDeJuego pan=new PanelDeJuego(p);
         pan.setVisible(true);
 
     }//GEN-LAST:event_jugarActionPerformed

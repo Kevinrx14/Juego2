@@ -7,6 +7,7 @@ import javax.swing.*;
 
 public class Tablero {
 
+    private JButton botones[][];
     private boolean movimientoDisponible;
     private int botonesApretados;
     private int fila1;
@@ -14,8 +15,17 @@ public class Tablero {
     private int fila2;
     private int columna2;
 
-    public Tablero() {
+    public Tablero(JButton[][] matBotones) {
         this.setMovimientoDisponible(true);
+        this.setBotones(matBotones);
+    }
+
+    public void setBotones(JButton[][] matBotones) {
+        this.botones = matBotones;
+    }
+
+    public JButton[][] getBotones() {
+        return this.botones;
     }
 
     public void setFila1(int fila) {
@@ -58,11 +68,15 @@ public class Tablero {
         return this.movimientoDisponible;
     }
 
-    public void setBotonesApretados() {
-        this.botonesApretados++;
-        if (this.botonesApretados > 1) {
+    public void setBotonesApretados(int num) {
+        this.botonesApretados = num;
+    }
+
+    public void aumentarBotonesApretados() {
+        this.setBotonesApretados(this.getBotonesApretados() + 1);
+        if (this.getBotonesApretados() > 1) {
             this.setMovimientoDisponible(false);
-            this.botonesApretados = 0;
+            this.setBotonesApretados(0);
         }
     }
 
@@ -70,17 +84,17 @@ public class Tablero {
         return this.botonesApretados;
     }
 
-    public boolean conectar(JButton[][] botones) {
-        String color1 = this.getColoresBotones(botones)[this.getFila1()][this.getColumna1()];
+    public boolean conectar() {
         boolean sePuedeConectar = false;
 
-        if (validarFila()) {
-            sePuedeConectar = this.sePuedeConectarFila(botones, color1);
-        } else {
-            if (validarColumna()) {
-                sePuedeConectar = this.sePuedeConectarColumna(botones, color1);
+        if (this.validadorDeConectar()) {
+            if (this.validarFila()) {
+                sePuedeConectar = this.sePuedeConectarFila();
+            } else {
+                if (this.validarColumna()) {
+                    sePuedeConectar = this.sePuedeConectarColumna();
+                }
             }
-
         }
 
         return sePuedeConectar;
@@ -106,7 +120,7 @@ public class Tablero {
         return validador;
     }
 
-    public boolean validarColor(String color1, String color2) {
+    public boolean validarColor(Color color1, Color color2) {
         boolean validador = false;
 
         if (color1.equals(color2)) {
@@ -115,24 +129,26 @@ public class Tablero {
         return validador;
     }
 
-    public String[][] getColoresBotones(JButton[][] botones) {
-        String[][] colores = new String[botones.length][botones[0].length];
+    public Color[][] getColoresBotones() {
+        JButton[][] tablero = this.getBotones();
+        Color[][] colores = new Color[tablero.length][tablero[0].length];
 
-        for (int i = 1; i < botones.length; i++) {
-            for (int j = 1; j < botones[0].length; j++) {
-                colores[i][j] = botones[i][j].getBackground().toString();
+        for (int i = 1; i < tablero.length; i++) {
+            for (int j = 1; j < tablero[0].length; j++) {
+                colores[i][j] = tablero[i][j].getBackground();
             }
         }
 
         return colores;
     }
 
-    public String[][] getTextoBotones(JButton[][] botones) {
-        String[][] texto = new String[botones.length][botones[0].length];
+    public String[][] getTextoBotones() {
+        JButton[][] tablero = this.getBotones();
+        String[][] texto = new String[tablero.length][tablero[0].length];
 
-        for (int i = 1; i < botones.length; i++) {
-            for (int j = 1; j < botones[0].length; j++) {
-                texto[i][j] = botones[i][j].getText();
+        for (int i = 1; i < tablero.length; i++) {
+            for (int j = 1; j < tablero[0].length; j++) {
+                texto[i][j] = tablero[i][j].getText();
             }
         }
 
@@ -171,8 +187,8 @@ public class Tablero {
         return validador;
     }
 
-    public boolean sePuedeConectarFila(JButton[][] botones, String color1) {
-        String[][] textoBotones = this.getTextoBotones(botones);
+    public boolean sePuedeConectarFila() {
+        String[][] textoBotones = this.getTextoBotones();
         boolean validador = true;
 
         for (int j = this.getColumna1(); j <= this.getColumna2(); j++) {
@@ -184,8 +200,8 @@ public class Tablero {
         return validador;
     }
 
-    public boolean sePuedeConectarColumna(JButton[][] botones, String color1) {
-        String[][] textoBotones = this.getTextoBotones(botones);
+    public boolean sePuedeConectarColumna() {
+        String[][] textoBotones = this.getTextoBotones();
         boolean validador = true;
 
         for (int i = this.getFila1(); i <= this.getFila2(); i++) {
@@ -243,90 +259,134 @@ public class Tablero {
         return colores;
     }
 
-    public boolean movimiento(JButton[][] botones) {
+    public boolean validadorDeConectar() {
         boolean validador = false;
-        String boton1 = this.getTextoBotones(botones)[this.getFila1()][this.getColumna1()];
-        String boton2 = this.getTextoBotones(botones)[this.getFila2()][this.getColumna2()];
+        Color color1 = this.getColoresBotones()[this.getFila1()][this.getColumna1()];
+        Color color2 = this.getColoresBotones()[this.getFila2()][this.getColumna2()];
 
-        if (this.validadorDeJugada(botones)) {
-            if (boton1.equals("X") && boton2.isEmpty() || boton1.isEmpty() && boton2.equals("X")) {
-                validador = this.extender(botones);
-            } else {
-                validador = this.conectar(botones);
+        if (!this.sonElMismoBoton()) {
+            if (this.validarColumna() || this.validarFila()) {
+                if (this.validarColor(color1, color2)) {
+                    validador = true;
+                }
             }
         }
 
         return validador;
     }
 
-    public boolean validadorDeJugada(JButton[][] botones) {
-        boolean validador = false;
-        String color1 = this.getColoresBotones(botones)[this.getFila1()][this.getColumna1()];
-        String color2 = this.getColoresBotones(botones)[this.getFila2()][this.getColumna2()];
-
-        if (this.validarColumna() || this.validarFila()) {
-            if (this.validarColor(color1, color2)) {
-                validador = true;
-            }
-        }
-
-        return validador;
-    }
-
-    public boolean extender(JButton[][] botones) {
-        String color1 = this.getColoresBotones(botones)[this.getFila1()][this.getColumna1()];
+    public boolean extender(char direccion) {
+        int[] extenderHasta = this.extenderHasta(direccion);
         boolean sePuedeExtender = false;
 
-        if (validarFila()) {
-            sePuedeExtender = this.sePuedeExtenderFila(botones, color1);
-        } else {
-            if (validarColumna()) {
-                sePuedeExtender = this.sePuedeExtenderColumna(botones, color1);
-            }
-
+        if (this.hayAveConsecutiva(extenderHasta, direccion)) {
+            sePuedeExtender = true;
         }
 
         return sePuedeExtender;
     }
 
-    public boolean sePuedeExtenderFila(JButton[][] botones, String color1) {
-        String[][] textoBotones = this.getTextoBotones(botones);
-        boolean validador = true;
+    public boolean sonElMismoBoton() {
+        boolean validador = false;
 
-        for (int j = this.getColumna1() + 1; j < this.getColumna2(); j++) {
-            if (!textoBotones[this.getFila1()][j].isEmpty()) {
-                validador = false;
-            }
+        if (this.validarFila() && this.validarColumna()) {
+            validador = true;
         }
 
         return validador;
     }
 
-    public boolean sePuedeExtenderColumna(JButton[][] botones, String color1) {
-        String[][] textoBotones = this.getTextoBotones(botones);
-        boolean validador = true;
+    public boolean filaDecreciente() {
+        return this.getFila1() > this.getFila2();
+    }
 
-        for (int i = this.getFila1() + 1; i < this.getFila2(); i++) {
-            if (!textoBotones[i][this.getColumna1()].isEmpty()) {
-                validador = false;
-            }
+    public boolean columnaDecreciente() {
+        return this.getColumna1() > this.getColumna2();
+    }
+
+    public int[] extenderHasta(char direccion) {
+        String[][] tablero = this.getTextoBotones();
+        int[] ubicacion = new int[]{this.getFila1(), this.getColumna1()};
+
+        switch (direccion) {
+            case 'A':
+                for (int i = this.getFila1(); i > 0; i--) {
+                    if (tablero[i][this.getColumna1()].equals("X")) {
+                        ubicacion[0] = i;
+                        i = 0;
+                    }
+                }
+                break;
+            case 'B':
+                for (int i = this.getFila1(); i < tablero.length; i++) {
+                    if (tablero[i][this.getColumna1()].equals("X")) {
+                        ubicacion[0] = i;
+                        i = tablero.length;
+                    }
+                }
+                break;
+            case 'I':
+                for (int i = this.getColumna1(); i > 0; i--) {
+                    if (tablero[this.getFila1()][i].equals("X")) {
+                        ubicacion[1] = i;
+                        i = 0;
+                    }
+                }
+                break;
+            case 'D':
+                for (int i = this.getColumna1(); i < tablero[0].length; i++) {
+                    if (tablero[this.getFila1()][i].equals("X")) {
+                        ubicacion[1] = i;
+                        i = tablero[0].length;
+                    }
+                }
+                break;
         }
 
-        return validador;
+        return ubicacion;
     }
-    
-//    discutir si es necesario verificar si hay aves al lado para extender
-//    ya que para tener un ave si o si vas a tener otra al lado    
-//    public boolean hayAveAlLado(JButton[][] botones) {
-//        boolean hayAve = false;
-//        String[][] textoBotones = this.getTextoBotones(botones);
-//        
-//        if(textoBotones[this.getFila1()][this.getColumna1()].equals("X")) {
-//            
-//        }
-//        
-//        
-//        return hayAve;
-//    }
+
+    public boolean hayAveConsecutiva(int[] extenderHasta, char direccion) {
+        boolean hayAve = false;
+        String[][] textoBotones = this.getTextoBotones();
+        Color[][] colorBotones = this.getColoresBotones();
+        Color color = colorBotones[extenderHasta[0]][extenderHasta[1]];
+
+        try {
+            switch (direccion) {
+                case 'A':
+                    if (textoBotones[extenderHasta[0] - 1][extenderHasta[1]].equals("X")) {
+                        if (colorBotones[extenderHasta[0] - 1][extenderHasta[1]].equals(color)) {
+                            hayAve = true;
+                        }
+                    }
+                    break;
+                case 'B':
+                    if (textoBotones[extenderHasta[0] + 1][extenderHasta[1]].equals("X")) {
+                        if (colorBotones[extenderHasta[0] + 1][extenderHasta[1]].equals(color)) {
+                            hayAve = true;
+                        }
+                    }
+                    break;
+                case 'I':
+                    if (textoBotones[extenderHasta[0]][extenderHasta[1] - 1].equals("X")) {
+                        if (colorBotones[extenderHasta[0]][extenderHasta[1] - 1].equals(color)) {
+                            hayAve = true;
+                        }
+                    }
+                    break;
+                case 'D':
+                    if (textoBotones[extenderHasta[0]][extenderHasta[1] + 1].equals("X")) {
+                        if (colorBotones[extenderHasta[0]][extenderHasta[1] + 1].equals(color)) {
+                            hayAve = true;
+                        }
+                    }
+                    break;
+            }
+        } catch(NullPointerException e) {
             
+        }
+
+        return hayAve;
+    }
 }
