@@ -4,15 +4,22 @@
  * and open the template in the editor.
  */
 package obligatorio2p2;
+
 import java.util.*;
 import javax.swing.*;
+
 /**
  *
  * @author ezequiellopez
  */
 public class Aves {
+
     private ArrayList<Partida> partidas;
     private ArrayList<Jugador> jugadores;
+    //0 - Cant Jugadores
+    //1 - Cant aves por jugador
+    //2 - tipo de terminacion
+    //3 - cant turnos por jugador
     private int[] configuracion;
 
     public Aves() {
@@ -32,11 +39,11 @@ public class Aves {
     public void setUnaConfiguracion(int i, int configuracion) {
         this.configuracion[i] = configuracion;
     }
-    
+
     public void setConfig(int a, int b, int c, int d) {
         this.configuracion = new int[]{a, b, c, d};
     }
-    
+
     public ArrayList<Partida> getPartidas() {
         return this.partidas;
     }
@@ -56,7 +63,7 @@ public class Aves {
      */
     public void setUnaPartida(ArrayList<Jugador> jugadores) {
         int[] configuracion = this.getConfiguracion();
-        this.partidas.add(new Partida(configuracion[0],configuracion[1],configuracion[2],configuracion[3],jugadores));
+        this.partidas.add(new Partida(configuracion, jugadores));
     }
 
     public ArrayList<Jugador> getJugadores() {
@@ -75,8 +82,8 @@ public class Aves {
                 existe = true;
             }
             if (!existe) {
-            this.getJugadores().add(new Jugador(nombre, edad, alias, image));
-        }
+                this.getJugadores().add(new Jugador(nombre, edad, alias, image));
+            }
         }
     }
 
@@ -96,13 +103,13 @@ public class Aves {
                 for (int x = 0; x < this.getPartidas().get(j).getJugadores().size(); x++) {
                     String aliasAux = this.getPartidas().get(j).getJugadores().get(x).getAlias();
                     if (aliasAux.equals(alias)) {
-                        if (this.getPartidas().get(j).getCantJug() == 4) {
+                        if (this.getPartidas().get(j).getConfCantJugadores() == 4) {
                             tres = tres + 1;
                         }
-                        if (this.getPartidas().get(j).getCantJug() == 3) {
+                        if (this.getPartidas().get(j).getConfCantJugadores() == 3) {
                             dos = dos + 1;
                         }
-                        if (this.getPartidas().get(j).getCantJug() == 2) {
+                        if (this.getPartidas().get(j).getConfCantJugadores() == 2) {
                             uno = uno + 1;
                         }
                     }
@@ -113,84 +120,84 @@ public class Aves {
         }
     }
 
-    public void jugar(ArrayList<Jugador> jugPartida) {
-        if (jugPartida.size() > 0) {
-            setUnaPartida(jugPartida);
-            int indice = this.getPartidas().size() - 1;
-            Partida partida = this.getPartidas().get(indice);
-
-            partida.iniciar();
+//    public void jugar(ArrayList<Jugador> jugPartida) {
+//        if (jugPartida.size() > 0) {
+//            setUnaPartida(jugPartida);
+//            int indice = this.getPartidas().size() - 1;
+//            Partida partida = this.getPartidas().get(indice);
+//
+//            partida.iniciar();
+//        }
+//    }
+    public void darDiferentes(String entrada) {
+        ArchivoGrabacion arch = new ArchivoGrabacion("DIFERENTES.txt");
+        ArchivoLectura lect = new ArchivoLectura(entrada);
+        while (lect.hayMasLineas()) {
+            String validador = lect.linea();
+            boolean grabar = true;
+            for (int i = 0; i < jugadores.size(); i++) {
+                if (!compararString(validador, jugadores.get(i).getNombre())) {
+                    grabar = false;
+                }
+            }
+            if (grabar) {
+                arch.grabarLinea(validador);
+            }
         }
+        arch.cerrar();
+        lect.cerrar();
     }
-    public void darDiferentes(String entrada){
-	ArchivoGrabacion arch=new ArchivoGrabacion("DIFERENTES.txt");
-	ArchivoLectura lect=new ArchivoLectura(entrada);
-	while (lect.hayMasLineas()){
-		String validador=lect.linea();
-		boolean grabar=true;
-		for (int i =0; i<jugadores.size(); i++){
-			if (!compararString(validador, jugadores.get(i).getNombre())){
-				grabar=false;
-			}
-		}
-		if (grabar){
-			arch.grabarLinea(validador);
-		}
-	}
-	arch.cerrar();
-	lect.cerrar();
-}
 
-public boolean compararString(String a, String b){
-	boolean retorno=true;
-	int contador=0;
-	boolean inflexion=false;
-	if(a.length() == b.length() || a.length()-1==b.length() || a.length()+1==b.length()){
-		if(a.length() == b.length()){
-			for (int i=0; i<a.length(); i++){
-				if(a.charAt(i)!=b.charAt(i)){
-					contador++;
-				}
-			}
-			if (contador>1){
-				retorno=false;
-			}
-		}
-		if(a.length()-1==b.length()){
-			for (int i=0; i<b.length(); i++){
-				if(!inflexion){
-					if(a.charAt(i)!=b.charAt(i)){
-						inflexion=true;
-						contador++;
-					}
-				}else{
-					if(a.charAt(i)!=b.charAt(i-1)){
-						contador++;
-					}
-				}
-			}
-			if (contador>1){
-				retorno=false;
-			}
-		}
-		if(a.length()+1==b.length()){
-			for (int i=0; i<b.length(); i++){
-				if(!inflexion){
-					if(a.charAt(i)!=b.charAt(i)){
-						inflexion=true;
-						contador++;
-					}
-				}else{
-					if(a.charAt(i)!=b.charAt(i+1)){
-						contador++;
-					}
-				}
-			}
-			if (contador>1){
-				retorno=false;
-			}
-		}
-	}
+    public boolean compararString(String a, String b) {
+        boolean retorno = true;
+        int contador = 0;
+        boolean inflexion = false;
+        if (a.length() == b.length() || a.length() - 1 == b.length() || a.length() + 1 == b.length()) {
+            if (a.length() == b.length()) {
+                for (int i = 0; i < a.length(); i++) {
+                    if (a.charAt(i) != b.charAt(i)) {
+                        contador++;
+                    }
+                }
+                if (contador > 1) {
+                    retorno = false;
+                }
+            }
+            if (a.length() - 1 == b.length()) {
+                for (int i = 0; i < b.length(); i++) {
+                    if (!inflexion) {
+                        if (a.charAt(i) != b.charAt(i)) {
+                            inflexion = true;
+                            contador++;
+                        }
+                    } else {
+                        if (a.charAt(i) != b.charAt(i - 1)) {
+                            contador++;
+                        }
+                    }
+                }
+                if (contador > 1) {
+                    retorno = false;
+                }
+            }
+            if (a.length() + 1 == b.length()) {
+                for (int i = 0; i < b.length(); i++) {
+                    if (!inflexion) {
+                        if (a.charAt(i) != b.charAt(i)) {
+                            inflexion = true;
+                            contador++;
+                        }
+                    } else {
+                        if (a.charAt(i) != b.charAt(i + 1)) {
+                            contador++;
+                        }
+                    }
+                }
+                if (contador > 1) {
+                    retorno = false;
+                }
+            }
+        }
         return retorno;
-}
+    }
 }

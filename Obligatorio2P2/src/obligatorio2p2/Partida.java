@@ -1,65 +1,88 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package obligatorio2p2;
+
 import java.awt.Color;
 import java.util.*;
-/**
- *
- * @author ezequiellopez
- */
+
 public class Partida {
+
     private ArrayList<Jugador> jugadores;
-    private Tablero tablero;
-    private int cantJug;
-    private int cantAves;
-    private int tipoTerm;
-    private int cantTurnos;
-    private boolean turno;
+    private int[] configuracion;
+    private int turnoDeJugador;
+    private int totalTurnos;
 
     public Partida(
-            int cantJugadores,
-            int avesXjug,            
-            int tipoTerm,
-            int cantTurnos,
+            int[] unaConfiguracion,
             ArrayList<Jugador> jugadores
     ) {
-        this.setCantJug(cantJugadores);
-        this.setCantAves(avesXjug);
-        this.setTipoTerm(tipoTerm);
-        this.setCantTurnos(cantTurnos);
-//        this.setTablero();
+        this.setConfiguracion(unaConfiguracion);
         this.setJugadores(jugadores);
         this.setConfigJugadores();
+        this.setTotalTurnos(0);
+        this.setTurnoDeJugador(1);
     }
 
-    public Partida(){
-        ArrayList<Jugador> jug=new ArrayList();
-        this.setCantJug(2);
-        this.setCantAves(20);
-        this.setTipoTerm(1);
-        this.setCantTurnos(5);
-//        this.setTablero();
+    public Partida() {
+        ArrayList<Jugador> jug = new ArrayList();
+        this.setConfiguracion(new int[]{2, 20, 1, 5});
         this.setJugadores(jug);
         this.setConfigJugadores();
-    }
-    
-    public boolean getTurno(){
-        return this.turno;
-    }
-    
-    public void setTurno(boolean empezado) {
-        this.turno = empezado;
-    }
-    
-    public int getCantTurnos() {
-        return this.cantTurnos;
+        this.setTotalTurnos(0);
+        this.setTurnoDeJugador(1);
     }
 
-    public void setCantTurnos(int cantTurnos) {
-        this.cantTurnos = cantTurnos;
+    public int[] getConfiguracion() {
+        return this.configuracion;
+    }
+
+    public void setConfiguracion(int[] unaConfiguracion) {
+        this.configuracion = unaConfiguracion;
+    }
+
+    public int getConfCantJugadores() {
+        return this.configuracion[0];
+    }
+
+    public int getConfAvesJugador() {
+        return this.configuracion[1];
+    }
+
+    public int getConfTipoTerminacion() {
+        return this.configuracion[2];
+    }
+
+    public int getConfCantTurno() {
+        return this.configuracion[3];
+    }
+
+    public int getTurnoDeJugador() {
+        return this.turnoDeJugador;
+    }
+
+    public void setTurnoDeJugador(int jugador) {
+        this.turnoDeJugador = jugador;
+    }
+
+    public void cambiarTurnoJugador() {
+        int aux = this.getTurnoDeJugador();
+        if (aux == this.getConfCantJugadores()) {
+            aux = 0;
+        }
+        aux++;
+        this.setTurnoDeJugador(aux);
+    }
+
+    public int getTotalTurnos() {
+        return this.totalTurnos;
+    }
+
+    public void setTotalTurnos(int turnos) {
+        this.totalTurnos = turnos;
+    }
+
+    public void aumentarTotalTurnos() {
+        int aux = this.getTotalTurnos();
+        aux++;
+        this.setTotalTurnos(aux);
     }
 
     public ArrayList<Jugador> getJugadores() {
@@ -75,23 +98,23 @@ public class Partida {
         ArrayList<Jugador> jugadores = this.getJugadores();
 
         for (int i = 0; i < jugadores.size(); i++) {
-            jugadores.get(i).setCantAves(this.getCantAves());
+            jugadores.get(i).setCantAves(this.getConfAvesJugador());
         }
-        //this.setColorJugadores();
+        this.setColorJugadores();
     }
 
     public Color getColorJugador(int indice) {
         return this.getJugadores().get(indice).getColorJugador();
     }
 
-   /* public void setColorJugadores() {
+    public void setColorJugadores() {
         Random rand = new Random();
-        String aux = "";
-        int[] colores = new int[this.getCantJug()];
+        Color aux = Color.WHITE;
+        int[] colores = new int[this.getConfCantJugadores()];
         int num;
         boolean validador;
 
-        for (int i = 0; i < this.getCantJug(); i++) {
+        for (int i = 0; i < this.getConfCantJugadores(); i++) {
             do {
                 validador = true;
                 num = rand.nextInt(4);
@@ -105,123 +128,88 @@ public class Partida {
             colores[i] = num;
             switch (colores[i]) {
                 case 1:
-                    aux = "\u001B[41m" + " " + "\033[0m"; //Color rojo
+                    aux = Color.RED;
                     break;
 
                 case 2:
-                    aux = "\u001B[44m" + " " + "\033[0m"; //Color azul
+                    aux = Color.BLUE;
                     break;
 
                 case 3:
-                    aux = "\u001B[43m" + " " + "\033[0m"; //Color amarillo
+                    aux = Color.YELLOW;
                     break;
 
                 case 4:
-                    aux = "\u001B[42m" + " " + "\033[0m"; //Color verde
+                    aux = Color.GREEN;
                     break;
             }
 
             this.getJugadores().get(i).setColorJug(aux);
         }
-    }*/
-
-    public Tablero getTablero() {
-        return this.tablero;
     }
 
-//    public void setTablero() {
-//        this.tablero = new Tablero();
+//    public void iniciar() {
+//        System.out.println("Jugadores:");
+//        for (int i = 0; i < this.getConfCantJugadores(); i++) {
+//            this.mostrarColorYJugador(i);
+//        }
+//
+//        switch (this.getConfTipoTerminacion()) {
+//            case 1:
+//                this.partidaConTerminacionAves();
+//                break;
+//            case 2:
+//                this.partidaConTerminacionTurnos();
+//                break;
+//        }
+//
+//        this.terminarPartida();
 //    }
-
-    public int getCantJug() {
-        return this.cantJug;
-    }
-
-    public void setCantJug(int cantJugadores) {
-        this.cantJug = cantJugadores;
-    }
-
-    public int getCantAves() {
-        return this.cantAves;
-    }
-
-    public void setCantAves(int avesVXjug) {
-        this.cantAves = avesVXjug;
-    }
-
-    public int getTipoTerm() {
-        return this.tipoTerm;
-    }
-
-    public void setTipoTerm(int tipoTerm) {
-        this.tipoTerm = tipoTerm;
-    }
-
-    public void iniciar() {
-        System.out.println("Jugadores:");
-        for (int i = 0; i < this.getCantJug(); i++) {
-            this.mostrarColorYJugador(i);
-        }
-
-        switch (this.getTipoTerm()) {
-            case 1:
-                this.partidaConTerminacionAves();
-                break;
-            case 2:
-                this.partidaConTerminacionTurnos();
-                break;  
-        }
-
-        System.out.println(tablero.toString());
-        this.terminarPartida();
-    }
-
-    public void partidaConTerminacionTurnos() {
-        Tablero tablero = this.getTablero();
-        boolean salidaEmergencia = false;
-
-        for (int turno = 1; turno <= this.getCantTurnos(); turno++) {
-            for (int jug = 0; jug < this.getCantJug(); jug++) {
-                System.out.println(tablero.toString());
-                System.out.print("Es el turno de ");
-                this.mostrarColorYJugador(jug);
-                //salidaEmergencia = this.movimiento(jug);
-                if (salidaEmergencia) {
-                    turno = this.getCantTurnos() + 1;
-                    jug = this.getCantJug() + 1;
-                }
-            }
-        }
-    }
-
-    public void partidaConTerminacionAves() {
-        ArrayList<Jugador> jugadores = this.getJugadores();
-        Tablero tablero = this.getTablero();
-        boolean salidaEmergencia = false;
-        boolean running = true;
-
-        do {
-            for (int jug = 0; jug <= this.getCantJug(); jug++) {
-                System.out.println(tablero.toString());
-                System.out.print("Es el turno de ");
-                this.mostrarColorYJugador(jug);
-                //salidaEmergencia = this.movimiento(jug);
-                if (salidaEmergencia) {
-                    running = false;
-                    jug = this.getCantJug() + 1;
-                }
-                if (jugadores.get(jug).getCantAves() == 0) {
-                    running = false;
-                    jug = this.getCantJug() + 1;
-                }
-            }
-        } while (running);
-    }
-
+//    public void partidaConTerminacionTurnos() {
+//        Tablero tablero = this.getTablero();
+//        boolean salidaEmergencia = false;
+//
+//        for (int turno = 1; turno <= this.getCantTurnos(); turno++) {
+//            for (int jug = 0; jug < this.getCantJug(); jug++) {
+//                System.out.println(tablero.toString());
+//                System.out.print("Es el turno de ");
+//                this.mostrarColorYJugador(jug);
+//                //salidaEmergencia = this.movimiento(jug);
+//                if (salidaEmergencia) {
+//                    turno = this.getCantTurnos() + 1;
+//                    jug = this.getCantJug() + 1;
+//                }
+//            }
+//        }
+//    }
+//
+//    public void partidaConTerminacionAves() {
+//        ArrayList<Jugador> jugadores = this.getJugadores();
+//        Tablero tablero = this.getTablero();
+//        boolean salidaEmergencia = false;
+//        boolean running = true;
+//
+//        do {
+//            for (int jug = 0; jug <= this.getCantJug(); jug++) {
+//                System.out.println(tablero.toString());
+//                System.out.print("Es el turno de ");
+//                this.mostrarColorYJugador(jug);
+//                //salidaEmergencia = this.movimiento(jug);
+//                if (salidaEmergencia) {
+//                    running = false;
+//                    jug = this.getCantJug() + 1;
+//                }
+//                if (jugadores.get(jug).getCantAves() == 0) {
+//                    running = false;
+//                    jug = this.getCantJug() + 1;
+//                }
+//            }
+//        } while (running);
+//    }
     public void mostrarColorYJugador(int indice) {
         //String colorJug = this.getColorJugador(indice);
         String alias = this.getJugadores().get(indice).getAlias();
-      //  System.out.println(colorJug + " - " + alias);
+        //  System.out.println(colorJug + " - " + alias);
     }
 
     public char[] indColores(String movimiento) {
@@ -231,7 +219,8 @@ public class Partida {
         }
         return ordenados;
     }
-/*
+
+    /*
     public boolean movimiento(int indiceJug) {
         int[] indices;
         Interfaz interfaz = new Interfaz();
@@ -330,7 +319,7 @@ public class Partida {
 
             return devolverPosicion;
     }
-*/
+     */
     public void terminarPartida() {
         ArrayList<Jugador> jugadores = this.getJugadores();
         ArrayList<Integer> listaIndicesJug = new ArrayList<>();
@@ -366,9 +355,9 @@ public class Partida {
             System.out.println("");
         }
     }
-    public void iniciarPartida(){
-        
+
+    public void iniciarPartida() {
+
     }
-    
-    
+
 }

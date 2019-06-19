@@ -12,6 +12,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private Tablero tablero;
     private Partida partida;
     private String movimiento;
+    private ArrayList<Jugador> jugadores;
 
     public PanelDeJuego() {
         this.initComponents();
@@ -62,7 +63,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         this.movimiento = "no";
         this.mostrarBotonesExtender(false);
-        this.setJugadores();
+        this.jugadores = this.partida.getJugadores();
+        this.setUiJugadores();
     }
 
     private void pintarBotones() {
@@ -79,39 +81,50 @@ public class PanelDeJuego extends javax.swing.JFrame {
         }
     }
 
-    private void setJugadores() {
-        ArrayList<Jugador> jugadores = this.partida.getJugadores();
+    private void setUiJugadores() {
         int cantJugadores = jugadores.size();
         String ubicacion = "/avatares/";
 
-        ImageIcon imagen1 = new ImageIcon(getClass().getResource(ubicacion + jugadores.get(0).getImage()));
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource(ubicacion + this.jugadores.get(0).getImage()));
         Icon avatar1 = new ImageIcon(imagen1.getImage().getScaledInstance(avatarJugador1.getWidth(), avatarJugador1.getHeight(), Image.SCALE_DEFAULT));
         this.avatarJugador1.setIcon(avatar1);
-        this.nombreJugador1.setText(jugadores.get(0).getAlias());
+        this.nombreJugador1.setText(this.jugadores.get(0).getAlias());
+        this.nombreJugador1.setBackground(this.jugadores.get(0).getColorJugador());
+        this.nombreJugador1.setHorizontalAlignment(SwingConstants.CENTER);
+        this.nombreJugador1.setOpaque(true);
         this.avatarJugador1.setVisible(true);
         this.nombreJugador1.setVisible(true);
 
-        ImageIcon imagen2 = new ImageIcon(getClass().getResource(ubicacion + jugadores.get(1).getImage()));
+        ImageIcon imagen2 = new ImageIcon(getClass().getResource(ubicacion + this.jugadores.get(1).getImage()));
         Icon avatar2 = new ImageIcon(imagen2.getImage().getScaledInstance(avatarJugador2.getWidth(), avatarJugador2.getHeight(), Image.SCALE_DEFAULT));
         this.avatarJugador2.setIcon(avatar2);
-        this.nombreJugador2.setText(jugadores.get(1).getAlias());
+        this.nombreJugador2.setText(this.jugadores.get(1).getAlias());
+        this.nombreJugador2.setBackground(this.jugadores.get(1).getColorJugador());
+        this.nombreJugador2.setHorizontalAlignment(SwingConstants.CENTER);
+        this.nombreJugador2.setOpaque(true);
         this.avatarJugador2.setVisible(true);
         this.nombreJugador2.setVisible(true);
 
         if (cantJugadores > 2) {
-            ImageIcon imagen3 = new ImageIcon(getClass().getResource(ubicacion + jugadores.get(2).getImage()));
+            ImageIcon imagen3 = new ImageIcon(getClass().getResource(ubicacion + this.jugadores.get(2).getImage()));
             Icon avatar3 = new ImageIcon(imagen3.getImage().getScaledInstance(avatarJugador3.getWidth(), avatarJugador3.getHeight(), Image.SCALE_DEFAULT));
             this.avatarJugador3.setIcon(avatar3);
-            this.nombreJugador3.setText(jugadores.get(2).getAlias());
+            this.nombreJugador3.setText(this.jugadores.get(2).getAlias());
+            this.nombreJugador3.setBackground(this.jugadores.get(2).getColorJugador());
+            this.nombreJugador3.setHorizontalAlignment(SwingConstants.CENTER);
+            this.nombreJugador3.setOpaque(true);
             this.avatarJugador3.setVisible(true);
             this.nombreJugador3.setVisible(true);
         }
 
         if (cantJugadores > 3) {
-            ImageIcon imagen4 = new ImageIcon(getClass().getResource(ubicacion + jugadores.get(3).getImage()));
+            ImageIcon imagen4 = new ImageIcon(getClass().getResource(ubicacion + this.jugadores.get(3).getImage()));
             Icon avatar4 = new ImageIcon(imagen4.getImage().getScaledInstance(avatarJugador4.getWidth(), avatarJugador4.getHeight(), Image.SCALE_DEFAULT));
             this.avatarJugador4.setIcon(avatar4);
-            this.nombreJugador4.setText(jugadores.get(3).getAlias());
+            this.nombreJugador4.setText(this.jugadores.get(3).getAlias());
+            this.nombreJugador4.setBackground(this.jugadores.get(3).getColorJugador());
+            this.nombreJugador4.setHorizontalAlignment(SwingConstants.CENTER);
+            this.nombreJugador4.setOpaque(true);
             this.avatarJugador4.setVisible(true);
             this.nombreJugador4.setVisible(true);
         }
@@ -142,36 +155,43 @@ public class PanelDeJuego extends javax.swing.JFrame {
     }
 
     private void clickBoton(int fila, int columna) {
-        if (this.movimiento.equals("conectar")) {
-            System.out.println("flag conectar");
-            if (this.tablero.getBotonesApretados() == 0) {
-                System.out.println("flag primer boton");
-                this.tablero.setFila1(fila);
-                this.tablero.setColumna1(columna);
-                this.tablero.aumentarBotonesApretados();
-            } else {
-                if (this.tablero.getBotonesApretados() == 1) {
-                    System.out.println("flag segundo boton");
-                    this.tablero.setFila2(fila);
-                    this.tablero.setColumna2(columna);
-                    this.tablero.aumentarBotonesApretados();
-                    if (this.tablero.conectar()) {
-                        System.out.println("flag se pudo conectar");
-                        this.ponerAvesConectar();
-                        this.movimiento = "no";
+        int jugador = this.partida.getTurnoDeJugador() - 1;
+        Color colorJug = this.jugadores.get(jugador).getColorJugador();
 
+        if (botones[fila][columna].getBackground().equals(colorJug)) {
+            if (botones[fila][columna].getText().isEmpty()) {
+                if (this.movimiento.equals("conectar")) {
+                    System.out.println("flag conectar");
+                    if (this.tablero.getBotonesApretados() == 0) {
+                        System.out.println("flag primer boton");
+                        this.tablero.setFila1(fila);
+                        this.tablero.setColumna1(columna);
+                        this.tablero.aumentarBotonesApretados();
+                    } else {
+                        if (this.tablero.getBotonesApretados() == 1) {
+                            System.out.println("flag segundo boton");
+                            this.tablero.setFila2(fila);
+                            this.tablero.setColumna2(columna);
+                            this.tablero.aumentarBotonesApretados();
+                            if (this.tablero.conectar()) {
+                                System.out.println("flag se pudo conectar");
+                                this.ponerAvesConectar();
+                                this.movimiento = "no";
+                                this.partida.cambiarTurnoJugador();
+                            }
+                        }
                     }
-                }
-            }
-            System.out.println("flag movimiento: " + this.movimiento);
-            System.out.println("--------------------------------------");
-        } else {
-            if (this.movimiento.equals("extender")) {
-                if (this.tablero.getBotonesApretados() == 0) {
-                    this.tablero.setFila1(fila);
-                    this.tablero.setColumna1(columna);
-                    this.tablero.aumentarBotonesApretados();
-                    this.mostrarBotonesExtender(true);
+                    System.out.println("flag movimiento: " + this.movimiento);
+                    System.out.println("--------------------------------------");
+                } else {
+                    if (this.movimiento.equals("extender")) {
+                        if (this.tablero.getBotonesApretados() == 0) {
+                            this.tablero.setFila1(fila);
+                            this.tablero.setColumna1(columna);
+                            this.tablero.aumentarBotonesApretados();
+                            this.mostrarBotonesExtender(true);
+                        }
+                    }
                 }
             }
         }
@@ -300,40 +320,44 @@ public class PanelDeJuego extends javax.swing.JFrame {
         avatarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/index.png"))); // NOI18N
         avatarJugador1.setText("jLabel1");
         getContentPane().add(avatarJugador1);
-        avatarJugador1.setBounds(43, 24, 74, 68);
+        avatarJugador1.setBounds(40, 20, 74, 68);
         avatarJugador1.setVisible(false);
 
         nombreJugador1.setText("Nombre Jugador");
+        nombreJugador1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador1);
         nombreJugador1.setBounds(31, 99, 95, 16);
         nombreJugador1.setVisible(false);
 
         avatarJugador2.setText("jLabel1");
         getContentPane().add(avatarJugador2);
-        avatarJugador2.setBounds(200, 20, 74, 68);
+        avatarJugador2.setBounds(190, 20, 74, 68);
         avatarJugador2.setVisible(false);
 
         nombreJugador2.setText("Nombre Jugador");
+        nombreJugador2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador2);
         nombreJugador2.setBounds(180, 100, 95, 16);
         nombreJugador2.setVisible(false);
 
         avatarJugador3.setText("jLabel1");
         getContentPane().add(avatarJugador3);
-        avatarJugador3.setBounds(360, 30, 74, 68);
+        avatarJugador3.setBounds(350, 20, 74, 68);
         avatarJugador3.setVisible(false);
 
         nombreJugador3.setText("Nombre Jugador");
+        nombreJugador3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador3);
         nombreJugador3.setBounds(340, 100, 95, 16);
         nombreJugador3.setVisible(false);
 
         avatarJugador4.setText("jLabel1");
         getContentPane().add(avatarJugador4);
-        avatarJugador4.setBounds(530, 30, 74, 68);
+        avatarJugador4.setBounds(520, 20, 74, 68);
         avatarJugador4.setVisible(false);
 
         nombreJugador4.setText("Nombre Jugador");
+        nombreJugador4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador4);
         nombreJugador4.setBounds(510, 100, 95, 16);
         nombreJugador4.setVisible(false);
@@ -423,6 +447,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('I');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
+                this.partida.cambiarTurnoJugador();
             }
         }
     }//GEN-LAST:event_botonExtenderIzquierdaActionPerformed
@@ -433,6 +458,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('A');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
+                this.partida.cambiarTurnoJugador();
             }
         }
     }//GEN-LAST:event_botonExtenderArribaActionPerformed
@@ -443,6 +469,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('D');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
+                this.partida.cambiarTurnoJugador();
             }
         }
     }//GEN-LAST:event_botonExtenderDerechaActionPerformed
@@ -453,6 +480,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('B');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
+                this.partida.cambiarTurnoJugador();
             }
         }
     }//GEN-LAST:event_botonExtenderAbajoActionPerformed

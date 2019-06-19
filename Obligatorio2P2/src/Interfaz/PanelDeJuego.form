@@ -77,13 +77,14 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="43" y="24" width="74" height="68"/>
+          <AbsoluteConstraints x="40" y="20" width="74" height="68"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="nombreJugador1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre Jugador"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="nombreJugador1.setVisible(false);"/>
@@ -103,13 +104,14 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="200" y="20" width="74" height="68"/>
+          <AbsoluteConstraints x="190" y="20" width="74" height="68"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="nombreJugador2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre Jugador"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="nombreJugador2.setVisible(false);"/>
@@ -129,13 +131,14 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="360" y="30" width="74" height="68"/>
+          <AbsoluteConstraints x="350" y="20" width="74" height="68"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="nombreJugador3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre Jugador"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="nombreJugador3.setVisible(false);"/>
@@ -155,13 +158,14 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="530" y="30" width="74" height="68"/>
+          <AbsoluteConstraints x="520" y="20" width="74" height="68"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="nombreJugador4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre Jugador"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="nombreJugador4.setVisible(false);"/>

@@ -1,39 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
+
 import java.awt.*;
 import obligatorio2p2.*;
 import java.io.*;
-/**
- *
- * @author ezequiellopez
- */
+
 public class MenuPrincipal extends javax.swing.JFrame {
+
     public Aves a;
     public String hola;
+
     public MenuPrincipal() {
         initComponents();
         this.setTitle("Aves v2.0 Beta");
         a = new Aves();
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
+
     public MenuPrincipal(Aves av) {
         initComponents();
         this.setTitle("Aves v2.0 Beta");
         a = av;
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
-    
-    public Aves getAves(){
+
+    public Aves getAves() {
         return this.a;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,7 +74,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jugar);
-        jugar.setBounds(140, 130, 267, 29);
+        jugar.setBounds(140, 130, 267, 32);
 
         registro.setText("¡Registrate!");
         registro.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +83,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(registro);
-        registro.setBounds(140, 210, 267, 29);
+        registro.setBounds(140, 210, 267, 32);
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +92,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(config);
-        config.setBounds(140, 280, 267, 29);
+        config.setBounds(140, 280, 267, 32);
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 0, 0);
 
@@ -127,66 +124,63 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(210, 470, 120, 29);
-
-        fondoImg.setIcon(new javax.swing.ImageIcon("/Users/ezequiellopez/Desktop/Dibujo20140712-upside-down-bird-on-cable-national-geographic-hideta-nagai-1024x768.jpg")); // NOI18N
+        salir.setBounds(210, 470, 120, 32);
         getContentPane().add(fondoImg);
         fondoImg.setBounds(0, 0, 540, 500);
 
-        setBounds(0, 0, 539, 524);
+        setBounds(0, 0, 539, 546);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        SeleccionarJugadores sel=new SeleccionarJugadores(a);
+        SeleccionarJugadores sel = new SeleccionarJugadores(a);
         sel.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
-        if(a.getConfiguracion()[0]<=a.getJugadores().size()){
-            SeleccionarJugadores panel=new SeleccionarJugadores(a);
-        panel.setVisible(true); 
-        }else{
-        VentanaError vent=new VentanaError("No hay suficientes jugadores registrados");
+        if (a.getConfiguracion()[0] <= a.getJugadores().size()) {
+            SeleccionarJugadores panel = new SeleccionarJugadores(a);
+            panel.setVisible(true);
+        } else {
+            VentanaError vent = new VentanaError("No hay suficientes jugadores registrados");
             vent.setVisible(true);
         }
     }//GEN-LAST:event_jugarActionPerformed
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
-        RegistroJugador registro=new RegistroJugador(a);
+        RegistroJugador registro = new RegistroJugador(a);
         registro.setVisible(true);
     }//GEN-LAST:event_registroActionPerformed
 
     private void configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configActionPerformed
-        Configuracion config=new Configuracion(a);
+        Configuracion config = new Configuracion(a);
         config.setVisible(true);
     }//GEN-LAST:event_configActionPerformed
 
     private void diferentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diferentesActionPerformed
-        try{
-            SelectArch sel=new SelectArch(a);
+        try {
+            SelectArch sel = new SelectArch(a);
             sel.setVisible(true);
-        }
-        catch(NullPointerException e){
-            VentanaError vent=new VentanaError("Selecciona un archivo por favor");
+        } catch (NullPointerException e) {
+            VentanaError vent = new VentanaError("Selecciona un archivo por favor");
             vent.setVisible(true);
         }
 
-        
+
     }//GEN-LAST:event_diferentesActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        ArchivoGrabacion jug=new ArchivoGrabacion("Jugadores.txt");
-        for (int i=0; i<a.getJugadores().size(); i++){
-            jug.grabarLinea(a.getJugadores().get(i).getNombre()+","+a.getJugadores().get(i).getEdad()+","+a.getJugadores().get(i).getImage()+","+a.getJugadores().get(i).getAlias()+","+a.getJugadores().get(i).getTotalPartidas());
+        ArchivoGrabacion jug = new ArchivoGrabacion("Jugadores.txt");
+        for (int i = 0; i < a.getJugadores().size(); i++) {
+            jug.grabarLinea(a.getJugadores().get(i).getNombre() + "," + a.getJugadores().get(i).getEdad() + "," + a.getJugadores().get(i).getImage() + "," + a.getJugadores().get(i).getAlias() + "," + a.getJugadores().get(i).getTotalPartidas());
         }
         jug.cerrar();
-        ArchivoGrabacion part=new ArchivoGrabacion("Partidas.txt");
-        String partida="";
-        for (int i=0; i<a.getPartidas().size(); i++){
-            for(int j=0; j<a.getPartidas().get(i).getJugadores().size();j++){
-                partida=partida+"|"+a.getPartidas().get(i).getJugadores().get(j).getAlias();
+        ArchivoGrabacion part = new ArchivoGrabacion("Partidas.txt");
+        String partida = "";
+        for (int i = 0; i < a.getPartidas().size(); i++) {
+            for (int j = 0; j < a.getPartidas().get(i).getJugadores().size(); j++) {
+                partida = partida + "|" + a.getPartidas().get(i).getJugadores().get(j).getAlias();
             }
-            partida=partida+","+a.getPartidas().get(i).getCantJug()+","+a.getPartidas().get(i).getTipoTerm()+","+a.getPartidas().get(i).getCantTurnos()+","+a.getPartidas().get(i).getCantAves();
+            partida = partida + "," + a.getPartidas().get(i).getConfCantJugadores() + "," + a.getPartidas().get(i).getConfTipoTerminacion() + "," + a.getPartidas().get(i).getConfCantTurno() + "," + a.getPartidas().get(i).getConfAvesJugador();
             part.grabarLinea(partida);
         }
         part.cerrar();
