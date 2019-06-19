@@ -51,8 +51,9 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         jList2 = new javax.swing.JList();
         seleccionar = new javax.swing.JButton();
         jugar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel1.setText("Selecciona los jugadores");
@@ -87,6 +88,15 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         getContentPane().add(jugar);
         jugar.setBounds(40, 230, 200, 60);
 
+        jButton1.setText("<-Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(0, 190, 90, 29);
+
         setBounds(0, 0, 294, 322);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -110,6 +120,10 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         pan.setVisible(true);
 
     }//GEN-LAST:event_jugarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,6 +161,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane2;

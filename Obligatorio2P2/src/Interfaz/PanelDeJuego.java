@@ -28,6 +28,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 botones[i][j] = jButton;
             }
         }
+        this.pintarBotones();
+        
+        //cargar matriz de botones?
     }
 
     public PanelDeJuego(Partida nuevaPartida) {
@@ -278,7 +281,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(null);
 
         javax.swing.GroupLayout panelJuegoLayout = new javax.swing.GroupLayout(panelJuego);
@@ -303,7 +306,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         nombreJugador1.setText("Nombre Jugador");
         getContentPane().add(nombreJugador1);
-        nombreJugador1.setBounds(31, 99, 95, 16);
+        nombreJugador1.setBounds(31, 99, 102, 16);
         nombreJugador1.setVisible(false);
 
         avatarJugador2.setText("jLabel1");
@@ -313,7 +316,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         nombreJugador2.setText("Nombre Jugador");
         getContentPane().add(nombreJugador2);
-        nombreJugador2.setBounds(180, 100, 95, 16);
+        nombreJugador2.setBounds(180, 100, 102, 16);
         nombreJugador2.setVisible(false);
 
         avatarJugador3.setText("jLabel1");
@@ -323,7 +326,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         nombreJugador3.setText("Nombre Jugador");
         getContentPane().add(nombreJugador3);
-        nombreJugador3.setBounds(340, 100, 95, 16);
+        nombreJugador3.setBounds(340, 100, 102, 16);
         nombreJugador3.setVisible(false);
 
         avatarJugador4.setText("jLabel1");
@@ -333,7 +336,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         nombreJugador4.setText("Nombre Jugador");
         getContentPane().add(nombreJugador4);
-        nombreJugador4.setBounds(510, 100, 95, 16);
+        nombreJugador4.setBounds(510, 100, 102, 16);
         nombreJugador4.setVisible(false);
 
         botonConectar.setText("Conectar");
@@ -343,7 +346,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonConectar);
-        botonConectar.setBounds(510, 140, 120, 32);
+        botonConectar.setBounds(510, 140, 120, 29);
 
         botonExtender.setText("Extender");
         botonExtender.addActionListener(new java.awt.event.ActionListener() {
@@ -352,7 +355,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtender);
-        botonExtender.setBounds(510, 180, 120, 32);
+        botonExtender.setBounds(510, 180, 120, 29);
 
         botonExtenderArriba.setText("↑");
         botonExtenderArriba.addActionListener(new java.awt.event.ActionListener() {
@@ -361,7 +364,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtenderArriba);
-        botonExtenderArriba.setBounds(550, 250, 40, 32);
+        botonExtenderArriba.setBounds(550, 250, 40, 29);
 
         botonExtenderIzquierda.setText("←");
         botonExtenderIzquierda.addActionListener(new java.awt.event.ActionListener() {
@@ -370,7 +373,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtenderIzquierda);
-        botonExtenderIzquierda.setBounds(510, 280, 40, 32);
+        botonExtenderIzquierda.setBounds(510, 280, 40, 29);
 
         botonExtenderDerecha.setText("→");
         botonExtenderDerecha.addActionListener(new java.awt.event.ActionListener() {
@@ -379,7 +382,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtenderDerecha);
-        botonExtenderDerecha.setBounds(590, 280, 40, 32);
+        botonExtenderDerecha.setBounds(590, 280, 40, 29);
 
         botonExtenderAbajo.setText("↓");
         botonExtenderAbajo.addActionListener(new java.awt.event.ActionListener() {
@@ -388,11 +391,16 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtenderAbajo);
-        botonExtenderAbajo.setBounds(550, 310, 40, 32);
+        botonExtenderAbajo.setBounds(550, 310, 40, 29);
 
         botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonSalir);
-        botonSalir.setBounds(510, 480, 120, 32);
+        botonSalir.setBounds(510, 480, 120, 29);
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
@@ -455,48 +463,10 @@ public class PanelDeJuego extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonExtenderAbajoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
 
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PanelDeJuego(/*new Partida()*/).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarJugador1;

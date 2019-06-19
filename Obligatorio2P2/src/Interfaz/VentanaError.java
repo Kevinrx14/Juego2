@@ -7,6 +7,7 @@ package Interfaz;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -28,7 +29,9 @@ public class VentanaError extends javax.swing.JDialog {
         initComponents();
         this.setResizable(false);
     }
-
+    public void setearIcono (String path){
+        icono.setIcon((new javax.swing.ImageIcon(getClass().getResource(path))));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +45,8 @@ public class VentanaError extends javax.swing.JDialog {
         jDialog2 = new javax.swing.JDialog();
         texto = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        icono = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -65,8 +70,13 @@ public class VentanaError extends javax.swing.JDialog {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        getContentPane().setLayout(null);
+
         texto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         texto.setText("ERROR");
+        getContentPane().add(texto);
+        texto.setBounds(10, 60, 394, 26);
 
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,30 +84,14 @@ public class VentanaError extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(158, 100, 92, 29);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(70, 60, 0, 0);
+        getContentPane().add(icono);
+        icono.setBounds(180, 20, 0, 0);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(texto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(158, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(150, 150, 150))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(texto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
-        pack();
+        setBounds(0, 0, 400, 173);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -140,9 +134,11 @@ public class VentanaError extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel icono;
     private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel texto;
     // End of variables declaration//GEN-END:variables
 }

@@ -58,6 +58,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         avatar2 = new javax.swing.JButton();
         avatar3 = new javax.swing.JButton();
         avatar4 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +85,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Aves 2.0 - Registrar Jugador");
         getContentPane().setLayout(null);
 
@@ -173,6 +175,15 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar4);
         avatar4.setBounds(405, 174, 190, 140);
 
+        jButton1.setText("<-Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(0, 0, 101, 29);
+
         setBounds(0, 0, 597, 369);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,40 +213,52 @@ public class RegistroJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_jugarActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
-        image="pepe.jpg";
+        String[] path=avatar1.getIcon().toString().split(":");
+        image=path[1];
     }//GEN-LAST:event_avatar1ActionPerformed
 
     private void avatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar2ActionPerformed
-        image="sartori.jpeg";
+         String[] path=avatar2.getIcon().toString().split(":");
+        image=path[1];
     }//GEN-LAST:event_avatar2ActionPerformed
 
     private void avatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar3ActionPerformed
-        image="Untitled.png";
+         String[] path=avatar3.getIcon().toString().split(":");
+        image=path[1];
     }//GEN-LAST:event_avatar3ActionPerformed
 
     private void avatar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar4ActionPerformed
-        image="maduro.jpg";
+         String[] path=avatar4.getIcon().toString().split(":");
+        image=path[1];
     }//GEN-LAST:event_avatar4ActionPerformed
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-        try{
+       // try{
             int edad=Integer.parseInt(age.getText());
             Jugador j = new Jugador(name.getText(), edad, alias.getText(), image);
             a.getJugadores().add(j);
             System.out.println("flag");
-        }catch(NullPointerException e){
-            VentanaError error=new VentanaError("Selecciona un avatar antes de registrarte");
+            this.dispose();
+            VentanaError vent=new VentanaError("Bienvenido a Aves "+alias.getText());
+            vent.setearIcono(image);
+            vent.setVisible(true);
+        //}catch(NullPointerException e){
+            /*VentanaError error=new VentanaError("Selecciona un avatar antes de registrarte");
             error.setVisible(true);
-        }catch(Exception e){
+        /*}catch(Exception e){
             VentanaError error=new VentanaError("Por favor, verifica los datos");
             error.setVisible(true);
-        }
+        }*/
         System.out.println("flag2");
         for (int i=0; i<a.getJugadores().size();i++){
             System.out.println(a.getJugadores().get(i).toString());
         }
         
     }//GEN-LAST:event_registerActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,6 +303,7 @@ public class RegistroJugador extends javax.swing.JFrame {
     private javax.swing.JButton avatar3;
     private javax.swing.JButton avatar4;
     private javax.swing.JButton config;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
