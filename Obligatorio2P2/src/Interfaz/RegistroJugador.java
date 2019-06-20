@@ -138,7 +138,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(365, 6, 89, 16);
 
-        avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/pepe.jpg"))); // NOI18N
+        avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/bird1.jpg"))); // NOI18N
         avatar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar1ActionPerformed(evt);
@@ -147,7 +147,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar1);
         avatar1.setBounds(208, 28, 191, 140);
 
-        avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/sartori.jpeg"))); // NOI18N
+        avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/bird2.jpg"))); // NOI18N
         avatar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar2ActionPerformed(evt);
@@ -156,7 +156,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar2);
         avatar2.setBounds(405, 28, 189, 140);
 
-        avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/Untitled.png"))); // NOI18N
+        avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/bird3.jpg"))); // NOI18N
         avatar3.setAutoscrolls(true);
         avatar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +166,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar3);
         avatar3.setBounds(210, 174, 190, 140);
 
-        avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/maduro.jpg"))); // NOI18N
+        avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/bird4.jpg"))); // NOI18N
         avatar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar4ActionPerformed(evt);
@@ -260,40 +260,6 @@ public class RegistroJugador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroJugador().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField age;

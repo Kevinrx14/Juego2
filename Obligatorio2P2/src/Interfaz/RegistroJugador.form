@@ -151,7 +151,7 @@
     <Component class="javax.swing.JButton" name="avatar1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/Avatares/pepe.jpg"/>
+          <Image iconType="3" name="/Imagenes/Avatares/bird1.jpg"/>
         </Property>
       </Properties>
       <Events>
@@ -166,7 +166,7 @@
     <Component class="javax.swing.JButton" name="avatar2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/Avatares/sartori.jpeg"/>
+          <Image iconType="3" name="/Imagenes/Avatares/bird2.jpg"/>
         </Property>
       </Properties>
       <Events>
@@ -181,7 +181,7 @@
     <Component class="javax.swing.JButton" name="avatar3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/Avatares/Untitled.png"/>
+          <Image iconType="3" name="/Imagenes/Avatares/bird3.jpg"/>
         </Property>
         <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
@@ -197,7 +197,7 @@
     <Component class="javax.swing.JButton" name="avatar4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/Avatares/maduro.jpg"/>
+          <Image iconType="3" name="/Imagenes/Avatares/bird4.jpg"/>
         </Property>
       </Properties>
       <Events>
