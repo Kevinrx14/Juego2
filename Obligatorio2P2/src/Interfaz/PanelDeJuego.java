@@ -158,42 +158,57 @@ public class PanelDeJuego extends javax.swing.JFrame {
         int jugador = this.partida.getTurnoDeJugador() - 1;
         Color colorJug = this.jugadores.get(jugador).getColorJugador();
 
-        if (botones[fila][columna].getBackground().equals(colorJug)) {
-            if (botones[fila][columna].getText().isEmpty()) {
-                if (this.movimiento.equals("conectar")) {
-                    System.out.println("flag conectar");
-                    if (this.tablero.getBotonesApretados() == 0) {
-                        System.out.println("flag primer boton");
-                        this.tablero.setFila1(fila);
-                        this.tablero.setColumna1(columna);
-                        this.tablero.aumentarBotonesApretados();
-                    } else {
-                        if (this.tablero.getBotonesApretados() == 1) {
-                            System.out.println("flag segundo boton");
-                            this.tablero.setFila2(fila);
-                            this.tablero.setColumna2(columna);
-                            this.tablero.aumentarBotonesApretados();
-                            if (this.tablero.conectar()) {
-                                System.out.println("flag se pudo conectar");
-                                this.ponerAvesConectar();
-                                this.movimiento = "no";
-                                this.partida.cambiarTurnoJugador();
-                            }
-                        }
+        if (!this.movimiento.equals("no")) {
+            if (botones[fila][columna].getBackground().equals(colorJug)) {
+                if (botones[fila][columna].getText().isEmpty()) {
+                    switch (this.movimiento) {
+                        case "conectar":
+                            this.ponerMensaje(1, "Seleccione ficha a conectar");
+                            this.conectar(fila, columna);
+                            break;
+
+                        case "extender":
+                            this.ponerMensaje(1, "Seleccione direccion a extender");
+                            this.extender(fila, columna);
+                            break;
                     }
-                    System.out.println("flag movimiento: " + this.movimiento);
-                    System.out.println("--------------------------------------");
                 } else {
-                    if (this.movimiento.equals("extender")) {
-                        if (this.tablero.getBotonesApretados() == 0) {
-                            this.tablero.setFila1(fila);
-                            this.tablero.setColumna1(columna);
-                            this.tablero.aumentarBotonesApretados();
-                            this.mostrarBotonesExtender(true);
-                        }
-                    }
+                    this.ponerMensaje(0, "Hay un ave en esa ficha");
+                }
+            } else {
+                this.ponerMensaje(0, "Ficha no es del mismo color del jugador");
+            }
+        } else {
+            this.ponerMensaje(0, "Primero seleccione una jugada");
+        }
+    }
+
+    public void conectar(int fila, int columna) {
+        if (this.tablero.getBotonesApretados() == 0) {
+            this.tablero.setFila1(fila);
+            this.tablero.setColumna1(columna);
+            this.tablero.aumentarBotonesApretados();
+        } else {
+            if (this.tablero.getBotonesApretados() == 1) {
+                this.tablero.setFila2(fila);
+                this.tablero.setColumna2(columna);
+                this.tablero.aumentarBotonesApretados();
+                if (this.tablero.conectar()) {
+                    this.ponerAvesConectar();
+                    this.movimiento = "no";
+                    this.partida.cambiarTurnoJugador();
+                    this.ponerMensaje(2, " ");
                 }
             }
+        }
+    }
+
+    public void extender(int fila, int columna) {
+        if (this.tablero.getBotonesApretados() == 0) {
+            this.tablero.setFila1(fila);
+            this.tablero.setColumna1(columna);
+            this.tablero.aumentarBotonesApretados();
+            this.mostrarBotonesExtender(true);
         }
     }
 
@@ -261,6 +276,27 @@ public class PanelDeJuego extends javax.swing.JFrame {
         }
     }
 
+    //0 -> Mensaje error
+    //1 -> Mensaje exito
+    //2 -> Turno de jugador
+    public void ponerMensaje(int tipo, String mensaje) {
+        this.mensaje.setText(mensaje);
+        switch (tipo) {
+            case 0:
+                this.mensaje.setForeground(Color.RED);
+                break;
+
+            case 1:
+                this.mensaje.setForeground(Color.GREEN);
+                break;
+
+            case 2:
+                this.mensaje.setText("Es el turno de " + this.jugadores.get(this.partida.getTurnoDeJugador() - 1).getAlias());
+                this.mensaje.setForeground(Color.BLACK);
+                break;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -287,7 +323,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         botonExtenderDerecha = new javax.swing.JButton();
         botonExtenderAbajo = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        mensaje = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -315,51 +351,51 @@ public class PanelDeJuego extends javax.swing.JFrame {
         );
 
         getContentPane().add(panelJuego);
-        panelJuego.setBounds(6, 133, 484, 422);
+        panelJuego.setBounds(10, 180, 484, 422);
 
         avatarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/index.png"))); // NOI18N
         avatarJugador1.setText("jLabel1");
         getContentPane().add(avatarJugador1);
-        avatarJugador1.setBounds(40, 20, 74, 68);
+        avatarJugador1.setBounds(30, 20, 74, 68);
         avatarJugador1.setVisible(false);
 
         nombreJugador1.setText("Nombre Jugador");
         nombreJugador1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador1);
-        nombreJugador1.setBounds(31, 99, 95, 16);
+        nombreJugador1.setBounds(20, 100, 95, 16);
         nombreJugador1.setVisible(false);
 
         avatarJugador2.setText("jLabel1");
         getContentPane().add(avatarJugador2);
-        avatarJugador2.setBounds(190, 20, 74, 68);
+        avatarJugador2.setBounds(210, 20, 74, 68);
         avatarJugador2.setVisible(false);
 
         nombreJugador2.setText("Nombre Jugador");
         nombreJugador2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador2);
-        nombreJugador2.setBounds(180, 100, 95, 16);
+        nombreJugador2.setBounds(190, 100, 95, 16);
         nombreJugador2.setVisible(false);
 
         avatarJugador3.setText("jLabel1");
         getContentPane().add(avatarJugador3);
-        avatarJugador3.setBounds(350, 20, 74, 68);
+        avatarJugador3.setBounds(380, 20, 74, 68);
         avatarJugador3.setVisible(false);
 
         nombreJugador3.setText("Nombre Jugador");
         nombreJugador3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador3);
-        nombreJugador3.setBounds(340, 100, 95, 16);
+        nombreJugador3.setBounds(370, 100, 95, 16);
         nombreJugador3.setVisible(false);
 
         avatarJugador4.setText("jLabel1");
         getContentPane().add(avatarJugador4);
-        avatarJugador4.setBounds(520, 20, 74, 68);
+        avatarJugador4.setBounds(560, 20, 74, 68);
         avatarJugador4.setVisible(false);
 
         nombreJugador4.setText("Nombre Jugador");
         nombreJugador4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador4);
-        nombreJugador4.setBounds(510, 100, 95, 16);
+        nombreJugador4.setBounds(550, 100, 95, 16);
         nombreJugador4.setVisible(false);
 
         botonConectar.setText("Conectar");
@@ -369,7 +405,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonConectar);
-        botonConectar.setBounds(510, 140, 120, 32);
+        botonConectar.setBounds(500, 180, 150, 32);
 
         botonExtender.setText("Extender");
         botonExtender.addActionListener(new java.awt.event.ActionListener() {
@@ -378,7 +414,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtender);
-        botonExtender.setBounds(510, 180, 120, 32);
+        botonExtender.setBounds(500, 220, 150, 32);
 
         botonExtenderArriba.setText("↑");
         botonExtenderArriba.addActionListener(new java.awt.event.ActionListener() {
@@ -387,7 +423,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtenderArriba);
-        botonExtenderArriba.setBounds(550, 250, 40, 32);
+        botonExtenderArriba.setBounds(550, 260, 50, 50);
 
         botonExtenderIzquierda.setText("←");
         botonExtenderIzquierda.addActionListener(new java.awt.event.ActionListener() {
@@ -396,7 +432,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtenderIzquierda);
-        botonExtenderIzquierda.setBounds(510, 280, 40, 32);
+        botonExtenderIzquierda.setBounds(500, 310, 50, 50);
 
         botonExtenderDerecha.setText("→");
         botonExtenderDerecha.addActionListener(new java.awt.event.ActionListener() {
@@ -405,7 +441,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtenderDerecha);
-        botonExtenderDerecha.setBounds(590, 280, 40, 32);
+        botonExtenderDerecha.setBounds(600, 310, 50, 50);
 
         botonExtenderAbajo.setText("↓");
         botonExtenderAbajo.addActionListener(new java.awt.event.ActionListener() {
@@ -414,29 +450,29 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtenderAbajo);
-        botonExtenderAbajo.setBounds(550, 310, 40, 32);
+        botonExtenderAbajo.setBounds(550, 360, 50, 50);
 
         botonSalir.setText("Salir");
         getContentPane().add(botonSalir);
-        botonSalir.setBounds(510, 480, 120, 32);
+        botonSalir.setBounds(500, 530, 150, 32);
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(521, 370, 100, 16);
+        mensaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(mensaje);
+        mensaje.setBounds(10, 140, 640, 20);
 
-        setBounds(0, 0, 666, 554);
+        setBounds(0, 0, 680, 624);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConectarActionPerformed
         this.movimiento = "conectar";
-        jLabel1.setText(movimiento);
+        this.ponerMensaje(1, "Elija una ficha");
         this.mostrarBotonesExtender(false);
         this.tablero.setBotonesApretados(0);
     }//GEN-LAST:event_botonConectarActionPerformed
 
     private void botonExtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExtenderActionPerformed
         this.movimiento = "extender";
-        jLabel1.setText(movimiento);
+        this.ponerMensaje(1, "Elija una ficha");
         this.mostrarBotonesExtender(false);
         this.tablero.setBotonesApretados(0);
     }//GEN-LAST:event_botonExtenderActionPerformed
@@ -448,6 +484,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
                 this.partida.cambiarTurnoJugador();
+                this.ponerMensaje(2, " ");
+            } else {
+                this.ponerMensaje(0, "No se puede extender hacia la izquierda");
             }
         }
     }//GEN-LAST:event_botonExtenderIzquierdaActionPerformed
@@ -459,6 +498,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
                 this.partida.cambiarTurnoJugador();
+                this.ponerMensaje(2, " ");
+            } else {
+                this.ponerMensaje(0, "No se puede extender hacia arriba");
             }
         }
     }//GEN-LAST:event_botonExtenderArribaActionPerformed
@@ -470,6 +512,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
                 this.partida.cambiarTurnoJugador();
+                this.ponerMensaje(2, "turno de jugador");
+            } else {
+                this.ponerMensaje(0, "No se puede extender hacia la derecha");
             }
         }
     }//GEN-LAST:event_botonExtenderDerechaActionPerformed
@@ -481,6 +526,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
                 this.partida.cambiarTurnoJugador();
+                this.ponerMensaje(2, " ");
+            } else {
+                this.ponerMensaje(0, "No se puede extender hacia la abajo");
             }
         }
     }//GEN-LAST:event_botonExtenderAbajoActionPerformed
@@ -540,8 +588,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private javax.swing.JButton botonExtenderDerecha;
     private javax.swing.JButton botonExtenderIzquierda;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel mensaje;
     private javax.swing.JLabel nombreJugador1;
     private javax.swing.JLabel nombreJugador2;
     private javax.swing.JLabel nombreJugador3;
