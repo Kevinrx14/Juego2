@@ -86,14 +86,14 @@ public class PanelDeJuego extends javax.swing.JFrame {
         ArrayList<Jugador> jugadores = this.partida.getJugadores();
         int cantJugadores = jugadores.size();
 
-        ImageIcon imagen1 = new ImageIcon(jugadores.get(0).getImage());
+        Icon imagen1 = jugadores.get(0).getImage();
         this.avatarJugador1.setIcon(imagen1);
         this.nombreJugador1.setText(jugadores.get(0).getAlias());
         System.out.println(jugadores.get(0).getImage());
         this.avatarJugador1.setVisible(true);
         this.nombreJugador1.setVisible(true);
 
-        ImageIcon imagen2 = new ImageIcon(jugadores.get(1).getImage());
+        Icon imagen2 = jugadores.get(1).getImage();
         System.out.println(jugadores.get(1).getImage());
         this.avatarJugador2.setIcon(imagen2);
         this.nombreJugador2.setText(jugadores.get(1).getAlias());
@@ -101,7 +101,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         this.nombreJugador2.setVisible(true);
 
         if (cantJugadores > 2) {
-            ImageIcon imagen3 = new ImageIcon(jugadores.get(2).getImage());
+            Icon imagen3 = jugadores.get(2).getImage();
             this.avatarJugador3.setIcon(imagen3);
             this.nombreJugador3.setText(jugadores.get(2).getAlias());
             this.avatarJugador3.setVisible(true);
@@ -109,7 +109,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         }
 
         if (cantJugadores > 3) {
-            ImageIcon imagen4 = new ImageIcon(jugadores.get(3).getImage());
+            Icon imagen4 = jugadores.get(3).getImage();
             this.avatarJugador4.setIcon(imagen4);
             this.nombreJugador4.setText(jugadores.get(3).getAlias());
             this.avatarJugador4.setVisible(true);

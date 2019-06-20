@@ -16,23 +16,23 @@ public class Jugador implements Serializable, Comparable {
   private String nombre;
     private String alias;
     private Color colorJug;
-    private String image;
+    private Icon  image;
     private int edad;
     private int cantAves;
     private int totalPartidas;
 
-    public Jugador(String nombre, int edad, String alias, String image) {
+    public Jugador(String nombre, int edad, String alias, Icon image) {
         this.setNombre(nombre);
         this.setEdad(edad);
         this.setAlias(alias);
         this.setImage(image);
     }
 
-    public String getImage() {
+    public Icon getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Icon image) {
         this.image = image;
     }
     

@@ -8,6 +8,7 @@ package Interfaz;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.*;
 
 /**
  *
@@ -29,8 +30,8 @@ public class VentanaError extends javax.swing.JDialog {
         initComponents();
         this.setResizable(false);
     }
-    public void setearIcono (String path){
-        icono.setIcon((new javax.swing.ImageIcon(getClass().getResource(path))));
+    public void setearIcono (Icon path){
+        icono.setIcon(path);
     }
     /**
      * This method is called from within the constructor to initialize the form.

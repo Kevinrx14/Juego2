@@ -7,6 +7,7 @@ package Interfaz;
 import java.awt.*;
 import obligatorio2p2.*;
 import javax.swing.*;
+
 /**
  *
  * @author ezequiellopez
@@ -17,7 +18,7 @@ public class RegistroJugador extends javax.swing.JFrame {
      * Creates new form RegistroJugador
      */
     private Aves a;
-    private String image;
+    private Icon image;
     public RegistroJugador() {
         initComponents();
         this.setResizable(false);
@@ -31,7 +32,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -213,23 +214,19 @@ public class RegistroJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_jugarActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
-        String[] path=avatar1.getIcon().toString().split(":");
-        image=path[1];
+        image=avatar1.getIcon();
     }//GEN-LAST:event_avatar1ActionPerformed
 
     private void avatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar2ActionPerformed
-         String[] path=avatar2.getIcon().toString().split(":");
-        image=path[1];
+         image=avatar2.getIcon();
     }//GEN-LAST:event_avatar2ActionPerformed
 
     private void avatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar3ActionPerformed
-         String[] path=avatar3.getIcon().toString().split(":");
-        image=path[1];
+         image=avatar3.getIcon();
     }//GEN-LAST:event_avatar3ActionPerformed
 
     private void avatar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar4ActionPerformed
-         String[] path=avatar4.getIcon().toString().split(":");
-        image=path[1];
+         image=avatar4.getIcon();
     }//GEN-LAST:event_avatar4ActionPerformed
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
