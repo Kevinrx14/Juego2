@@ -4,36 +4,42 @@
  * and open the template in the editor.
  */
 package Interfaz;
+
 import java.awt.*;
 import obligatorio2p2.*;
 import java.io.*;
+
 /**
  *
  * @author ezequiellopez
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+
     public Aves a;
     public String hola;
+
     public MenuPrincipal() {
         initComponents();
         this.setTitle("Aves v2.0 Beta");
         a = new Aves();
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
+
     public MenuPrincipal(Aves av) {
         initComponents();
         this.setTitle("Aves v2.0 Beta");
         a = av;
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
-    
-    public Aves getAves(){
+
+    public Aves getAves() {
         return this.a;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,58 +143,57 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        SeleccionarJugadores sel=new SeleccionarJugadores(a);
+        SeleccionarJugadores sel = new SeleccionarJugadores(a);
         sel.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
-        if(a.getConfiguracion()[0]<=a.getJugadores().size()){
-        SeleccionarJugadores panel=new SeleccionarJugadores(a);
-        panel.setVisible(true); 
-        
-        
-        }else{
-        VentanaError vent=new VentanaError("No hay suficientes jugadores registrados");
+        if (a.getConfiguracion()[0] <= a.getJugadores().size()) {
+            SeleccionarJugadores panel = new SeleccionarJugadores(a);
+            panel.setVisible(true);
+
+        } else {
+            VentanaError vent = new VentanaError("No hay suficientes jugadores registrados");
             vent.setVisible(true);
         }
-        
-        
+
+
     }//GEN-LAST:event_jugarActionPerformed
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
-        RegistroJugador registro=new RegistroJugador(a);
+        RegistroJugador registro = new RegistroJugador(a);
         registro.setVisible(true);
     }//GEN-LAST:event_registroActionPerformed
 
     private void configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configActionPerformed
-        Configuracion config=new Configuracion(a);
+        Configuracion config = new Configuracion(a);
         config.setVisible(true);
     }//GEN-LAST:event_configActionPerformed
 
     private void diferentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diferentesActionPerformed
-        try{
-            SelectArch sel=new SelectArch(a);
+        try {
+            SelectArch sel = new SelectArch(a);
             sel.setVisible(true);
-        }
-        catch(NullPointerException e){
-            VentanaError vent=new VentanaError("Selecciona un archivo por favor");
+        } catch (NullPointerException e) {
+            VentanaError vent = new VentanaError("Selecciona un archivo por favor");
             vent.setVisible(true);
         }
 
-        
+
     }//GEN-LAST:event_diferentesActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        FileOutputStream ff =
-new FileOutputStream("archivo");
-BufferedOutputStream b =
-new BufferedOutputStream(ff);
-ObjectOutputStream ss =
-new ObjectOutputStream(b);
-ss.writeObject(p1);
-ss.writeObject(p2);
-ss.flush();
-ss.close();
+       try{
+        FileOutputStream ff = new FileOutputStream("archivo");
+        BufferedOutputStream b = new BufferedOutputStream(ff);
+        ObjectOutputStream ss = new ObjectOutputStream(b);
+        ss.writeObject(a);
+        ss.flush();
+        ss.close();
+        this.dispose();
+       }catch (Exception e){
+           VentanaError vent=new VentanaError("ERROR AL GUARDAR LA PARTIDA");
+       }
     }//GEN-LAST:event_salirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

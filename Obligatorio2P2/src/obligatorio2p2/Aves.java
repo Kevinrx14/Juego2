@@ -6,11 +6,12 @@
 package obligatorio2p2;
 import java.util.*;
 import javax.swing.*;
+import java.io.*;
 /**
  *
  * @author ezequiellopez
  */
-public class Aves {
+public class Aves implements Serializable{
     private ArrayList<Partida> partidas;
     private ArrayList<Jugador> jugadores;
     private int[] configuracion;
@@ -122,6 +123,11 @@ public class Aves {
             partida.iniciar();
         }
     }
+    
+    public void cargar(){
+        
+    }
+    
     public void darDiferentes(String entrada){
 	ArchivoGrabacion arch=new ArchivoGrabacion("DIFERENTES.txt");
 	ArchivoLectura lect=new ArchivoLectura(entrada);

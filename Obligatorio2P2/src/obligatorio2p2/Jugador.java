@@ -6,11 +6,13 @@
 package obligatorio2p2;
 import java.awt.Color;
 import javax.swing.*;
+import java.io.Serializable;
+
 /**
  *
  * @author ezequiellopez
  */
-public class Jugador implements Comparable {
+public class Jugador implements Serializable, Comparable {
   private String nombre;
     private String alias;
     private Color colorJug;

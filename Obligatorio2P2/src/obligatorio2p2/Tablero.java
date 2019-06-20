@@ -4,8 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+import java.io.*;
 
-public class Tablero {
+public class Tablero implements Serializable {
 
     private JButton botones[][];
     private boolean movimientoDisponible;
