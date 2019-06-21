@@ -10,10 +10,6 @@ import javax.swing.*;
 import java.io.*;
 import Interfaz.*;
 
-/**
- *
- * @author ezequiellopez
- */
 public class Aves implements Serializable {
 
     private ArrayList<Partida> partidas;
@@ -65,7 +61,7 @@ public class Aves implements Serializable {
      */
     public void setUnaPartida(ArrayList<Jugador> jugadores) {
         int[] configuracion = this.getConfiguracion();
-        this.partidas.add(new Partida(configuracion[0], configuracion[1], configuracion[2], configuracion[3], jugadores));
+        this.partidas.add(new Partida(configuracion, jugadores));
     }
 
     public ArrayList<Jugador> getJugadores() {
@@ -76,7 +72,7 @@ public class Aves implements Serializable {
         this.jugadores = new ArrayList<>();
     }
 
-    public void setJugador(String nombre, int edad, String alias, Icon image) {
+    public void setJugador(String nombre, int edad, String alias, ImageIcon image) {
         boolean existe = false;
 
         for (int i = 0; i < getJugadores().size(); i++) {
@@ -120,34 +116,6 @@ public class Aves implements Serializable {
             imprimo = imprimo + " | Partidas contra 3 jugadores: " + tres + " | Partidas contra 2 jugadores: " + dos + " | Partidas contra 1 jugador: " + uno;
             System.out.println(imprimo);
         }
-    }
-
-//    public void jugar(ArrayList<Jugador> jugPartida) {
-//        if (jugPartida.size() > 0) {
-//            setUnaPartida(jugPartida);
-//            int indice = this.getPartidas().size() - 1;
-//            Partida partida = this.getPartidas().get(indice);
-//
-//            partida.iniciar();
-//        }
-//    }
-    public void darDiferentes(String entrada) {
-        ArchivoGrabacion arch = new ArchivoGrabacion("DIFERENTES.txt");
-        ArchivoLectura lect = new ArchivoLectura(entrada);
-        while (lect.hayMasLineas()) {
-            String validador = lect.linea();
-            boolean grabar = true;
-            for (int i = 0; i < jugadores.size(); i++) {
-                if (!compararString(validador, jugadores.get(i).getNombre())) {
-                    grabar = false;
-                }
-            }
-            if (grabar) {
-                arch.grabarLinea(validador);
-            }
-        }
-        arch.cerrar();
-        lect.cerrar();
     }
 
     public void cargar() {

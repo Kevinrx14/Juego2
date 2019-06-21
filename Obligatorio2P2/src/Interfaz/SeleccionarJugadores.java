@@ -62,7 +62,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
 
         jLabel1.setText("Selecciona los jugadores");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 10, 260, 16);
+        jLabel1.setBounds(70, 60, 150, 16);
 
         jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = {};
@@ -72,7 +72,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jList2);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(60, 40, 170, 131);
+        jScrollPane2.setBounds(60, 90, 170, 131);
 
         seleccionar.setText("Seleccionar");
         seleccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +81,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
             }
         });
         getContentPane().add(seleccionar);
-        seleccionar.setBounds(90, 190, 97, 32);
+        seleccionar.setBounds(100, 230, 97, 32);
 
         jugar.setText("JUGAR");
         jugar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +90,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jugar);
-        jugar.setBounds(40, 230, 200, 60);
+        jugar.setBounds(50, 270, 200, 60);
 
         jButton1.setText("<-Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -99,9 +99,9 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(0, 190, 90, 29);
+        jButton1.setBounds(10, 10, 110, 32);
 
-        setBounds(0, 0, 294, 322);
+        setBounds(0, 0, 299, 382);
     }// </editor-fold>//GEN-END:initComponents
 
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
