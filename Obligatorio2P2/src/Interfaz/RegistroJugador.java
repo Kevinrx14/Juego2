@@ -131,7 +131,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
         jLabel3.setText("Alias");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 210, 110, 21);
+        jLabel3.setBounds(40, 200, 110, 16);
 
         register.setBackground(new java.awt.Color(153, 255, 153));
         register.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
