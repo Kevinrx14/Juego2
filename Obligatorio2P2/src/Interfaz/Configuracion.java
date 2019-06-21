@@ -67,7 +67,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cantJug);
-        cantJug.setBounds(66, 44, 264, 26);
+        cantJug.setBounds(90, 60, 264, 26);
 
         formaTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terminar turnos", "Cantidad de aves"}));
         formaTerm.addActionListener(new java.awt.event.ActionListener() {
@@ -76,19 +76,19 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(formaTerm);
-        formaTerm.setBounds(66, 154, 264, 26);
+        formaTerm.setBounds(90, 140, 264, 26);
 
         jLabel1.setText("Cantidad de jugadores ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(336, 48, 130, 16);
+        jLabel1.setBounds(360, 60, 130, 20);
 
         jLabel2.setText("Cantidad de aves");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(336, 102, 97, 16);
+        jLabel2.setBounds(360, 100, 97, 20);
 
         jLabel3.setText("Forma de terminacion");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(336, 158, 124, 16);
+        jLabel3.setBounds(360, 140, 124, 20);
 
         setearConfig.setText("Listo");
         setearConfig.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +97,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(setearConfig);
-        setearConfig.setBounds(6, 257, 173, 37);
+        setearConfig.setBounds(10, 260, 173, 37);
 
         configDefecto.setText("Configuración por defecto");
         configDefecto.addActionListener(new java.awt.event.ActionListener() {
@@ -106,11 +106,11 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(configDefecto);
-        configDefecto.setBounds(302, 257, 179, 37);
+        configDefecto.setBounds(320, 260, 179, 37);
 
         jLabel4.setText("Configuración");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(201, 0, 79, 16);
+        jLabel4.setBounds(200, 30, 79, 16);
 
         cantAves.setText("20");
         cantAves.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +119,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cantAves);
-        cantAves.setBounds(66, 97, 264, 24);
+        cantAves.setBounds(90, 100, 264, 24);
 
         blankTurn.setText("5");
         blankTurn.addActionListener(new java.awt.event.ActionListener() {
@@ -128,11 +128,11 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(blankTurn);
-        blankTurn.setBounds(66, 199, 264, 24);
+        blankTurn.setBounds(90, 180, 264, 24);
 
         labTurn.setText("Cantidad de turnos");
         getContentPane().add(labTurn);
-        labTurn.setBounds(340, 200, 107, 16);
+        labTurn.setBounds(360, 180, 107, 20);
 
         jButton1.setText("<-Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -141,10 +141,9 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(0, 0, 101, 29);
+        jButton1.setBounds(0, 0, 110, 30);
 
-        setBounds(0, 0, 487, 322);
-
+        setBounds(0, 0, 526, 346);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cantJugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantJugActionPerformed

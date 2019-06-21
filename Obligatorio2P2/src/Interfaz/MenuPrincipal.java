@@ -83,7 +83,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(registro);
-        registro.setBounds(140, 210, 267, 32);
+        registro.setBounds(140, 200, 267, 32);
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {

@@ -89,7 +89,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(50, 80, 100, 24);
+        name.setBounds(50, 80, 150, 24);
 
         age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +97,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(age);
-        age.setBounds(50, 150, 100, 24);
+        age.setBounds(50, 150, 150, 24);
 
         alias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(alias);
-        alias.setBounds(50, 220, 100, 24);
+        alias.setBounds(50, 220, 150, 24);
 
         jLabel1.setText("Nombre");
         getContentPane().add(jLabel1);
@@ -126,11 +126,11 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(register);
-        register.setBounds(6, 314, 588, 32);
+        register.setBounds(40, 330, 588, 32);
 
         jLabel5.setText("Elige tu avatar");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(365, 6, 80, 16);
+        jLabel5.setBounds(390, 10, 80, 16);
 
         avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/bird1.jpg"))); // NOI18N
         avatar1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +139,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avatar1);
-        avatar1.setBounds(208, 28, 191, 140);
+        avatar1.setBounds(240, 40, 191, 140);
 
         avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/bird2.jpg"))); // NOI18N
         avatar2.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +148,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avatar2);
-        avatar2.setBounds(405, 28, 189, 140);
+        avatar2.setBounds(430, 40, 189, 140);
 
         avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/bird3.jpg"))); // NOI18N
         avatar3.setAutoscrolls(true);
@@ -158,7 +158,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avatar3);
-        avatar3.setBounds(210, 174, 190, 140);
+        avatar3.setBounds(240, 180, 190, 140);
 
         avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/bird4.jpg"))); // NOI18N
         avatar4.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +167,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avatar4);
-        avatar4.setBounds(405, 174, 190, 140);
+        avatar4.setBounds(430, 180, 190, 140);
 
         jButton1.setText("<-Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -176,9 +176,9 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(0, 0, 77, 32);
+        jButton1.setBounds(0, 0, 110, 30);
 
-        setBounds(0, 0, 618, 391);
+        setBounds(0, 0, 675, 420);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
