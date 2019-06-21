@@ -453,6 +453,11 @@ public class PanelDeJuego extends javax.swing.JFrame {
         botonExtenderAbajo.setBounds(550, 360, 50, 50);
 
         botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonSalir);
         botonSalir.setBounds(500, 530, 150, 32);
 
@@ -532,6 +537,15 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_botonExtenderAbajoActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        String mensaje = "Esta seguro que desea salir de la partida sin terminar?";
+        VentanaSiNo cerrar = new VentanaSiNo(mensaje, this.partida);
+        cerrar.setVisible(true);
+        if(!this.partida.getPartidaEnCurso()) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
      * @param args the command line arguments
