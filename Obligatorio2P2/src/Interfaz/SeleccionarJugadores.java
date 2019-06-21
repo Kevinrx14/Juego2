@@ -20,21 +20,13 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
     private ArrayList<Jugador> juegan;
     private ArrayList<Jugador> listaJug;
 
-    public SeleccionarJugadores() {
-        initComponents();
-        jugar.setVisible(false);
-        this.setResizable(false);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
-    }
-
     public SeleccionarJugadores(Aves a) {
         initComponents();
         this.aves = a;
         jugar.setVisible(false);
         juegan = new ArrayList();
         listaJug = new ArrayList(aves.getJugadores());
-        this.jList2.setListData(this.listaJug.toArray());
+        this.sinSeleccionar.setListData(this.listaJug.toArray());
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -52,36 +44,39 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        enPartida = new javax.swing.JList();
         seleccionar = new javax.swing.JButton();
         jugar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        volver = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        sinSeleccionar = new javax.swing.JList();
+        quitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel1.setText("Selecciona los jugadores");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 60, 150, 16);
+        jLabel1.setBounds(200, 40, 390, 16);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        enPartida.setModel(new javax.swing.AbstractListModel() {
             String[] strings = {};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(enPartida);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(60, 90, 170, 131);
+        jScrollPane2.setBounds(350, 100, 170, 132);
 
-        seleccionar.setText("Seleccionar");
+        seleccionar.setText("Agregar>>");
         seleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionarActionPerformed(evt);
             }
         });
         getContentPane().add(seleccionar);
-        seleccionar.setBounds(100, 230, 97, 32);
+        seleccionar.setBounds(200, 100, 150, 29);
 
         jugar.setText("JUGAR");
         jugar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,32 +85,57 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jugar);
-        jugar.setBounds(50, 270, 200, 60);
+        jugar.setBounds(180, 250, 200, 60);
 
-        jButton1.setText("<-Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        volver.setText("<-Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                volverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(10, 10, 110, 32);
+        getContentPane().add(volver);
+        volver.setBounds(10, 10, 110, 29);
 
-        setBounds(0, 0, 299, 382);
+        sinSeleccionar.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(sinSeleccionar);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(30, 100, 170, 132);
+
+        quitar.setText("<<Quitar");
+        quitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(quitar);
+        quitar.setBounds(200, 190, 150, 29);
+
+        setBounds(0, 0, 550, 382);
     }// </editor-fold>//GEN-END:initComponents
 
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
-        int remover = jList2.getSelectedIndex();
-
-        if (aves.getConfiguracion().length > juegan.size()) {
-            juegan.add((Jugador) jList2.getSelectedValue());
+        int remover = sinSeleccionar.getSelectedIndex();
+        try {
+            if (!(sinSeleccionar.getSelectedValue() == null)) {
+                if (aves.getConfiguracion().length > juegan.size()) {
+                    juegan.add((Jugador) sinSeleccionar.getSelectedValue());
+                }
+                if (aves.getConfiguracion()[0] == juegan.size()) {
+                    jugar.setVisible(true);
+                    seleccionar.setVisible(false);
+                }
+                listaJug.remove(remover);
+                sinSeleccionar.setListData(this.listaJug.toArray());
+                enPartida.setListData(this.juegan.toArray());
+            }
+        } catch (Exception e) {
+            //Do Nothing
         }
-        if (aves.getConfiguracion()[0] == juegan.size()) {
-            jugar.setVisible(true);
-            seleccionar.setVisible(false);
-        }
-        listaJug.remove(remover);
-        jList2.setListData(this.listaJug.toArray());
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
@@ -123,20 +143,43 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         PanelDeJuego pan = new PanelDeJuego(p);
         pan.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jugarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
+        int remover = enPartida.getSelectedIndex();
+        try {
+            if (!(enPartida.getSelectedValue() == null)) {
+                if (aves.getConfiguracion().length > juegan.size()) {
+                    seleccionar.setVisible(true);
+                    listaJug.add((Jugador) enPartida.getSelectedValue());
+                    juegan.remove(remover);
+                }
+                if (aves.getConfiguracion()[0] != juegan.size()) {
+                    jugar.setVisible(false);
+                    
+                }
+                sinSeleccionar.setListData(this.listaJug.toArray());
+                enPartida.setListData(this.juegan.toArray());
+            }
+        } catch (Exception e) {
+            //Do Nothing
+        }
+    }//GEN-LAST:event_quitarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JList enPartida;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jugar;
+    private javax.swing.JButton quitar;
     private javax.swing.JButton seleccionar;
+    private javax.swing.JList sinSeleccionar;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

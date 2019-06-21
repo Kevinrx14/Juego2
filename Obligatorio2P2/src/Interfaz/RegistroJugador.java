@@ -27,6 +27,10 @@ public class RegistroJugador extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         this.avatarSeleccionado = false;
+        avatar1.setOpaque(false);
+        avatar2.setOpaque(false);
+        avatar3.setOpaque(false);
+        avatar4.setOpaque(false);
     }
 
     /**
@@ -56,6 +60,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         avatar3 = new javax.swing.JButton();
         avatar4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +97,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(50, 80, 150, 24);
+        name.setBounds(50, 80, 150, 26);
 
         age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +105,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(age);
-        age.setBounds(50, 150, 150, 24);
+        age.setBounds(50, 150, 150, 26);
 
         alias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,20 +113,28 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(alias);
-        alias.setBounds(50, 220, 150, 24);
+        alias.setBounds(50, 220, 150, 26);
 
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Nombre");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 60, 45, 16);
+        jLabel1.setBounds(0, 70, 120, 16);
 
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 255));
         jLabel2.setText("Edad");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(80, 130, 28, 16);
+        jLabel2.setBounds(150, 130, 110, 16);
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 255));
         jLabel3.setText("Alias");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(80, 200, 28, 16);
+        jLabel3.setBounds(40, 210, 110, 21);
 
+        register.setBackground(new java.awt.Color(153, 255, 153));
+        register.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
         register.setText("Registrar");
         register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,11 +142,13 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(register);
-        register.setBounds(40, 330, 588, 32);
+        register.setBounds(40, 330, 588, 29);
 
+        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 255));
         jLabel5.setText("Elige tu avatar");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(390, 10, 80, 16);
+        jLabel5.setBounds(340, 0, 130, 21);
 
         avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/bird1.jpg"))); // NOI18N
         avatar1.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +195,10 @@ public class RegistroJugador extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(0, 0, 110, 30);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/registroJug.jpg"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(-5, -4, 680, 400);
 
         setBounds(0, 0, 675, 420);
     }// </editor-fold>//GEN-END:initComponents
@@ -285,6 +304,7 @@ public class RegistroJugador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jugar;

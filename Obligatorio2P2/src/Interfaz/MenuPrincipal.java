@@ -74,7 +74,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jugar);
-        jugar.setBounds(140, 130, 267, 32);
+        jugar.setBounds(140, 130, 267, 29);
 
         registro.setText("¡Registrate!");
         registro.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +83,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(registro);
-        registro.setBounds(140, 200, 267, 32);
+        registro.setBounds(140, 200, 267, 29);
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +92,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(config);
-        config.setBounds(140, 280, 267, 32);
+        config.setBounds(140, 280, 267, 29);
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 0, 0);
 
@@ -113,6 +113,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         diferentes.setBounds(290, 330, 170, 100);
 
         jButton2.setText("Puntuaciones");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(80, 330, 170, 100);
 
@@ -124,9 +129,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(210, 470, 120, 32);
+        salir.setBounds(210, 470, 120, 29);
+
+        fondoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Fondos/background.jpg"))); // NOI18N
         getContentPane().add(fondoImg);
-        fondoImg.setBounds(0, 0, 540, 500);
+        fondoImg.setBounds(0, 0, 540, 530);
 
         setBounds(0, 0, 539, 546);
     }// </editor-fold>//GEN-END:initComponents
@@ -183,6 +190,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
            VentanaError vent=new VentanaError("ERROR AL GUARDAR LA PARTIDA");
        }
     }//GEN-LAST:event_salirActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        a.excel();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton config;
