@@ -12,6 +12,7 @@ public class Partida implements Serializable{
     private int totalTurnos;
     private boolean partidaEnCurso;
     private boolean partidaTerminada;
+    private Jugador ganador;
 
     public Partida(
             int[] unaConfiguracion,
@@ -37,6 +38,14 @@ public class Partida implements Serializable{
         this.setPartidaTerminada(false);
     }
 
+    public Jugador getGanador() {
+        return ganador;
+    }
+
+    public void setGanador(Jugador ganador) {
+        this.ganador = ganador;
+    }
+    
     public boolean getPartidaEnCurso() {
         return this.partidaEnCurso;
     }

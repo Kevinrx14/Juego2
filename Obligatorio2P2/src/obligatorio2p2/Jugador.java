@@ -16,27 +16,68 @@ public class Jugador implements Serializable, Comparable {
   private String nombre;
     private String alias;
     private Color colorJug;
-    private Icon  image;
+    private ImageIcon image;
     private int edad;
     private int cantAves;
     private int totalPartidas;
-
-    public Jugador(String nombre, int edad, String alias, Icon image) {
+    private int contra1;
+    private int contra2;
+    private int contra3;
+    private int ganadas;
+    
+    public Jugador(String nombre, int edad, String alias, ImageIcon image) {
         this.setNombre(nombre);
         this.setEdad(edad);
         this.setAlias(alias);
         this.setImage(image);
+        this.setContra1(0);
+        this.setContra2(0);
+        this.setContra3(0);
+        this.setGanadas(0);
+        
     }
 
-    public Icon getImage() {
+    public int getContra1() {
+        return contra1;
+    }
+
+    public void setContra1(int contra1) {
+        this.contra1 = contra1;
+    }
+
+    public int getContra2() {
+        return contra2;
+    }
+
+    public void setContra2(int contra2) {
+        this.contra2 = contra2;
+    }
+
+    public int getContra3() {
+        return contra3;
+    }
+
+    public void setContra3(int contra3) {
+        this.contra3 = contra3;
+    }
+
+    public int getGanadas() {
+        return ganadas;
+    }
+
+    public void setGanadas(int ganadas) {
+        this.ganadas = ganadas;
+    }
+    
+    
+    
+    public ImageIcon getImage() {
         return image;
     }
 
-    public void setImage(Icon image) {
+    public void setImage(ImageIcon image) {
         this.image = image;
     }
-    
-    
     
     public String getNombre() {
         return this.nombre;

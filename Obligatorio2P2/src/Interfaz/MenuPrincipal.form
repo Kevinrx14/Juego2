@@ -72,7 +72,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="140" y="210" width="267" height="-1"/>
+          <AbsoluteConstraints x="140" y="200" width="267" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -130,6 +130,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Puntuaciones"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="80" y="330" width="170" height="100"/>
@@ -153,9 +156,14 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="fondoImg">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Interfaz/Fondos/background.jpg"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="540" height="500"/>
+          <AbsoluteConstraints x="0" y="0" width="540" height="530"/>
         </Constraint>
       </Constraints>
     </Component>
