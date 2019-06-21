@@ -30,7 +30,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         }
         this.pintarBotones();
-        
+
         //cargar matriz de botones?
     }
 
@@ -87,7 +87,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private void setUiJugadores() {
         int cantJugadores = jugadores.size();
 
-        Icon avatar1 = new ImageIcon(this.jugadores.get(0).getImage().getImage().getScaledInstance(avatarJugador1.getWidth(), avatarJugador1.getHeight(), Image.SCALE_DEFAULT));
+        ImageIcon imagen1 = this.jugadores.get(0).getImage();
+        Icon avatar1 = new ImageIcon(imagen1.getImage().getScaledInstance(avatarJugador1.getWidth(), avatarJugador1.getHeight(), Image.SCALE_DEFAULT));
         this.avatarJugador1.setIcon(avatar1);
         this.nombreJugador1.setText(this.jugadores.get(0).getAlias());
         this.nombreJugador1.setBackground(this.jugadores.get(0).getColorJugador());
@@ -96,7 +97,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
         this.avatarJugador1.setVisible(true);
         this.nombreJugador1.setVisible(true);
 
-        Icon avatar2 = new ImageIcon(jugadores.get(1).getImage().getImage().getScaledInstance(avatarJugador2.getWidth(), avatarJugador2.getHeight(), Image.SCALE_DEFAULT));
+        ImageIcon imagen2 = this.jugadores.get(1).getImage();
+        Icon avatar2 = new ImageIcon(imagen2.getImage().getScaledInstance(avatarJugador2.getWidth(), avatarJugador2.getHeight(), Image.SCALE_DEFAULT));
         this.avatarJugador2.setIcon(avatar2);
         this.nombreJugador2.setText(this.jugadores.get(1).getAlias());
         this.nombreJugador2.setBackground(this.jugadores.get(1).getColorJugador());
@@ -106,7 +108,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
         this.nombreJugador2.setVisible(true);
 
         if (cantJugadores > 2) {
-            Icon avatar3 = new ImageIcon(jugadores.get(2).getImage().getImage().getScaledInstance(avatarJugador3.getWidth(), avatarJugador3.getHeight(), Image.SCALE_DEFAULT));
+            ImageIcon imagen3 = this.jugadores.get(2).getImage();
+            Icon avatar3 = new ImageIcon(imagen3.getImage().getScaledInstance(avatarJugador3.getWidth(), avatarJugador3.getHeight(), Image.SCALE_DEFAULT));
             this.avatarJugador3.setIcon(avatar3);
             this.nombreJugador3.setText(this.jugadores.get(2).getAlias());
             this.nombreJugador3.setBackground(this.jugadores.get(2).getColorJugador());
@@ -117,7 +120,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
         }
 
         if (cantJugadores > 3) {
-            Icon avatar4 = new ImageIcon(jugadores.get(3).getImage().getImage().getScaledInstance(avatarJugador4.getWidth(), avatarJugador4.getHeight(), Image.SCALE_DEFAULT));
+            ImageIcon imagen4 = this.jugadores.get(3).getImage();
+            Icon avatar4 = new ImageIcon(imagen4.getImage().getScaledInstance(avatarJugador4.getWidth(), avatarJugador4.getHeight(), Image.SCALE_DEFAULT));
             this.avatarJugador4.setIcon(avatar4);
             this.nombreJugador4.setText(this.jugadores.get(3).getAlias());
             this.nombreJugador4.setBackground(this.jugadores.get(3).getColorJugador());
@@ -351,7 +355,6 @@ public class PanelDeJuego extends javax.swing.JFrame {
         getContentPane().add(panelJuego);
         panelJuego.setBounds(10, 180, 484, 422);
 
-        avatarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/index.png"))); // NOI18N
         avatarJugador1.setText("jLabel1");
         getContentPane().add(avatarJugador1);
         avatarJugador1.setBounds(30, 20, 74, 68);
@@ -360,7 +363,6 @@ public class PanelDeJuego extends javax.swing.JFrame {
         nombreJugador1.setText("Nombre Jugador");
         nombreJugador1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador1);
-
         nombreJugador1.setBounds(20, 100, 95, 16);
         nombreJugador1.setVisible(false);
 
@@ -405,7 +407,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         });
         getContentPane().add(botonConectar);
         botonConectar.setBounds(500, 180, 150, 32);
-      
+
         botonExtender.setText("Extender");
         botonExtender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -414,6 +416,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         });
         getContentPane().add(botonExtender);
         botonExtender.setBounds(500, 220, 150, 32);
+
         botonExtenderArriba.setText("↑");
         botonExtenderArriba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -540,7 +543,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         String mensaje = "Esta seguro que desea salir de la partida sin terminar?";
         VentanaSiNo cerrar = new VentanaSiNo(mensaje, this.partida);
         cerrar.setVisible(true);
-        if(!this.partida.getPartidaEnCurso()) {
+        if (!this.partida.getPartidaEnCurso()) {
             this.dispose();
         }
     }//GEN-LAST:event_botonSalirActionPerformed
@@ -580,6 +583,14 @@ public class PanelDeJuego extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PanelDeJuego(/*new Partida()*/).setVisible(true);
+            }
+        });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarJugador1;
     private javax.swing.JLabel avatarJugador2;

@@ -72,7 +72,7 @@ public class Aves implements Serializable {
         this.jugadores = new ArrayList<>();
     }
 
-    public void setJugador(String nombre, int edad, String alias, Icon image) {
+    public void setJugador(String nombre, int edad, String alias, ImageIcon image) {
         boolean existe = false;
 
         for (int i = 0; i < getJugadores().size(); i++) {
