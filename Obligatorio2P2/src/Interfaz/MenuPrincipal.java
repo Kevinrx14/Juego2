@@ -62,7 +62,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel4.setText("jLabel4");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(null);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(26, 14, 0, 0);
@@ -144,6 +144,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             VentanaError vent = new VentanaError("No hay suficientes jugadores registrados");
             vent.setVisible(true);
         }
+
+
     }//GEN-LAST:event_jugarActionPerformed
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
@@ -169,58 +171,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_diferentesActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        ArchivoGrabacion jug = new ArchivoGrabacion("Jugadores.txt");
-        for (int i = 0; i < a.getJugadores().size(); i++) {
-            jug.grabarLinea(a.getJugadores().get(i).getNombre() + "," + a.getJugadores().get(i).getEdad() + "," + a.getJugadores().get(i).getImage() + "," + a.getJugadores().get(i).getAlias() + "," + a.getJugadores().get(i).getTotalPartidas());
-        }
-        jug.cerrar();
-        ArchivoGrabacion part = new ArchivoGrabacion("Partidas.txt");
-        String partida = "";
-        for (int i = 0; i < a.getPartidas().size(); i++) {
-            for (int j = 0; j < a.getPartidas().get(i).getJugadores().size(); j++) {
-                partida = partida + "|" + a.getPartidas().get(i).getJugadores().get(j).getAlias();
-            }
-            partida = partida + "," + a.getPartidas().get(i).getConfCantJugadores() + "," + a.getPartidas().get(i).getConfTipoTerminacion() + "," + a.getPartidas().get(i).getConfCantTurno() + "," + a.getPartidas().get(i).getConfAvesJugador();
-            part.grabarLinea(partida);
-        }
-        part.cerrar();
+       try{
+        FileOutputStream ff = new FileOutputStream("archivo");
+        BufferedOutputStream b = new BufferedOutputStream(ff);
+        ObjectOutputStream ss = new ObjectOutputStream(b);
+        ss.writeObject(a);
+        ss.flush();
+        ss.close();
         this.dispose();
+       }catch (Exception e){
+           VentanaError vent=new VentanaError("ERROR AL GUARDAR LA PARTIDA");
+       }
     }//GEN-LAST:event_salirActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton config;
