@@ -1,66 +1,111 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package obligatorio2p2;
+
 import java.awt.Color;
 import java.util.*;
 import java.io.*;
-/**
- *
- * @author ezequiellopez
- */
+
 public class Partida implements Serializable{
+  
     private ArrayList<Jugador> jugadores;
-    private Tablero tablero;
-    private int cantJug;
-    private int cantAves;
-    private int tipoTerm;
-    private int cantTurnos;
-    private boolean turno;
+    private int[] configuracion;
+    private int turnoDeJugador;
+    private int totalTurnos;
+    private boolean partidaEnCurso;
+    private boolean partidaTerminada;
 
     public Partida(
-            int cantJugadores,
-            int avesXjug,            
-            int tipoTerm,
-            int cantTurnos,
+            int[] unaConfiguracion,
             ArrayList<Jugador> jugadores
     ) {
-        this.setCantJug(cantJugadores);
-        this.setCantAves(avesXjug);
-        this.setTipoTerm(tipoTerm);
-        this.setCantTurnos(cantTurnos);
-//        this.setTablero();
+        this.setConfiguracion(unaConfiguracion);
         this.setJugadores(jugadores);
         this.setConfigJugadores();
+        this.setTotalTurnos(0);
+        this.setTurnoDeJugador(1);
+        this.setPartidaEnCurso(true);
+        this.setPartidaTerminada(false);
     }
 
-    public Partida(){
-        ArrayList<Jugador> jug=new ArrayList();
-        this.setCantJug(2);
-        this.setCantAves(20);
-        this.setTipoTerm(1);
-        this.setCantTurnos(5);
-//        this.setTablero();
+    public Partida() {
+        ArrayList<Jugador> jug = new ArrayList();
+        this.setConfiguracion(new int[]{2, 20, 1, 5});
         this.setJugadores(jug);
         this.setConfigJugadores();
-    }
-    
-    public boolean getTurno(){
-        return this.turno;
-    }
-    
-    public void setTurno(boolean empezado) {
-        this.turno = empezado;
-    }
-    
-    public int getCantTurnos() {
-        return this.cantTurnos;
+        this.setTotalTurnos(0);
+        this.setTurnoDeJugador(1);
+        this.setPartidaEnCurso(true);
+        this.setPartidaTerminada(false);
     }
 
-    public void setCantTurnos(int cantTurnos) {
-        this.cantTurnos = cantTurnos;
+    public boolean getPartidaEnCurso() {
+        return this.partidaEnCurso;
+    }
+
+    public void setPartidaEnCurso(boolean enCurso) {
+        this.partidaEnCurso = enCurso;
+    }
+
+    public boolean getPartidaTerminada() {
+        return this.partidaTerminada;
+    }
+
+    public void setPartidaTerminada(boolean terminada) {
+        this.partidaTerminada = terminada;
+    }
+
+    public int[] getConfiguracion() {
+        return this.configuracion;
+    }
+
+    public void setConfiguracion(int[] unaConfiguracion) {
+        this.configuracion = unaConfiguracion;
+    }
+
+    public int getConfCantJugadores() {
+        return this.configuracion[0];
+    }
+
+    public int getConfAvesJugador() {
+        return this.configuracion[1];
+    }
+
+    public int getConfTipoTerminacion() {
+        return this.configuracion[2];
+    }
+
+    public int getConfCantTurno() {
+        return this.configuracion[3];
+    }
+
+    public int getTurnoDeJugador() {
+        return this.turnoDeJugador;
+    }
+
+    public void setTurnoDeJugador(int jugador) {
+        this.turnoDeJugador = jugador;
+    }
+
+    public void cambiarTurnoJugador() {
+        int aux = this.getTurnoDeJugador();
+        if (aux == this.getConfCantJugadores()) {
+            aux = 0;
+        }
+        aux++;
+        this.setTurnoDeJugador(aux);
+    }
+
+    public int getTotalTurnos() {
+        return this.totalTurnos;
+    }
+
+    public void setTotalTurnos(int turnos) {
+        this.totalTurnos = turnos;
+    }
+
+    public void aumentarTotalTurnos() {
+        int aux = this.getTotalTurnos();
+        aux++;
+        this.setTotalTurnos(aux);
     }
 
     public ArrayList<Jugador> getJugadores() {
@@ -76,23 +121,23 @@ public class Partida implements Serializable{
         ArrayList<Jugador> jugadores = this.getJugadores();
 
         for (int i = 0; i < jugadores.size(); i++) {
-            jugadores.get(i).setCantAves(this.getCantAves());
+            jugadores.get(i).setCantAves(this.getConfAvesJugador());
         }
-        //this.setColorJugadores();
+        this.setColorJugadores();
     }
 
     public Color getColorJugador(int indice) {
         return this.getJugadores().get(indice).getColorJugador();
     }
 
-   /* public void setColorJugadores() {
+    public void setColorJugadores() {
         Random rand = new Random();
-        String aux = "";
-        int[] colores = new int[this.getCantJug()];
+        Color aux = Color.WHITE;
+        int[] colores = new int[this.getConfCantJugadores()];
         int num;
         boolean validador;
 
-        for (int i = 0; i < this.getCantJug(); i++) {
+        for (int i = 0; i < this.getConfCantJugadores(); i++) {
             do {
                 validador = true;
                 num = rand.nextInt(4);
@@ -106,270 +151,47 @@ public class Partida implements Serializable{
             colores[i] = num;
             switch (colores[i]) {
                 case 1:
-                    aux = "\u001B[41m" + " " + "\033[0m"; //Color rojo
+                    aux = Color.RED;
                     break;
 
                 case 2:
-                    aux = "\u001B[44m" + " " + "\033[0m"; //Color azul
+                    aux = Color.BLUE;
                     break;
 
                 case 3:
-                    aux = "\u001B[43m" + " " + "\033[0m"; //Color amarillo
+                    aux = Color.YELLOW;
                     break;
 
                 case 4:
-                    aux = "\u001B[42m" + " " + "\033[0m"; //Color verde
+                    aux = Color.GREEN;
                     break;
             }
 
             this.getJugadores().get(i).setColorJug(aux);
         }
-    }*/
-
-    public Tablero getTablero() {
-        return this.tablero;
     }
 
-//    public void setTablero() {
-//        this.tablero = new Tablero();
-//    }
+    public boolean terminarPartida() {
+        boolean terminar = false;
 
-    public int getCantJug() {
-        return this.cantJug;
-    }
-
-    public void setCantJug(int cantJugadores) {
-        this.cantJug = cantJugadores;
-    }
-
-    public int getCantAves() {
-        return this.cantAves;
-    }
-
-    public void setCantAves(int avesVXjug) {
-        this.cantAves = avesVXjug;
-    }
-
-    public int getTipoTerm() {
-        return this.tipoTerm;
-    }
-
-    public void setTipoTerm(int tipoTerm) {
-        this.tipoTerm = tipoTerm;
-    }
-
-    public void iniciar() {
-        System.out.println("Jugadores:");
-        for (int i = 0; i < this.getCantJug(); i++) {
-            this.mostrarColorYJugador(i);
-        }
-
-        switch (this.getTipoTerm()) {
+        switch (this.getConfTipoTerminacion()) {
+            //Cantidad de aves
             case 1:
-                this.partidaConTerminacionAves();
+                int avesJug = this.getJugadores().get(this.getTurnoDeJugador()).getCantAves();
+                if (avesJug == this.getConfAvesJugador()) {
+                    this.setPartidaEnCurso(false);
+                    this.setPartidaTerminada(true);
+                }
                 break;
+            //Cantidad de turnos
             case 2:
-                this.partidaConTerminacionTurnos();
-                break;  
+                if (this.getTotalTurnos() == this.getConfCantTurno()) {
+                    this.setPartidaEnCurso(false);
+                    this.setPartidaTerminada(true);
+                }
+                break;
         }
 
-        System.out.println(tablero.toString());
-        this.terminarPartida();
+        return terminar;
     }
-
-    public void partidaConTerminacionTurnos() {
-        Tablero tablero = this.getTablero();
-        boolean salidaEmergencia = false;
-
-        for (int turno = 1; turno <= this.getCantTurnos(); turno++) {
-            for (int jug = 0; jug < this.getCantJug(); jug++) {
-                System.out.println(tablero.toString());
-                System.out.print("Es el turno de ");
-                this.mostrarColorYJugador(jug);
-                //salidaEmergencia = this.movimiento(jug);
-                if (salidaEmergencia) {
-                    turno = this.getCantTurnos() + 1;
-                    jug = this.getCantJug() + 1;
-                }
-            }
-        }
-    }
-
-    public void partidaConTerminacionAves() {
-        ArrayList<Jugador> jugadores = this.getJugadores();
-        Tablero tablero = this.getTablero();
-        boolean salidaEmergencia = false;
-        boolean running = true;
-
-        do {
-            for (int jug = 0; jug <= this.getCantJug(); jug++) {
-                System.out.println(tablero.toString());
-                System.out.print("Es el turno de ");
-                this.mostrarColorYJugador(jug);
-                //salidaEmergencia = this.movimiento(jug);
-                if (salidaEmergencia) {
-                    running = false;
-                    jug = this.getCantJug() + 1;
-                }
-                if (jugadores.get(jug).getCantAves() == 0) {
-                    running = false;
-                    jug = this.getCantJug() + 1;
-                }
-            }
-        } while (running);
-    }
-
-    public void mostrarColorYJugador(int indice) {
-        //String colorJug = this.getColorJugador(indice);
-        String alias = this.getJugadores().get(indice).getAlias();
-      //  System.out.println(colorJug + " - " + alias);
-    }
-
-    public char[] indColores(String movimiento) {
-        char[] ordenados = new char[4];
-        for (int i = 0; i < 4; i++) {
-            ordenados[i] = movimiento.charAt(i);
-        }
-        return ordenados;
-    }
-/*
-    public boolean movimiento(int indiceJug) {
-        int[] indices;
-        Interfaz interfaz = new Interfaz();
-        String movimiento;
-        String indicacion1 = "";
-        String indicacion2 = "";
-        char tipoMovimiento;
-        boolean salidaEmergencia = false;
-        boolean running = true;
-
-        do {
-            movimiento = interfaz.ingresarString("jugada");
-            tipoMovimiento = movimiento.charAt(0);
-            if (tipoMovimiento != 'X') {
-                if (tipoMovimiento == 'P') {
-                    if (movimiento.charAt(1) == 'M') {
-                        indices = interfaz.getIndicesDeIndicacion(1, movimiento);
-                        indicacion1 = movimiento.substring(indices[0], indices[1] + 1);
-                        indices = interfaz.getIndicesDeIndicacion(2, movimiento);
-                        indicacion2 = movimiento.substring(indices[0] + 1, indices[1]);
-                    } else {
-                        indicacion1 = movimiento.substring(2);
-                    }
-                } else {
-                    indices = interfaz.getIndicesDeIndicacion(1, movimiento);
-                    indicacion1 = movimiento.substring(indices[0], indices[1]);
-                    indices = interfaz.getIndicesDeIndicacion(2, movimiento);
-                    indicacion2 = movimiento.substring(indices[0], indices[1]);
-                }
-            }
-            switch (tipoMovimiento) {
-                //Rotar
-                case 'R':
-                    running = rotar(indicacion1, indicacion2, indiceJug);
-                    break;
-                //Conectar
-                case 'C':
-                    running = conectar(indicacion1, indicacion2, indiceJug);
-                    break;
-                //Poner tableta 
-                case 'P':
-                    if (movimiento.charAt(1) == 'M') {
-                        running = ponerTabletaArmada(indicacion1, indicacion2);
-                    } else {
-                        running = ponerTableta(indicacion1);
-                    }
-                    break;
-                //Extender 
-                case 'E':
-                    running = extender(indicacion1, indicacion2, indiceJug);
-                    break;
-                //Salir    
-                case 'X':
-                    salidaEmergencia = true;
-                    running = false;
-                    break;
-
-            }
-        } while (running);
-        return salidaEmergencia;
-    }
-
-    public boolean conectar(String indicacion1, String indicacion2, int indiceJug) {
-        int[] posicion1 = this.traducirPosicion(indicacion1);
-        int[] posicion2 = this.traducirPosicion(indicacion2);
-        boolean running = false;
-
-        running = this.getTablero().conectar(posicion1[0], posicion1[1], posicion2[0], posicion2[1], indiceJug, this);
-
-        return running;
-    }
-
-    public boolean extender(String indicacion1, String indicacion2, int indiceJug) {
-        int[] posicion = this.traducirPosicion(indicacion2);
-        char direccion = indicacion1.charAt(0);
-        String colorJug = this.getColorJugador(indiceJug);
-        boolean running;
-
-        running = this.getTablero().extender(posicion[0], posicion[1], direccion, indiceJug, this);
-
-        return running;
-    }
-    public int[] traducirPosicion(String posicion) {
-        char[] filasChar = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        int[] devolverPosicion = new int[2];
-        char fila;
-
-        fila = posicion.charAt(0);
-        devolverPosicion[1] = Integer.parseInt(posicion.substring(1)) - 1;
-
-        for (int i = 0; i < filasChar.length; i++) {
-            if (fila == filasChar[i]) {
-                devolverPosicion[0] = i;
-            }
-        }
-
-            return devolverPosicion;
-    }
-*/
-    public void terminarPartida() {
-        ArrayList<Jugador> jugadores = this.getJugadores();
-        ArrayList<Integer> listaIndicesJug = new ArrayList<>();
-        String alias;
-        int aux;
-        int mayor = 0;
-
-        for (int i = 0; i < jugadores.size(); i++) {
-            aux = jugadores.get(i).getCantAves();
-            if (aux > mayor) {
-                mayor = aux;
-                listaIndicesJug = new ArrayList<>();
-                listaIndicesJug.add(i);
-            } else {
-                if (aux == mayor) {
-                    listaIndicesJug.add(i);
-                }
-            }
-        }
-
-        if (listaIndicesJug.size() == 1) {
-            alias = jugadores.get(listaIndicesJug.get(0)).getAlias();
-            System.out.println("El ganador es " + alias + "con " + mayor + " aves");
-        } else {
-            System.out.print("Hubo empate entre ");
-            for (int i = 0; i < listaIndicesJug.size(); i++) {
-                alias = this.getJugadores().get(listaIndicesJug.get(i)).getAlias();
-                System.out.print(alias + " ");
-                if (i == listaIndicesJug.size() - 2) {
-                    System.out.print("y ");
-                }
-            }
-            System.out.println("");
-        }
-    }
-    public void iniciarPartida(){
-        
-    }
-    
-    
 }

@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 
 import java.awt.*;
 import obligatorio2p2.*;
 import java.io.*;
 
-/**
- *
- * @author ezequiellopez
- */
 public class MenuPrincipal extends javax.swing.JFrame {
 
     public Aves a;
@@ -83,7 +74,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jugar);
-        jugar.setBounds(140, 130, 267, 29);
+        jugar.setBounds(140, 130, 267, 32);
 
         registro.setText("¡Registrate!");
         registro.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +83,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(registro);
-        registro.setBounds(140, 210, 267, 29);
+        registro.setBounds(140, 200, 267, 32);
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +92,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(config);
-        config.setBounds(140, 280, 267, 29);
+        config.setBounds(140, 280, 267, 32);
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 0, 0);
 
@@ -133,13 +124,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(210, 470, 120, 29);
-
-        fondoImg.setIcon(new javax.swing.ImageIcon("/Users/ezequiellopez/Desktop/Dibujo20140712-upside-down-bird-on-cable-national-geographic-hideta-nagai-1024x768.jpg")); // NOI18N
+        salir.setBounds(210, 470, 120, 32);
         getContentPane().add(fondoImg);
         fondoImg.setBounds(0, 0, 540, 500);
 
-        setBounds(0, 0, 539, 524);
+        setBounds(0, 0, 539, 546);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -151,7 +140,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (a.getConfiguracion()[0] <= a.getJugadores().size()) {
             SeleccionarJugadores panel = new SeleccionarJugadores(a);
             panel.setVisible(true);
-
         } else {
             VentanaError vent = new VentanaError("No hay suficientes jugadores registrados");
             vent.setVisible(true);

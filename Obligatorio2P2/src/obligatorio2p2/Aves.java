@@ -10,14 +10,14 @@ import javax.swing.*;
 import java.io.*;
 import Interfaz.*;
 
-/**
- *
- * @author ezequiellopez
- */
 public class Aves implements Serializable {
 
     private ArrayList<Partida> partidas;
     private ArrayList<Jugador> jugadores;
+    //0 - Cant Jugadores
+    //1 - Cant aves por jugador
+    //2 - tipo de terminacion
+    //3 - cant turnos por jugador
     private int[] configuracion;
 
     public Aves() {
@@ -61,7 +61,7 @@ public class Aves implements Serializable {
      */
     public void setUnaPartida(ArrayList<Jugador> jugadores) {
         int[] configuracion = this.getConfiguracion();
-        this.partidas.add(new Partida(configuracion[0], configuracion[1], configuracion[2], configuracion[3], jugadores));
+        this.partidas.add(new Partida(configuracion, jugadores));
     }
 
     public ArrayList<Jugador> getJugadores() {
@@ -72,7 +72,7 @@ public class Aves implements Serializable {
         this.jugadores = new ArrayList<>();
     }
 
-    public void setJugador(String nombre, int edad, String alias, Icon image) {
+    public void setJugador(String nombre, int edad, String alias, ImageIcon image) {
         boolean existe = false;
 
         for (int i = 0; i < getJugadores().size(); i++) {
@@ -101,13 +101,13 @@ public class Aves implements Serializable {
                 for (int x = 0; x < this.getPartidas().get(j).getJugadores().size(); x++) {
                     String aliasAux = this.getPartidas().get(j).getJugadores().get(x).getAlias();
                     if (aliasAux.equals(alias)) {
-                        if (this.getPartidas().get(j).getCantJug() == 4) {
+                        if (this.getPartidas().get(j).getConfCantJugadores() == 4) {
                             tres = tres + 1;
                         }
-                        if (this.getPartidas().get(j).getCantJug() == 3) {
+                        if (this.getPartidas().get(j).getConfCantJugadores() == 3) {
                             dos = dos + 1;
                         }
-                        if (this.getPartidas().get(j).getCantJug() == 2) {
+                        if (this.getPartidas().get(j).getConfCantJugadores() == 2) {
                             uno = uno + 1;
                         }
                     }
@@ -115,16 +115,6 @@ public class Aves implements Serializable {
             }
             imprimo = imprimo + " | Partidas contra 3 jugadores: " + tres + " | Partidas contra 2 jugadores: " + dos + " | Partidas contra 1 jugador: " + uno;
             System.out.println(imprimo);
-        }
-    }
-
-    public void jugar(ArrayList<Jugador> jugPartida) {
-        if (jugPartida.size() > 0) {
-            setUnaPartida(jugPartida);
-            int indice = this.getPartidas().size() - 1;
-            Partida partida = this.getPartidas().get(indice);
-
-            partida.iniciar();
         }
     }
 
@@ -150,7 +140,7 @@ public class Aves implements Serializable {
         arch.cerrar();
         lect.cerrar();
     }
-
+  
     public boolean compararString(String a, String b) {
         boolean retorno = true;
         int contador = 0;
