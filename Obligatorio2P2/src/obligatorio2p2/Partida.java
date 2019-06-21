@@ -2,10 +2,9 @@ package obligatorio2p2;
 
 import java.awt.Color;
 import java.util.*;
-import java.io.*;
 
-public class Partida implements Serializable{
-  
+public class Partida {
+
     private ArrayList<Jugador> jugadores;
     private int[] configuracion;
     private int turnoDeJugador;

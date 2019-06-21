@@ -7,14 +7,12 @@ package obligatorio2p2;
 
 import java.util.*;
 import javax.swing.*;
-import java.io.*;
-import Interfaz.*;
 
 /**
  *
  * @author ezequiellopez
  */
-public class Aves implements Serializable {
+public class Aves {
 
     private ArrayList<Partida> partidas;
     private ArrayList<Jugador> jugadores;
@@ -65,7 +63,7 @@ public class Aves implements Serializable {
      */
     public void setUnaPartida(ArrayList<Jugador> jugadores) {
         int[] configuracion = this.getConfiguracion();
-        this.partidas.add(new Partida(configuracion[0], configuracion[1], configuracion[2], configuracion[3], jugadores));
+        this.partidas.add(new Partida(configuracion, jugadores));
     }
 
     public ArrayList<Jugador> getJugadores() {
@@ -76,7 +74,7 @@ public class Aves implements Serializable {
         this.jugadores = new ArrayList<>();
     }
 
-    public void setJugador(String nombre, int edad, String alias, Icon image) {
+    public void setJugador(String nombre, int edad, String alias, String image) {
         boolean existe = false;
 
         for (int i = 0; i < getJugadores().size(); i++) {
@@ -150,29 +148,6 @@ public class Aves implements Serializable {
         lect.cerrar();
     }
 
-    public void cargar() {
-
-    }
-
-    public void darDiferentes(String entrada) {
-        ArchivoGrabacion arch = new ArchivoGrabacion("DIFERENTES.txt");
-        ArchivoLectura lect = new ArchivoLectura(entrada);
-        while (lect.hayMasLineas()) {
-            String validador = lect.linea();
-            boolean grabar = true;
-            for (int i = 0; i < jugadores.size(); i++) {
-                if (!compararString(validador, jugadores.get(i).getNombre())) {
-                    grabar = false;
-                }
-            }
-            if (grabar) {
-                arch.grabarLinea(validador);
-            }
-        }
-        arch.cerrar();
-        lect.cerrar();
-    }
-  
     public boolean compararString(String a, String b) {
         boolean retorno = true;
         int contador = 0;
@@ -224,18 +199,5 @@ public class Aves implements Serializable {
             }
         }
         return retorno;
-    }
-
-    public static Aves recuperarData() {
-        Aves a = new Aves();
-        try {
-            FileInputStream fff = new FileInputStream("archivo");
-            BufferedInputStream bbb = new BufferedInputStream(fff);
-            ObjectInputStream sss = new ObjectInputStream(bbb);
-            a = (Aves) (sss.readObject());
-        } catch (Exception e) {
-            VentanaError vent = new VentanaError("Error al recuperar datos");
-        }
-        return a;
     }
 }

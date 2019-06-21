@@ -7,7 +7,6 @@ package Interfaz;
 import java.awt.*;
 import obligatorio2p2.*;
 import javax.swing.*;
-
 /**
  *
  * @author ezequiellopez
@@ -18,7 +17,7 @@ public class RegistroJugador extends javax.swing.JFrame {
      * Creates new form RegistroJugador
      */
     private Aves a;
-    private Icon image;
+    private String image;
     public RegistroJugador() {
         initComponents();
         this.setResizable(false);
@@ -32,7 +31,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +58,6 @@ public class RegistroJugador extends javax.swing.JFrame {
         avatar2 = new javax.swing.JButton();
         avatar3 = new javax.swing.JButton();
         avatar4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +84,6 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Aves 2.0 - Registrar Jugador");
         getContentPane().setLayout(null);
 
@@ -139,7 +136,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(365, 6, 80, 16);
 
-        avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/bird1.jpg"))); // NOI18N
+        avatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/pepe.jpg"))); // NOI18N
         avatar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar1ActionPerformed(evt);
@@ -148,7 +145,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar1);
         avatar1.setBounds(208, 28, 191, 140);
 
-        avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/bird2.jpg"))); // NOI18N
+        avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/sartori.jpeg"))); // NOI18N
         avatar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar2ActionPerformed(evt);
@@ -157,7 +154,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar2);
         avatar2.setBounds(405, 28, 189, 140);
 
-        avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/bird3.jpg"))); // NOI18N
+        avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/Untitled.png"))); // NOI18N
         avatar3.setAutoscrolls(true);
         avatar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +164,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar3);
         avatar3.setBounds(210, 174, 190, 140);
 
-        avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Avatares/bird4.jpg"))); // NOI18N
+        avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/maduro.jpg"))); // NOI18N
         avatar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar4ActionPerformed(evt);
@@ -176,16 +173,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(avatar4);
         avatar4.setBounds(405, 174, 190, 140);
 
-        jButton1.setText("<-Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(0, 0, 101, 29);
-
-        setBounds(0, 0, 597, 369);
+        setBounds(0, 0, 618, 391);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
@@ -214,38 +202,34 @@ public class RegistroJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_jugarActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
-        image=avatar1.getIcon();
+        image="pepe.jpg";
     }//GEN-LAST:event_avatar1ActionPerformed
 
     private void avatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar2ActionPerformed
-         image=avatar2.getIcon();
+        image="sartori.jpeg";
     }//GEN-LAST:event_avatar2ActionPerformed
 
     private void avatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar3ActionPerformed
-         image=avatar3.getIcon();
+        image="Untitled.png";
     }//GEN-LAST:event_avatar3ActionPerformed
 
     private void avatar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar4ActionPerformed
-         image=avatar4.getIcon();
+        image="maduro.jpg";
     }//GEN-LAST:event_avatar4ActionPerformed
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-       // try{
+        try{
             int edad=Integer.parseInt(age.getText());
             Jugador j = new Jugador(name.getText(), edad, alias.getText(), image);
             a.getJugadores().add(j);
             System.out.println("flag");
-            this.dispose();
-            VentanaError vent=new VentanaError("Bienvenido a Aves "+alias.getText());
-            vent.setearIcono(image);
-            vent.setVisible(true);
-        //}catch(NullPointerException e){
-            /*VentanaError error=new VentanaError("Selecciona un avatar antes de registrarte");
+        }catch(NullPointerException e){
+            VentanaError error=new VentanaError("Selecciona un avatar antes de registrarte");
             error.setVisible(true);
-        /*}catch(Exception e){
+        }catch(Exception e){
             VentanaError error=new VentanaError("Por favor, verifica los datos");
             error.setVisible(true);
-        }*/
+        }
         System.out.println("flag2");
         for (int i=0; i<a.getJugadores().size();i++){
             System.out.println(a.getJugadores().get(i).toString());
@@ -253,10 +237,40 @@ public class RegistroJugador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registerActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(RegistroJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(RegistroJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(RegistroJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(RegistroJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RegistroJugador().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField age;
@@ -266,7 +280,6 @@ public class RegistroJugador extends javax.swing.JFrame {
     private javax.swing.JButton avatar3;
     private javax.swing.JButton avatar4;
     private javax.swing.JButton config;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

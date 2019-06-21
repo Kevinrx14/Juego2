@@ -6,33 +6,31 @@
 package obligatorio2p2;
 import java.awt.Color;
 import javax.swing.*;
-import java.io.Serializable;
-
 /**
  *
  * @author ezequiellopez
  */
-public class Jugador implements Serializable, Comparable {
+public class Jugador implements Comparable {
   private String nombre;
     private String alias;
     private Color colorJug;
-    private Icon  image;
+    private String image;
     private int edad;
     private int cantAves;
     private int totalPartidas;
 
-    public Jugador(String nombre, int edad, String alias, Icon image) {
+    public Jugador(String nombre, int edad, String alias, String image) {
         this.setNombre(nombre);
         this.setEdad(edad);
         this.setAlias(alias);
         this.setImage(image);
     }
 
-    public Icon getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Icon image) {
+    public void setImage(String image) {
         this.image = image;
     }
     
