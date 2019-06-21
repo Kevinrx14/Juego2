@@ -4,39 +4,43 @@
  * and open the template in the editor.
  */
 package Interfaz;
+
 import java.awt.*;
 import obligatorio2p2.*;
 import javax.swing.*;
 import java.util.*;
+
 /**
  *
  * @author ezequiellopez
  */
 public class SeleccionarJugadores extends javax.swing.JFrame {
+
     private Aves aves;
     private ArrayList<Jugador> juegan;
-    private ArrayList<Jugador> listaJug;    
+    private ArrayList<Jugador> listaJug;
 
     public SeleccionarJugadores() {
         initComponents();
         jugar.setVisible(false);
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
-    
-    public SeleccionarJugadores(Aves a){
+
+    public SeleccionarJugadores(Aves a) {
         initComponents();
-        this.aves=a;
+        this.aves = a;
         jugar.setVisible(false);
-        juegan=new ArrayList();
-        listaJug=new ArrayList(aves.getJugadores());
+        juegan = new ArrayList();
+        listaJug = new ArrayList(aves.getJugadores());
         this.jList2.setListData(this.listaJug.toArray());
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,7 +72,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jList2);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(60, 40, 170, 132);
+        jScrollPane2.setBounds(60, 40, 170, 131);
 
         seleccionar.setText("Seleccionar");
         seleccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +81,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
             }
         });
         getContentPane().add(seleccionar);
-        seleccionar.setBounds(90, 190, 97, 29);
+        seleccionar.setBounds(90, 190, 97, 32);
 
         jugar.setText("JUGAR");
         jugar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,12 +105,12 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
-        int remover=jList2.getSelectedIndex();
-        
-        if(aves.getConfiguracion().length>juegan.size()){
-           juegan.add((Jugador)jList2.getSelectedValue());
+        int remover = jList2.getSelectedIndex();
+
+        if (aves.getConfiguracion().length > juegan.size()) {
+            juegan.add((Jugador) jList2.getSelectedValue());
         }
-        if (aves.getConfiguracion()[0]==juegan.size()){
+        if (aves.getConfiguracion()[0] == juegan.size()) {
             jugar.setVisible(true);
             seleccionar.setVisible(false);
         }
@@ -115,8 +119,8 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
-        Partida p=new Partida(aves.getConfiguracion()[0],aves.getConfiguracion()[1],aves.getConfiguracion()[2],aves.getConfiguracion()[3], juegan);
-        PanelDeJuego pan=new PanelDeJuego(p);
+        Partida p = new Partida(aves.getConfiguracion(), juegan);
+        PanelDeJuego pan = new PanelDeJuego(p);
         pan.setVisible(true);
         this.dispose();
 
