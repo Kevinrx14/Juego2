@@ -77,7 +77,7 @@ public class VentanaError extends javax.swing.JDialog {
         texto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         texto.setText("ERROR");
         getContentPane().add(texto);
-        texto.setBounds(10, 60, 394, 26);
+        texto.setBounds(10, 16, 360, 70);
 
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +86,7 @@ public class VentanaError extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(158, 100, 92, 29);
+        jButton1.setBounds(125, 90, 130, 32);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(70, 60, 0, 0);
         getContentPane().add(icono);
