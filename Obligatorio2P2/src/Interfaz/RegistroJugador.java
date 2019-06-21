@@ -10,12 +10,14 @@ public class RegistroJugador extends javax.swing.JFrame {
 
     private Aves a;
     private ImageIcon image;
+    private boolean avatarSeleccionado;
 
     public RegistroJugador() {
         initComponents();
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.avatarSeleccionado = false;
     }
 
     public RegistroJugador(Aves av) {
@@ -24,6 +26,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         this.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.avatarSeleccionado = false;
     }
 
     /**
@@ -139,7 +142,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avatar1);
-        avatar1.setBounds(240, 40, 191, 140);
+        avatar1.setBounds(230, 30, 191, 140);
 
         avatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/bird2.jpg"))); // NOI18N
         avatar2.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +151,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avatar2);
-        avatar2.setBounds(430, 40, 189, 140);
+        avatar2.setBounds(440, 30, 189, 140);
 
         avatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/bird3.jpg"))); // NOI18N
         avatar3.setAutoscrolls(true);
@@ -158,7 +161,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avatar3);
-        avatar3.setBounds(240, 180, 190, 140);
+        avatar3.setBounds(230, 180, 190, 140);
 
         avatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatares/bird4.jpg"))); // NOI18N
         avatar4.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +170,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avatar4);
-        avatar4.setBounds(430, 180, 190, 140);
+        avatar4.setBounds(440, 180, 190, 140);
 
         jButton1.setText("<-Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -208,43 +211,62 @@ public class RegistroJugador extends javax.swing.JFrame {
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
         image = new ImageIcon(getClass().getResource(this.ubicacion + "bird1.jpg"));
+        this.avatarSeleccionado = true;
     }//GEN-LAST:event_avatar1ActionPerformed
 
     private void avatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar2ActionPerformed
         image = new ImageIcon(getClass().getResource(this.ubicacion + "bird2.jpg"));
+        this.avatarSeleccionado = true;
     }//GEN-LAST:event_avatar2ActionPerformed
 
     private void avatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar3ActionPerformed
         image = new ImageIcon(getClass().getResource(this.ubicacion + "bird3.jpg"));
+        this.avatarSeleccionado = true;
     }//GEN-LAST:event_avatar3ActionPerformed
 
     private void avatar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar4ActionPerformed
         image = new ImageIcon(getClass().getResource(this.ubicacion + "bird4.jpg"));
+        this.avatarSeleccionado = true;
     }//GEN-LAST:event_avatar4ActionPerformed
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-        // try{
-        int edad = Integer.parseInt(age.getText());
-        Jugador j = new Jugador(name.getText(), edad, alias.getText(), image);
-        a.getJugadores().add(j);
-        System.out.println("flag");
-        this.dispose();
-        VentanaError vent = new VentanaError("Bienvenido a Aves " + alias.getText());
-        vent.setearIcono(image);
-        vent.setVisible(true);
-        //}catch(NullPointerException e){
-        /*VentanaError error=new VentanaError("Selecciona un avatar antes de registrarte");
+        String nombre = this.name.getText();
+        String edadTexto = this.age.getText();
+        String alias = this.alias.getText();
+        int edad = 0;
+// try{
+        if (this.avatarSeleccionado) {
+            if (!nombre.isEmpty() && !edadTexto.isEmpty() && !alias.isEmpty()) {
+                try {
+                    edad = Integer.parseInt(edadTexto);
+                    Jugador j = new Jugador(nombre, edad, alias, image);
+                    a.getJugadores().add(j);
+                    this.dispose();
+                    VentanaError vent = new VentanaError("Bienvenido a Aves " + alias);
+                    vent.setearIcono(image);
+                    vent.setVisible(true);
+                    //}catch(NullPointerException e){
+                    /*VentanaError error=new VentanaError("Selecciona un avatar antes de registrarte");
             error.setVisible(true);
         /*}catch(Exception e){
             VentanaError error=new VentanaError("Por favor, verifica los datos");
             error.setVisible(true);
         }*/
-        System.out.println("flag2");
-        for (int i = 0; i < a.getJugadores().size(); i++) {
-            System.out.println(a.getJugadores().get(i).toString());
+                } catch (NumberFormatException e) {
+                    this.mostrarVentana("La edad ingresada no es valida");
+                }
+            } else {
+                this.mostrarVentana("No se completaron todos los campos");
+            }
+        } else {
+            this.mostrarVentana("No se eligio un avatar");
         }
-
     }//GEN-LAST:event_registerActionPerformed
+
+    public void mostrarVentana(String mensaje) {
+        VentanaError vent = new VentanaError(mensaje);
+        vent.setVisible(true);
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
