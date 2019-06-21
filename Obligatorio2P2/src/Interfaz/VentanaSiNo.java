@@ -14,15 +14,13 @@ public class VentanaSiNo extends javax.swing.JFrame {
 
     private Partida partida;
 
-    public VentanaSiNo() {
-        initComponents();
-    }
-
     public VentanaSiNo(String mensaje, Partida unaPartida) {
         initComponents();
         labelMensaje.setText(mensaje);
         labelMensaje.setHorizontalAlignment(SwingConstants.CENTER);
         this.partida = unaPartida;
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
     /**
@@ -38,7 +36,8 @@ public class VentanaSiNo extends javax.swing.JFrame {
         botonNo = new javax.swing.JButton();
         labelMensaje = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         botonSi.setText("Si");
         botonSi.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +45,8 @@ public class VentanaSiNo extends javax.swing.JFrame {
                 botonSiActionPerformed(evt);
             }
         });
+        getContentPane().add(botonSi);
+        botonSi.setBounds(237, 109, 75, 29);
 
         botonNo.setText("No");
         botonNo.addActionListener(new java.awt.event.ActionListener() {
@@ -53,39 +54,16 @@ public class VentanaSiNo extends javax.swing.JFrame {
                 botonNoActionPerformed(evt);
             }
         });
+        getContentPane().add(botonNo);
+        botonNo.setBounds(318, 109, 75, 29);
 
         labelMensaje.setText("jLabel1");
         labelMensaje.setFocusable(false);
         labelMensaje.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(labelMensaje);
+        labelMensaje.setBounds(31, 26, 338, 77);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonSi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonNo)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(labelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(labelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonNo)
-                    .addComponent(botonSi))
-                .addContainerGap())
-        );
-
-        pack();
+        setBounds(0, 0, 399, 166);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiActionPerformed
@@ -97,41 +75,6 @@ public class VentanaSiNo extends javax.swing.JFrame {
         this.partida.setPartidaEnCurso(true);
         this.dispose();
     }//GEN-LAST:event_botonNoActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaSiNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaSiNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaSiNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaSiNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaSiNo().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonNo;
