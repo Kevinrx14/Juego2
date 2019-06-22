@@ -1,3 +1,5 @@
+//Kevin Rinaldi - 240179
+//Ezequiel Lopez - 237308
 package Interfaz;
 
 import java.awt.Dimension;
@@ -97,7 +99,8 @@ public class VentanaError extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             this.panel.dispose();
-        } catch (NullPointerException e){}
+        } catch (NullPointerException e) {
+        }
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
