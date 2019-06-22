@@ -398,7 +398,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         nombreJugador1.setText("Nombre Jugador");
         nombreJugador1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador1);
-        nombreJugador1.setBounds(20, 100, 102, 16);
+        nombreJugador1.setBounds(20, 100, 95, 16);
         nombreJugador1.setVisible(false);
 
         avatarJugador2.setText("jLabel1");
@@ -409,7 +409,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         nombreJugador2.setText("Nombre Jugador");
         nombreJugador2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador2);
-        nombreJugador2.setBounds(190, 100, 102, 16);
+        nombreJugador2.setBounds(190, 100, 95, 16);
         nombreJugador2.setVisible(false);
 
         avatarJugador3.setText("jLabel1");
@@ -420,7 +420,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         nombreJugador3.setText("Nombre Jugador");
         nombreJugador3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador3);
-        nombreJugador3.setBounds(370, 100, 102, 16);
+        nombreJugador3.setBounds(370, 100, 95, 16);
         nombreJugador3.setVisible(false);
 
         avatarJugador4.setText("jLabel1");
@@ -431,7 +431,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         nombreJugador4.setText("Nombre Jugador");
         nombreJugador4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nombreJugador4);
-        nombreJugador4.setBounds(550, 100, 102, 16);
+        nombreJugador4.setBounds(550, 100, 95, 16);
         nombreJugador4.setVisible(false);
 
         botonConectar.setText("Conectar");
@@ -441,7 +441,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonConectar);
-        botonConectar.setBounds(500, 180, 150, 29);
+        botonConectar.setBounds(500, 180, 150, 32);
 
         botonExtender.setText("Extender");
         botonExtender.addActionListener(new java.awt.event.ActionListener() {
@@ -450,7 +450,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonExtender);
-        botonExtender.setBounds(500, 220, 150, 29);
+        botonExtender.setBounds(500, 220, 150, 32);
 
         botonExtenderArriba.setText("↑");
         botonExtenderArriba.addActionListener(new java.awt.event.ActionListener() {
@@ -495,13 +495,13 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonSalir);
-        botonSalir.setBounds(500, 530, 150, 29);
+        botonSalir.setBounds(500, 530, 150, 32);
 
         mensaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(mensaje);
         mensaje.setBounds(10, 140, 640, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Fondos/56852985_433173064108831_872169598327690153_n.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/56852985_433173064108831_872169598327690153_n.jpg"))); // NOI18N
         jLabel1.setText("       ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-5, -4, 690, 610);

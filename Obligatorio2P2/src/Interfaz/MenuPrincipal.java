@@ -71,7 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jugar);
-        jugar.setBounds(140, 130, 267, 29);
+        jugar.setBounds(140, 130, 267, 32);
 
         registro.setText("¡Registrate!");
         registro.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(registro);
-        registro.setBounds(140, 200, 267, 29);
+        registro.setBounds(140, 200, 267, 32);
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(config);
-        config.setBounds(140, 280, 267, 29);
+        config.setBounds(140, 280, 267, 32);
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 0, 0);
 
@@ -126,9 +126,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(210, 470, 120, 29);
+        salir.setBounds(210, 470, 120, 32);
 
-        fondoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Fondos/background.jpg"))); // NOI18N
+        fondoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/background.jpg"))); // NOI18N
         getContentPane().add(fondoImg);
         fondoImg.setBounds(0, 0, 540, 530);
 

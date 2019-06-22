@@ -51,7 +51,6 @@ public class Aves implements Serializable {
         }
 
         int rowNum = 0;
-        System.out.println("Creating excel");
 
         for (Object[] datatype : datos) {
             Row row = sheet.createRow(rowNum++);
@@ -75,8 +74,6 @@ public class Aves implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Done");
     }
 
     public int[] getConfiguracion() {

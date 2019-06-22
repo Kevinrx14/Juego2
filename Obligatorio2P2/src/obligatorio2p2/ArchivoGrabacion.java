@@ -13,10 +13,8 @@ public class ArchivoGrabacion {
         try {
             out = new Formatter(unNombre);
         } catch (FileNotFoundException e) {
-            System.out.println("no se puede crear");
             System.exit(1);
         } catch (SecurityException e) {
-            System.out.println("sin permisos");
             System.exit(1);
         }
     }

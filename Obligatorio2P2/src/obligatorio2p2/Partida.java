@@ -186,9 +186,6 @@ public class Partida implements Serializable {
     public void terminarPartida() {
         int avesJug = this.getJugadores().get(this.getTurnoDeJugador() - 1).getCantAves();
         boolean terminar = false;
-        System.out.println("cantaVes " + this.getConfAvesJugador());
-        System.out.println("cantaVes1 " + this.getJugadores().get(this.getTurnoDeJugador() - 1).getCantAves());
-        System.out.println("id " + (this.getTurnoDeJugador() - 1));
 
         if (avesJug >= this.getConfAvesJugador()) {
             terminar = true;

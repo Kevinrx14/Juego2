@@ -57,7 +57,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cantJug);
-        cantJug.setBounds(90, 60, 264, 27);
+        cantJug.setBounds(90, 60, 264, 26);
 
         formaTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terminar turnos", "Cantidad de aves"}));
         formaTerm.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +66,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(formaTerm);
-        formaTerm.setBounds(90, 140, 264, 27);
+        formaTerm.setBounds(90, 140, 264, 26);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
@@ -117,7 +117,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cantAves);
-        cantAves.setBounds(90, 100, 264, 26);
+        cantAves.setBounds(90, 100, 264, 24);
 
         blankTurn.setText("5");
         blankTurn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +126,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(blankTurn);
-        blankTurn.setBounds(90, 180, 264, 26);
+        blankTurn.setBounds(90, 180, 264, 24);
 
         labTurn.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         labTurn.setForeground(new java.awt.Color(51, 51, 255));
@@ -143,7 +143,7 @@ public class Configuracion extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(0, 0, 110, 30);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Fondos/4064163432755241_1.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/4064163432755241_1.jpg"))); // NOI18N
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 590, 330);
 

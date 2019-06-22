@@ -193,7 +193,7 @@ public class RegistroJugador extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(0, 0, 110, 30);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/registroJug.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/registroJug.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(-5, -4, 680, 400);
 
