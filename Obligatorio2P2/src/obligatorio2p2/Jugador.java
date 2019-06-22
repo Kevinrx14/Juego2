@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Kevin Rinaldi - 240179
+//Ezequiel Lopez - 237308
 package obligatorio2p2;
+
 import java.awt.Color;
 import javax.swing.*;
 import java.io.Serializable;
 
-/**
- *
- * @author ezequiellopez
- */
 public class Jugador implements Serializable, Comparable {
-  private String nombre;
+
+    private String nombre;
     private String alias;
     private Color colorJug;
     private ImageIcon image;
@@ -24,7 +19,7 @@ public class Jugador implements Serializable, Comparable {
     private int contra2;
     private int contra3;
     private int ganadas;
-    
+
     public Jugador(String nombre, int edad, String alias, ImageIcon image) {
         this.setNombre(nombre);
         this.setEdad(edad);
@@ -34,7 +29,7 @@ public class Jugador implements Serializable, Comparable {
         this.setContra2(0);
         this.setContra3(0);
         this.setGanadas(0);
-        
+
     }
 
     public int getContra1() {
@@ -68,9 +63,7 @@ public class Jugador implements Serializable, Comparable {
     public void setGanadas(int ganadas) {
         this.ganadas = ganadas;
     }
-    
-    
-    
+
     public ImageIcon getImage() {
         return image;
     }
@@ -78,7 +71,7 @@ public class Jugador implements Serializable, Comparable {
     public void setImage(ImageIcon image) {
         this.image = image;
     }
-    
+
     public String getNombre() {
         return this.nombre;
     }
@@ -131,7 +124,7 @@ public class Jugador implements Serializable, Comparable {
     public boolean equals(Object o) {
         return (this.getNombre() == ((Jugador) o).getNombre());
     }
-    
+
     @Override
     public int compareTo(Object o) {
         return this.getTotalPartidas() - ((Jugador) o).getTotalPartidas();
@@ -141,5 +134,4 @@ public class Jugador implements Serializable, Comparable {
     public String toString() {
         return this.getAlias();
     }
-}  
-
+}

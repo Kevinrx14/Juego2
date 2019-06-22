@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Kevin Rinaldi - 240179
+//Ezequiel Lopez - 237308
 package obligatorio2p2;
 
 import java.util.*;
@@ -14,6 +11,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
+
 public class Aves implements Serializable {
 
     private ArrayList<Partida> partidas;
@@ -30,30 +28,29 @@ public class Aves implements Serializable {
         this.setDefaultConfig();
     }
 
-    public void excel(){
+    public void excel() {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("Datatypes in Java");
-        Object[][] datos = new Object[this.getJugadores().size()+1][8];
-        datos[0][0]="NOMBRE";
-        datos[0][1]="EDAD";
-        datos[0][2]="ALIAS";
-        datos[0][3]="JUGADAS CONTRA 3";
-        datos[0][4]="JUGADAS CONTRA 2";
-        datos[0][5]="JUGADAS CONTRA 1";
-        datos[0][6]="TOTAL DE GANADAS";
-        
-        for (int i=0; i<this.getJugadores().size();i++){
-            datos[i+1][0]=this.getJugadores().get(i).getNombre();
-            datos[i+1][1]=this.getJugadores().get(i).getEdad();
-            datos[i+1][2]=this.getJugadores().get(i).getAlias();
-            datos[i+1][3]=this.getJugadores().get(i).getContra3();
-            datos[i+1][4]=this.getJugadores().get(i).getContra2();
-            datos[i+1][5]=this.getJugadores().get(i).getContra1();
-            datos[i+1][6]=this.getJugadores().get(i).getGanadas();        
+        Object[][] datos = new Object[this.getJugadores().size() + 1][8];
+        datos[0][0] = "NOMBRE";
+        datos[0][1] = "EDAD";
+        datos[0][2] = "ALIAS";
+        datos[0][3] = "JUGADAS CONTRA 3";
+        datos[0][4] = "JUGADAS CONTRA 2";
+        datos[0][5] = "JUGADAS CONTRA 1";
+        datos[0][6] = "TOTAL DE GANADAS";
+
+        for (int i = 0; i < this.getJugadores().size(); i++) {
+            datos[i + 1][0] = this.getJugadores().get(i).getNombre();
+            datos[i + 1][1] = this.getJugadores().get(i).getEdad();
+            datos[i + 1][2] = this.getJugadores().get(i).getAlias();
+            datos[i + 1][3] = this.getJugadores().get(i).getContra3();
+            datos[i + 1][4] = this.getJugadores().get(i).getContra2();
+            datos[i + 1][5] = this.getJugadores().get(i).getContra1();
+            datos[i + 1][6] = this.getJugadores().get(i).getGanadas();
         }
 
         int rowNum = 0;
-        System.out.println("Creating excel");
 
         for (Object[] datatype : datos) {
             Row row = sheet.createRow(rowNum++);
@@ -77,10 +74,8 @@ public class Aves implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Done");
     }
-    
+
     public int[] getConfiguracion() {
         return this.configuracion;
     }
@@ -114,9 +109,8 @@ public class Aves implements Serializable {
     4 - Tipo de terminacion
     5 - Cantidad de turnos
      */
-    public void setUnaPartida(ArrayList<Jugador> jugadores) {
-        int[] configuracion = this.getConfiguracion();
-        this.partidas.add(new Partida(configuracion, jugadores));
+    public void setUnaPartida(Partida unaPartida) {
+        this.partidas.add(unaPartida);
     }
 
     public ArrayList<Jugador> getJugadores() {
@@ -151,7 +145,7 @@ public class Aves implements Serializable {
             int tres = 0;
             int dos = 0;
             int uno = 0;
-            int ganadas=0;
+            int ganadas = 0;
             for (int j = 0; j < this.getPartidas().size(); j++) {
                 for (int x = 0; x < this.getPartidas().get(j).getJugadores().size(); x++) {
                     String aliasAux = this.getPartidas().get(j).getJugadores().get(x).getAlias();
@@ -168,7 +162,7 @@ public class Aves implements Serializable {
                         if (this.getPartidas().get(j).getGanador().equals(this.getJugadores().get(i))) {
                             ganadas = ganadas + 1;
                         }
-                        
+
                     }
                 }
             }
@@ -176,7 +170,7 @@ public class Aves implements Serializable {
             this.getJugadores().get(i).setContra2(dos);
             this.getJugadores().get(i).setContra1(uno);
             this.getJugadores().get(i).setGanadas(ganadas);
-            
+
         }
     }
 
@@ -198,7 +192,7 @@ public class Aves implements Serializable {
         arch.cerrar();
         lect.cerrar();
     }
-  
+
     public boolean compararString(String a, String b) {
         boolean retorno = true;
         int contador = 0;
