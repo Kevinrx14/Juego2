@@ -13,6 +13,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private Partida partida;
     private String movimiento;
     private ArrayList<Jugador> jugadores;
+    private boolean terminar;
 
     public PanelDeJuego() {
         this.initComponents();
@@ -300,6 +301,10 @@ public class PanelDeJuego extends javax.swing.JFrame {
         }
     }
 
+    public void terminarPartida() {
+        this.dispose();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -548,11 +553,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         String mensaje = "Esta seguro que desea salir de la partida sin terminar?";
-        VentanaSiNo cerrar = new VentanaSiNo(mensaje, this.partida);
+        VentanaSiNo cerrar = new VentanaSiNo(mensaje, this.partida, this);
         cerrar.setVisible(true);
-        if (!this.partida.getPartidaEnCurso()) {
-            this.dispose();
-        }
     }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
@@ -597,7 +599,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarJugador1;
     private javax.swing.JLabel avatarJugador2;

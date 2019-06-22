@@ -13,12 +13,14 @@ import obligatorio2p2.*;
 public class VentanaSiNo extends javax.swing.JFrame {
 
     private Partida partida;
+    private PanelDeJuego panel;
 
-    public VentanaSiNo(String mensaje, Partida unaPartida) {
+    public VentanaSiNo(String mensaje, Partida unaPartida, PanelDeJuego unPanel) {
         initComponents();
         labelMensaje.setText(mensaje);
         labelMensaje.setHorizontalAlignment(SwingConstants.CENTER);
         this.partida = unaPartida;
+        this.panel = unPanel;
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
@@ -46,7 +48,7 @@ public class VentanaSiNo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonSi);
-        botonSi.setBounds(237, 109, 75, 29);
+        botonSi.setBounds(218, 109, 60, 32);
 
         botonNo.setText("No");
         botonNo.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +57,7 @@ public class VentanaSiNo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonNo);
-        botonNo.setBounds(318, 109, 75, 29);
+        botonNo.setBounds(303, 109, 60, 32);
 
         labelMensaje.setText("jLabel1");
         labelMensaje.setFocusable(false);
@@ -63,11 +65,12 @@ public class VentanaSiNo extends javax.swing.JFrame {
         getContentPane().add(labelMensaje);
         labelMensaje.setBounds(31, 26, 338, 77);
 
-        setBounds(0, 0, 399, 166);
+        setBounds(0, 0, 399, 188);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiActionPerformed
         this.partida.setPartidaEnCurso(false);
+        this.panel.terminarPartida();
         this.dispose();
     }//GEN-LAST:event_botonSiActionPerformed
 
