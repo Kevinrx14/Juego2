@@ -70,7 +70,7 @@ public class VentanaSiNo extends javax.swing.JFrame {
 
     private void botonSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiActionPerformed
         this.partida.setPartidaEnCurso(false);
-        this.panel.terminarPartida();
+        this.panel.cerrar();
         this.dispose();
     }//GEN-LAST:event_botonSiActionPerformed
 

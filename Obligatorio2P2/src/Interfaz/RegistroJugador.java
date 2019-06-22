@@ -97,7 +97,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(50, 80, 150, 26);
+        name.setBounds(50, 80, 150, 24);
 
         age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(age);
-        age.setBounds(50, 150, 150, 26);
+        age.setBounds(50, 150, 150, 24);
 
         alias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,25 +113,25 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(alias);
-        alias.setBounds(50, 220, 150, 26);
+        alias.setBounds(50, 220, 150, 24);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Nombre");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 70, 120, 16);
+        jLabel1.setBounds(50, 60, 120, 16);
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 255));
         jLabel2.setText("Edad");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(150, 130, 110, 16);
+        jLabel2.setBounds(50, 130, 110, 16);
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
         jLabel3.setText("Alias");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 200, 110, 16);
+        jLabel3.setBounds(50, 200, 110, 16);
 
         register.setBackground(new java.awt.Color(153, 255, 153));
         register.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
@@ -142,7 +142,7 @@ public class RegistroJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(register);
-        register.setBounds(40, 330, 588, 29);
+        register.setBounds(40, 330, 588, 35);
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 255));

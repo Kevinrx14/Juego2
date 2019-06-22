@@ -7,14 +7,13 @@ import java.util.*;
 import obligatorio2p2.*;
 
 public class PanelDeJuego extends javax.swing.JFrame {
-
+    
     private JButton[][] botones;
     private Tablero tablero;
     private Partida partida;
     private String movimiento;
     private ArrayList<Jugador> jugadores;
-    private boolean terminar;
-
+    
     public PanelDeJuego() {
         this.initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,7 +33,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         //cargar matriz de botones?
     }
-
+    
     public PanelDeJuego(Partida nuevaPartida) {
         this.initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -50,31 +49,31 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 botones[i][j] = jButton;
             }
         }
-
+        
         this.partida = nuevaPartida;
         this.tablero = new Tablero(botones);
         this.pintarBotones();
-
+        
         botones[1][1].setBackground(Color.RED);
         botones[1][2].setBackground(Color.BLUE);
         botones[2][1].setBackground(Color.GREEN);
         botones[2][2].setBackground(Color.YELLOW);
-
+        
         botones[1][3].setBackground(Color.GREEN);
         botones[1][4].setBackground(Color.YELLOW);
         botones[2][3].setBackground(Color.RED);
         botones[2][4].setBackground(Color.BLUE);
-
+        
         this.movimiento = "no";
         this.mostrarBotonesExtender(false);
         this.jugadores = this.partida.getJugadores();
         this.setUiJugadores();
         panelJuego.setOpaque(false);
     }
-
+    
     private void pintarBotones() {
         Color[] colores;
-
+        
         for (int i = 1; i <= 10; i += 2) {
             for (int j = 1; j <= 10; j += 2) {
                 colores = this.tablero.getColoresRandom();
@@ -85,10 +84,10 @@ public class PanelDeJuego extends javax.swing.JFrame {
             }
         }
     }
-
+    
     private void setUiJugadores() {
         int cantJugadores = jugadores.size();
-
+        
         ImageIcon imagen1 = this.jugadores.get(0).getImage();
         Icon avatar1 = new ImageIcon(imagen1.getImage().getScaledInstance(avatarJugador1.getWidth(), avatarJugador1.getHeight(), Image.SCALE_DEFAULT));
         this.avatarJugador1.setIcon(avatar1);
@@ -98,7 +97,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         this.nombreJugador1.setOpaque(true);
         this.avatarJugador1.setVisible(true);
         this.nombreJugador1.setVisible(true);
-
+        
         ImageIcon imagen2 = this.jugadores.get(1).getImage();
         Icon avatar2 = new ImageIcon(imagen2.getImage().getScaledInstance(avatarJugador2.getWidth(), avatarJugador2.getHeight(), Image.SCALE_DEFAULT));
         this.avatarJugador2.setIcon(avatar2);
@@ -108,7 +107,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         this.nombreJugador2.setOpaque(true);
         this.avatarJugador2.setVisible(true);
         this.nombreJugador2.setVisible(true);
-
+        
         if (cantJugadores > 2) {
             ImageIcon imagen3 = this.jugadores.get(2).getImage();
             Icon avatar3 = new ImageIcon(imagen3.getImage().getScaledInstance(avatarJugador3.getWidth(), avatarJugador3.getHeight(), Image.SCALE_DEFAULT));
@@ -120,7 +119,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             this.avatarJugador3.setVisible(true);
             this.nombreJugador3.setVisible(true);
         }
-
+        
         if (cantJugadores > 3) {
             ImageIcon imagen4 = this.jugadores.get(3).getImage();
             Icon avatar4 = new ImageIcon(imagen4.getImage().getScaledInstance(avatarJugador4.getWidth(), avatarJugador4.getHeight(), Image.SCALE_DEFAULT));
@@ -133,35 +132,35 @@ public class PanelDeJuego extends javax.swing.JFrame {
             this.nombreJugador4.setVisible(true);
         }
     }
-
+    
     private void mostrarBotonesExtender(boolean mostrar) {
         botonExtenderIzquierda.setVisible(mostrar);
         botonExtenderDerecha.setVisible(mostrar);
         botonExtenderArriba.setVisible(mostrar);
         botonExtenderAbajo.setVisible(mostrar);
     }
-
+    
     private class ListenerBoton implements ActionListener {
-
+        
         private int x;
         private int y;
-
+        
         public ListenerBoton(int i, int j) {
 // en el constructor se almacena la fila y columna que se presionó
             x = i;
             y = j;
         }
-
+        
         public void actionPerformed(ActionEvent e) {
 // cuando se presiona un botón, se ejecutará este método
             clickBoton(x, y);
         }
     }
-
+    
     private void clickBoton(int fila, int columna) {
         int jugador = this.partida.getTurnoDeJugador() - 1;
         Color colorJug = this.jugadores.get(jugador).getColorJugador();
-
+        
         if (!this.movimiento.equals("no")) {
             if (botones[fila][columna].getBackground().equals(colorJug)) {
                 if (botones[fila][columna].getText().isEmpty()) {
@@ -170,7 +169,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
                             this.ponerMensaje(1, "Seleccione ficha a conectar");
                             this.conectar(fila, columna);
                             break;
-
+                        
                         case "extender":
                             this.ponerMensaje(1, "Seleccione direccion a extender");
                             this.extender(fila, columna);
@@ -186,7 +185,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             this.ponerMensaje(0, "Primero seleccione una jugada");
         }
     }
-
+    
     public void conectar(int fila, int columna) {
         if (this.tablero.getBotonesApretados() == 0) {
             this.tablero.setFila1(fila);
@@ -200,13 +199,14 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 if (this.tablero.conectar()) {
                     this.ponerAvesConectar();
                     this.movimiento = "no";
-                    this.partida.cambiarTurnoJugador();
                     this.ponerMensaje(2, " ");
+                    this.terminarPartida();
+                    this.partida.cambiarTurnoJugador();
                 }
             }
         }
     }
-
+    
     public void extender(int fila, int columna) {
         if (this.tablero.getBotonesApretados() == 0) {
             this.tablero.setFila1(fila);
@@ -215,14 +215,15 @@ public class PanelDeJuego extends javax.swing.JFrame {
             this.mostrarBotonesExtender(true);
         }
     }
-
+    
     public void ponerAvesConectar() {
         int fila1 = this.tablero.getFila1();
         int fila2 = this.tablero.getFila2();
         int columna1 = this.tablero.getColumna1();
         int columna2 = this.tablero.getColumna2();
+        int cantAves = 0;
         Color color = this.botones[fila1][columna1].getBackground();
-
+        
         if (this.tablero.validarFila()) {
             if (this.tablero.columnaDecreciente()) {
                 int aux = columna1;
@@ -232,6 +233,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
             for (int i = columna1; i <= columna2; i++) {
                 this.botones[fila1][i].setText("X");
                 this.botones[fila1][i].setBackground(color);
+                cantAves++;
             }
         } else {
             if (this.tablero.filaDecreciente()) {
@@ -242,42 +244,56 @@ public class PanelDeJuego extends javax.swing.JFrame {
             for (int i = fila1; i <= fila2; i++) {
                 this.botones[i][columna1].setText("X");
                 this.botones[i][columna1].setBackground(color);
+                cantAves++;
             }
         }
+        this.aumentarAvesJugador(cantAves);
     }
-
+    
     public void ponerAvesExtender(char direccion) {
         int[] extenderHasta = this.tablero.extenderHasta(direccion);
         int fila1 = this.tablero.getFila1();
         int columna1 = this.tablero.getColumna1();
+        int cantAves = 0;
         Color color = this.botones[fila1][columna1].getBackground();
-
+        
         switch (direccion) {
             case 'A':
                 for (int i = fila1; i >= extenderHasta[0]; i--) {
                     this.botones[i][columna1].setText("X");
                     this.botones[i][columna1].setBackground(color);
+                    cantAves++;
                 }
                 break;
             case 'B':
                 for (int i = fila1; i <= extenderHasta[0]; i++) {
                     this.botones[i][columna1].setText("X");
                     this.botones[i][columna1].setBackground(color);
+                    cantAves++;
                 }
                 break;
             case 'I':
                 for (int i = columna1; i >= extenderHasta[1]; i--) {
                     this.botones[fila1][i].setText("X");
                     this.botones[fila1][i].setBackground(color);
+                    cantAves++;
                 }
                 break;
             case 'D':
                 for (int i = columna1; i >= extenderHasta[1]; i++) {
                     this.botones[fila1][i].setText("X");
                     this.botones[fila1][i].setBackground(color);
+                    cantAves++;
                 }
                 break;
         }
+        this.aumentarAvesJugador(cantAves - 1);
+    }
+    
+    public void aumentarAvesJugador(int cantAves) {
+        int turnoJugador = this.partida.getTurnoDeJugador() - 1;
+        int avesJugador = cantAves + this.jugadores.get(turnoJugador).getCantAves();
+        this.jugadores.get(turnoJugador).setCantAves(avesJugador);
     }
 
     //0 -> Mensaje error
@@ -289,19 +305,33 @@ public class PanelDeJuego extends javax.swing.JFrame {
             case 0:
                 this.mensaje.setForeground(Color.RED);
                 break;
-
+            
             case 1:
                 this.mensaje.setForeground(Color.GREEN);
                 break;
-
+            
             case 2:
                 this.mensaje.setText("Es el turno de " + this.jugadores.get(this.partida.getTurnoDeJugador() - 1).getAlias());
                 this.mensaje.setForeground(Color.BLACK);
                 break;
         }
     }
-
+    
     public void terminarPartida() {
+        this.partida.terminarPartida();
+        if (!this.partida.getPartidaEnCurso()) {
+            String mensaje;
+            try {
+                mensaje = "El ganador es " + this.partida.getGanador().getAlias();
+            } catch (NullPointerException e) {
+                mensaje = "Hubo un empate";
+            }
+            VentanaError ventana = new VentanaError(mensaje, this);
+            ventana.setVisible(true);
+        }
+    }
+    
+    public void cerrar() {
         this.dispose();
     }
 
@@ -501,8 +531,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('I');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.partida.cambiarTurnoJugador();
                 this.ponerMensaje(2, " ");
+                this.terminarPartida();
+                this.partida.cambiarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la izquierda");
             }
@@ -515,8 +546,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('A');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.partida.cambiarTurnoJugador();
                 this.ponerMensaje(2, " ");
+                this.terminarPartida();
+                this.partida.cambiarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia arriba");
             }
@@ -529,8 +561,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('D');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
+                this.ponerMensaje(2, " ");
+                this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
-                this.ponerMensaje(2, "turno de jugador");
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la derecha");
             }
@@ -543,8 +576,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('B');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.partida.cambiarTurnoJugador();
                 this.ponerMensaje(2, " ");
+                this.terminarPartida();
+                this.partida.cambiarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la abajo");
             }
@@ -571,21 +605,21 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(PanelDeJuego.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(PanelDeJuego.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(PanelDeJuego.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PanelDeJuego.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
