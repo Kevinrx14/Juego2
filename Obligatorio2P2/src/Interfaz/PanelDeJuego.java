@@ -13,6 +13,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private Partida partida;
     private String movimiento;
     private ArrayList<Jugador> jugadores;
+    private Aves juego;
     
     public PanelDeJuego() {
         this.initComponents();
@@ -34,7 +35,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         //cargar matriz de botones?
     }
     
-    public PanelDeJuego(Partida nuevaPartida) {
+    public PanelDeJuego(Partida nuevaPartida, Aves juego) {
         this.initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -69,6 +70,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         this.jugadores = this.partida.getJugadores();
         this.setUiJugadores();
         panelJuego.setOpaque(false);
+        this.juego = juego;
     }
     
     private void pintarBotones() {
@@ -332,6 +334,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
     }
     
     public void cerrar() {
+        this.juego.setUnaPartida(this.partida);
         this.dispose();
     }
 

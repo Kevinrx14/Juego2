@@ -140,7 +140,7 @@ public class SeleccionarJugadores extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         Partida p = new Partida(aves.getConfiguracion(), juegan);
-        PanelDeJuego pan = new PanelDeJuego(p);
+        PanelDeJuego pan = new PanelDeJuego(p, aves);
         pan.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jugarActionPerformed
