@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//237308 -Ezequiel Lopez 240179 - Kevin Rinaldi
 package obligatorio2p2;
 
 import java.util.*;
@@ -14,6 +10,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
+
 public class Aves implements Serializable {
 
     private ArrayList<Partida> partidas;

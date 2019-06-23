@@ -1,3 +1,4 @@
+//237308 -Ezequiel Lopez 240179 - Kevin Rinaldi
 package obligatorio2p2;
 
 import java.awt.Color;

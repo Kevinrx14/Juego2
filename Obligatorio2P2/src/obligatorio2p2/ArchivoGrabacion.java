@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//237308 -Ezequiel Lopez 240179 - Kevin Rinaldi
 package obligatorio2p2;
 import java.io.FileNotFoundException;
 import java.util.Formatter;
