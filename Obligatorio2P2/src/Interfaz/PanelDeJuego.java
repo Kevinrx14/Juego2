@@ -71,6 +71,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         this.setUiJugadores();
         panelJuego.setOpaque(false);
         this.juego = juego;
+        this.indicarTurnoJugador();
     }
 
     private void pintarBotones() {
@@ -201,9 +202,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 if (this.tablero.conectar()) {
                     this.ponerAvesConectar();
                     this.movimiento = "no";
-                    this.ponerMensaje(2, " ");
                     this.terminarPartida();
                     this.partida.cambiarTurnoJugador();
+                    this.indicarTurnoJugador();
                 }
             }
         }
@@ -300,7 +301,6 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     //0 -> Mensaje error
     //1 -> Mensaje exito
-    //2 -> Turno de jugador
     public void ponerMensaje(int tipo, String mensaje) {
         this.mensaje.setText(mensaje);
         switch (tipo) {
@@ -311,12 +311,16 @@ public class PanelDeJuego extends javax.swing.JFrame {
             case 1:
                 this.mensaje.setForeground(Color.GREEN);
                 break;
-
-            case 2:
-                this.mensaje.setText("Es el turno de " + this.jugadores.get(this.partida.getTurnoDeJugador() - 1).getAlias());
-                this.mensaje.setForeground(Color.BLACK);
-                break;
         }
+    }
+
+    public void indicarTurnoJugador() {
+        String jugador = this.jugadores.get(this.partida.getTurnoDeJugador() - 1).getAlias();
+        int cantAvesJug = this.jugadores.get(this.partida.getTurnoDeJugador() - 1).getCantAves();
+        int cantAvesPartida = this.partida.getConfAvesJugador();
+        this.indicadorTurno.setText("Es el turno de " + jugador + " (Aves " + cantAvesJug + "/" + cantAvesPartida + ")");
+        this.indicadorTurno.setForeground(Color.BLACK);
+        this.ponerMensaje(1, "Esperando jugada");
     }
 
     public void terminarPartida() {
@@ -360,7 +364,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
         botonExtenderAbajo = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         mensaje = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        indicadorTurno = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -403,7 +408,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         avatarJugador2.setText("jLabel1");
         getContentPane().add(avatarJugador2);
-        avatarJugador2.setBounds(210, 20, 74, 68);
+        avatarJugador2.setBounds(200, 20, 74, 68);
         avatarJugador2.setVisible(false);
 
         nombreJugador2.setText("Nombre Jugador");
@@ -498,13 +503,20 @@ public class PanelDeJuego extends javax.swing.JFrame {
         botonSalir.setBounds(500, 530, 150, 32);
 
         mensaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensaje.setText("mensaje");
         getContentPane().add(mensaje);
-        mensaje.setBounds(10, 140, 640, 20);
+        mensaje.setBounds(10, 150, 640, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/56852985_433173064108831_872169598327690153_n.jpg"))); // NOI18N
-        jLabel1.setText("       ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-5, -4, 690, 610);
+        indicadorTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        indicadorTurno.setText("turno de jugador");
+        indicadorTurno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(indicadorTurno);
+        indicadorTurno.setBounds(10, 120, 640, 20);
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/56852985_433173064108831_872169598327690153_n.jpg"))); // NOI18N
+        fondo.setText("       ");
+        getContentPane().add(fondo);
+        fondo.setBounds(-5, -4, 690, 610);
 
         setBounds(0, 0, 680, 624);
     }// </editor-fold>//GEN-END:initComponents
@@ -529,9 +541,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('I');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.ponerMensaje(2, " ");
                 this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
+                this.indicarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la izquierda");
             }
@@ -544,9 +556,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('A');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.ponerMensaje(2, " ");
                 this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
+                this.indicarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia arriba");
             }
@@ -559,9 +571,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('D');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.ponerMensaje(2, " ");
                 this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
+                this.indicarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la derecha");
             }
@@ -574,9 +586,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('B');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.ponerMensaje(2, " ");
                 this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
+                this.indicarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la abajo");
             }
@@ -644,7 +656,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private javax.swing.JButton botonExtenderDerecha;
     private javax.swing.JButton botonExtenderIzquierda;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel indicadorTurno;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mensaje;
     private javax.swing.JLabel nombreJugador1;
