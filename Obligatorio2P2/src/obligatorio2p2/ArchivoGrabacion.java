@@ -1,5 +1,7 @@
-//237308 -Ezequiel Lopez 240179 - Kevin Rinaldi
+//Kevin Rinaldi - 240179
+//Ezequiel Lopez - 237308
 package obligatorio2p2;
+
 import java.io.FileNotFoundException;
 import java.util.Formatter;
 
@@ -11,10 +13,8 @@ public class ArchivoGrabacion {
         try {
             out = new Formatter(unNombre);
         } catch (FileNotFoundException e) {
-            System.out.println("no se puede crear");
             System.exit(1);
         } catch (SecurityException e) {
-            System.out.println("sin permisos");
             System.exit(1);
         }
     }

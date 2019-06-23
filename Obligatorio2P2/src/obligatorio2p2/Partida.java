@@ -1,12 +1,13 @@
-//237308 -Ezequiel Lopez 240179 - Kevin Rinaldi
+//Kevin Rinaldi - 240179
+//Ezequiel Lopez - 237308
 package obligatorio2p2;
 
 import java.awt.Color;
 import java.util.*;
 import java.io.*;
 
-public class Partida implements Serializable{
-  
+public class Partida implements Serializable {
+
     private ArrayList<Jugador> jugadores;
     private int[] configuracion;
     private int turnoDeJugador;
@@ -46,7 +47,7 @@ public class Partida implements Serializable{
     public void setGanador(Jugador ganador) {
         this.ganador = ganador;
     }
-    
+
     public boolean getPartidaEnCurso() {
         return this.partidaEnCurso;
     }
@@ -98,6 +99,7 @@ public class Partida implements Serializable{
     public void cambiarTurnoJugador() {
         int aux = this.getTurnoDeJugador();
         if (aux == this.getConfCantJugadores()) {
+            this.aumentarTotalTurnos();
             aux = 0;
         }
         aux++;
@@ -131,7 +133,7 @@ public class Partida implements Serializable{
         ArrayList<Jugador> jugadores = this.getJugadores();
 
         for (int i = 0; i < jugadores.size(); i++) {
-            jugadores.get(i).setCantAves(this.getConfAvesJugador());
+            jugadores.get(i).setCantAves(0);
         }
         this.setColorJugadores();
     }
@@ -181,27 +183,47 @@ public class Partida implements Serializable{
         }
     }
 
-    public boolean terminarPartida() {
+    public void terminarPartida() {
+        int avesJug = this.getJugadores().get(this.getTurnoDeJugador() - 1).getCantAves();
         boolean terminar = false;
 
-        switch (this.getConfTipoTerminacion()) {
-            //Cantidad de aves
-            case 1:
-                int avesJug = this.getJugadores().get(this.getTurnoDeJugador()).getCantAves();
-                if (avesJug == this.getConfAvesJugador()) {
-                    this.setPartidaEnCurso(false);
-                    this.setPartidaTerminada(true);
-                }
-                break;
-            //Cantidad de turnos
-            case 2:
-                if (this.getTotalTurnos() == this.getConfCantTurno()) {
-                    this.setPartidaEnCurso(false);
-                    this.setPartidaTerminada(true);
-                }
-                break;
+        if (avesJug >= this.getConfAvesJugador()) {
+            terminar = true;
         }
 
-        return terminar;
+        if (this.getConfTipoTerminacion() == 2) {
+            if (this.getTotalTurnos() == this.getConfCantTurno()) {
+                terminar = true;
+            }
+        }
+
+        if (terminar) {
+            this.setPartidaEnCurso(false);
+            this.setPartidaTerminada(true);
+            this.buscarGanador();
+        }
+    }
+
+    public void buscarGanador() {
+        ArrayList<Jugador> listaJug = this.getJugadores();
+        int menorCantAves = Integer.MAX_VALUE;
+        int jugador = 0;
+        boolean hayEmpate = false;
+
+        for (int i = 0; i < listaJug.size(); i++) {
+            if (listaJug.get(i).getCantAves() < menorCantAves) {
+                jugador = i;
+                menorCantAves = listaJug.get(i).getCantAves();
+                hayEmpate = false;
+            } else {
+                if (listaJug.get(i).getCantAves() == menorCantAves) {
+                    hayEmpate = true;
+                }
+            }
+        }
+
+        if (!hayEmpate) {
+            this.setGanador(listaJug.get(jugador));
+        }
     }
 }

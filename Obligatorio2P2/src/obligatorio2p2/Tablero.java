@@ -1,4 +1,5 @@
-//237308 -Ezequiel Lopez 240179 - Kevin Rinaldi
+//Kevin Rinaldi - 240179
+//Ezequiel Lopez - 237308
 package obligatorio2p2;
 
 import java.awt.*;
