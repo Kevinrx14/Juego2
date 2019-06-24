@@ -23,7 +23,7 @@ public class Partida implements Serializable {
         this.setConfiguracion(unaConfiguracion);
         this.setJugadores(jugadores);
         this.setConfigJugadores();
-        this.setTotalTurnos(0);
+        this.setTotalTurnos(1);
         this.setTurnoDeJugador(1);
         this.setPartidaEnCurso(true);
         this.setPartidaTerminada(false);
