@@ -215,13 +215,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
             if (this.tablero.getBotonesApretados() == 1) {
                 this.tablero.setFila2(fila);
                 this.tablero.setColumna2(columna);
-                this.tablero.aumentarBotonesApretados();
                 if (this.tablero.conectar()) {
                     this.ponerAvesConectar();
-                    this.movimiento = "no";
-                    this.partida.cambiarTurnoJugador();
-                    this.terminarPartida();
-                    this.indicarTurnoJugador();
+                    this.terminacionJugada();
                 }
             }
         }
@@ -357,6 +353,17 @@ public class PanelDeJuego extends javax.swing.JFrame {
     public void cerrar() {
         this.juego.setUnaPartida(this.partida);
         this.dispose();
+    }
+
+    public void terminacionJugada() {
+        this.movimiento = "no";
+        this.tablero.aumentarBotonesApretados();
+        this.mostrarBotonesExtender(false);
+        this.partida.cambiarTurnoJugador();
+        this.terminarPartida();
+        if (this.partida.getPartidaEnCurso()) {
+            this.indicarTurnoJugador();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -651,49 +658,6 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private void indicadorTurnoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_indicadorTurnoPropertyChange
         this.ponerTurnos();
     }//GEN-LAST:event_indicadorTurnoPropertyChange
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PanelDeJuego.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PanelDeJuego(/*new Partida()*/).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarJugador1;

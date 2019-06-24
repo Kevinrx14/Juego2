@@ -75,11 +75,15 @@ public class SelectArch extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void filechooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filechooserActionPerformed
+        try{
         arch = filechooser.getSelectedFile();
         a.darDiferentes(this.arch.getAbsolutePath());
         this.dispose();
         VentanaError vent=new VentanaError("Se ha creado el archivo 'DIFERENTES.txt'");
         vent.setVisible(true);
+        }catch(NullPointerException e){
+            this.dispose();
+        }
     }//GEN-LAST:event_filechooserActionPerformed
 
 

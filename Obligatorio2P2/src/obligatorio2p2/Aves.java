@@ -29,6 +29,7 @@ public class Aves implements Serializable {
     }
 
     public void excel() {
+        this.getRanking();
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("Datatypes in Java");
         Object[][] datos = new Object[this.getJugadores().size() + 1][8];
@@ -159,8 +160,10 @@ public class Aves implements Serializable {
                         if (this.getPartidas().get(j).getConfCantJugadores() == 2) {
                             uno = uno + 1;
                         }
-                        if (this.getPartidas().get(j).getGanador().equals(this.getJugadores().get(i))) {
-                            ganadas = ganadas + 1;
+                        if (this.getPartidas().get(j).getGanador() != null) {
+                            if (this.getPartidas().get(j).getGanador().equals(this.getJugadores().get(i))) {
+                                ganadas = ganadas + 1;
+                            }
                         }
 
                     }
@@ -258,4 +261,9 @@ public class Aves implements Serializable {
         }
         return a;
     }
+    
+    /*public void clearData(){
+        this.jugadores=new ArrayList<Jugador>();
+        this.partidas=new ArrayList<Partida>();
+    }*/
 }
