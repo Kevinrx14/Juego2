@@ -215,7 +215,6 @@ public class PanelDeJuego extends javax.swing.JFrame {
             if (this.tablero.getBotonesApretados() == 1) {
                 this.tablero.setFila2(fila);
                 this.tablero.setColumna2(columna);
-                this.tablero.aumentarBotonesApretados();
                 if (this.tablero.conectar()) {
                     this.ponerAvesConectar();
                     this.terminacionJugada();
@@ -357,6 +356,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
     }
 
     public void terminacionJugada() {
+        this.movimiento = "no";
         this.tablero.aumentarBotonesApretados();
         this.mostrarBotonesExtender(false);
         this.partida.cambiarTurnoJugador();
