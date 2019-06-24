@@ -218,10 +218,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.tablero.aumentarBotonesApretados();
                 if (this.tablero.conectar()) {
                     this.ponerAvesConectar();
-                    this.movimiento = "no";
-                    this.partida.cambiarTurnoJugador();
-                    this.terminarPartida();
-                    this.indicarTurnoJugador();
+                    this.terminacionJugada();
                 }
             }
         }
@@ -357,6 +354,16 @@ public class PanelDeJuego extends javax.swing.JFrame {
     public void cerrar() {
         this.juego.setUnaPartida(this.partida);
         this.dispose();
+    }
+
+    public void terminacionJugada() {
+        this.tablero.aumentarBotonesApretados();
+        this.mostrarBotonesExtender(false);
+        this.partida.cambiarTurnoJugador();
+        this.terminarPartida();
+        if (this.partida.getPartidaEnCurso()) {
+            this.indicarTurnoJugador();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -580,11 +587,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         if (this.tablero.getBotonesApretados() == 1) {
             if (this.tablero.extender('I')) {
                 this.ponerAvesExtender('I');
-                this.tablero.aumentarBotonesApretados();
-                this.mostrarBotonesExtender(false);
-                this.partida.cambiarTurnoJugador();
-                this.terminarPartida();
-                this.indicarTurnoJugador();
+                this.terminacionJugada();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la izquierda");
             }
@@ -595,11 +598,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         if (this.tablero.getBotonesApretados() == 1) {
             if (this.tablero.extender('A')) {
                 this.ponerAvesExtender('A');
-                this.tablero.aumentarBotonesApretados();
-                this.mostrarBotonesExtender(false);
-                this.partida.cambiarTurnoJugador();
-                this.terminarPartida();
-                this.indicarTurnoJugador();
+                this.terminacionJugada();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia arriba");
             }
@@ -610,11 +609,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         if (this.tablero.getBotonesApretados() == 1) {
             if (this.tablero.extender('D')) {
                 this.ponerAvesExtender('D');
-                this.tablero.aumentarBotonesApretados();
-                this.mostrarBotonesExtender(false);
-                this.partida.cambiarTurnoJugador();
-                this.terminarPartida();
-                this.indicarTurnoJugador();
+                this.terminacionJugada();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la derecha");
             }
@@ -625,11 +620,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
         if (this.tablero.getBotonesApretados() == 1) {
             if (this.tablero.extender('B')) {
                 this.ponerAvesExtender('B');
-                this.tablero.aumentarBotonesApretados();
-                this.mostrarBotonesExtender(false);
-                this.partida.cambiarTurnoJugador();
-                this.terminarPartida();
-                this.indicarTurnoJugador();
+                this.terminacionJugada();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la abajo");
             }
