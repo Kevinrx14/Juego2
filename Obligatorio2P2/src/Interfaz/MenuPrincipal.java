@@ -46,7 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         texto = new javax.swing.JLabel();
         diferentes = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        puntuaciones = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         fondoImg = new javax.swing.JLabel();
 
@@ -71,7 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jugar);
-        jugar.setBounds(140, 130, 267, 32);
+        jugar.setBounds(140, 130, 267, 29);
 
         registro.setText("¡Registrate!");
         registro.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(registro);
-        registro.setBounds(140, 200, 267, 32);
+        registro.setBounds(140, 200, 267, 29);
 
         config.setText("Configuración");
         config.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(config);
-        config.setBounds(140, 280, 267, 32);
+        config.setBounds(140, 280, 267, 29);
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 0, 0);
 
@@ -109,14 +109,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(diferentes);
         diferentes.setBounds(290, 330, 170, 100);
 
-        jButton2.setText("Puntuaciones");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        puntuaciones.setText("Puntuaciones");
+        puntuaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                puntuacionesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(80, 330, 170, 100);
+        getContentPane().add(puntuaciones);
+        puntuaciones.setBounds(80, 330, 170, 100);
 
         salir.setBackground(new java.awt.Color(255, 51, 51));
         salir.setText("Salir");
@@ -126,7 +126,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(210, 470, 120, 32);
+        salir.setBounds(210, 470, 120, 29);
 
         fondoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/background.jpg"))); // NOI18N
         getContentPane().add(fondoImg);
@@ -186,21 +186,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_salirActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void puntuacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntuacionesActionPerformed
         a.excel();
         VentanaError vent = new VentanaError("Se ha creado el archivo Puntuaciones.xls");
-    }//GEN-LAST:event_jButton2ActionPerformed
+        vent.setVisible(true);
+    }//GEN-LAST:event_puntuacionesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton config;
     private javax.swing.JButton diferentes;
     private javax.swing.JLabel fondoImg;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jugar;
+    private javax.swing.JButton puntuaciones;
     private javax.swing.JButton registro;
     private javax.swing.JButton salir;
     private javax.swing.JLabel texto;

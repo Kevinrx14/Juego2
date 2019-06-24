@@ -78,7 +78,7 @@ public class SelectArch extends javax.swing.JFrame {
         arch = filechooser.getSelectedFile();
         a.darDiferentes(this.arch.getAbsolutePath());
         this.dispose();
-        VentanaError vent = new VentanaError("Archivo generado");
+        VentanaError vent=new VentanaError("Se ha creado el archivo 'DIFERENTES.txt'");
         vent.setVisible(true);
     }//GEN-LAST:event_filechooserActionPerformed
 
