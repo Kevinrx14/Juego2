@@ -99,8 +99,10 @@ public class PanelDeJuego extends javax.swing.JFrame {
     public void ponerTurnos() {
         int turno = this.partida.getTotalTurnos();
         int turnoMax = this.partida.getConfCantTurno();
-        this.turnos.setText("Turno " + turno + "/" + turnoMax);
-        this.turnos.setForeground(Color.BLACK);
+        if (turno <= turnoMax) {
+            this.turnos.setText("Turno " + turno + "/" + turnoMax);
+            this.turnos.setForeground(Color.BLACK);
+        }
     }
 
     private void setUiJugadores() {

@@ -192,7 +192,7 @@ public class Partida implements Serializable {
         }
 
         if (this.getConfTipoTerminacion() == 2) {
-            if (this.getTotalTurnos() == this.getConfCantTurno()) {
+            if (this.getTotalTurnos() > this.getConfCantTurno()) {
                 terminar = true;
             }
         }
