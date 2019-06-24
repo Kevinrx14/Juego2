@@ -93,7 +93,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(setearConfig);
-        setearConfig.setBounds(10, 260, 173, 37);
+        setearConfig.setBounds(10, 260, 200, 37);
 
         configDefecto.setText("Configuración por defecto");
         configDefecto.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +102,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(configDefecto);
-        configDefecto.setBounds(400, 260, 179, 37);
+        configDefecto.setBounds(360, 260, 200, 37);
 
         jLabel4.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 51, 255));
