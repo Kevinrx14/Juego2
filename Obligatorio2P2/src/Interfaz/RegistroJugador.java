@@ -253,16 +253,20 @@ public class RegistroJugador extends javax.swing.JFrame {
 
         if (this.avatarSeleccionado) {
             if (!nombre.isEmpty() && !edadTexto.isEmpty() && !alias.isEmpty()) {
-                try {
-                    edad = Integer.parseInt(edadTexto);
-                    Jugador j = new Jugador(nombre, edad, alias, image);
-                    a.getJugadores().add(j);
-                    this.dispose();
-                    VentanaError vent = new VentanaError("Bienvenido a Aves " + alias);
-                    vent.setearIcono(image);
-                    vent.setVisible(true);
-                } catch (NumberFormatException e) {
-                    this.mostrarVentana("La edad ingresada no es valida");
+                if (!this.verificarSiExisteAlias(alias)) {
+                    try {
+                        edad = Integer.parseInt(edadTexto);
+                        Jugador j = new Jugador(nombre, edad, alias, image);
+                        a.getJugadores().add(j);
+                        this.dispose();
+                        VentanaError vent = new VentanaError("Bienvenido a Aves " + alias);
+                        vent.setearIcono(image);
+                        vent.setVisible(true);
+                    } catch (NumberFormatException e) {
+                        this.mostrarVentana("La edad ingresada no es valida");
+                    }
+                } else {
+                    this.mostrarVentana("Ese alias ya existe");
                 }
             } else {
                 this.mostrarVentana("No se completaron todos los campos");
@@ -271,6 +275,19 @@ public class RegistroJugador extends javax.swing.JFrame {
             this.mostrarVentana("No se eligio un avatar");
         }
     }//GEN-LAST:event_registerActionPerformed
+
+    public boolean verificarSiExisteAlias(String nuevoAlias) {
+        boolean existe = false;
+
+        for (int i = 0; i < this.a.getJugadores().size(); i++) {
+            String jugAlias = this.a.getJugadores().get(i).getAlias();
+            if (jugAlias.equals(nuevoAlias)) {
+                existe = true;
+            }
+        }
+
+        return existe;
+    }
 
     public void mostrarVentana(String mensaje) {
         VentanaError vent = new VentanaError(mensaje);

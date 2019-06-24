@@ -93,7 +93,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(setearConfig);
-        setearConfig.setBounds(10, 260, 173, 37);
+        setearConfig.setBounds(10, 260, 200, 37);
 
         configDefecto.setText("Configuración por defecto");
         configDefecto.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +102,7 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(configDefecto);
-        configDefecto.setBounds(400, 260, 179, 37);
+        configDefecto.setBounds(360, 260, 200, 37);
 
         jLabel4.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 51, 255));
@@ -168,14 +168,26 @@ public class Configuracion extends javax.swing.JFrame {
                     break;
             }
             int turnos = Integer.parseInt((String) blankTurn.getText());
-            a.setConfig(jug, aves, tipoTerm, turnos);
-            this.setVisible(false);
+            if (aves > 4 && aves < 31) {
+                if (turnos > 0 && turnos < 11) {
+                    a.setConfig(jug, aves, tipoTerm, turnos);
+                    this.setVisible(false);
+                } else {
+                    mostrarError("La cantidad de turnos ingresada no se encuentra entre 1 y 10");
+                }
+            } else {
+                mostrarError("La cantidad de aves ingresada no se encuentra entre 5 y 30");
+            }
         } catch (Exception e) {
-            VentanaError v = new VentanaError("Por favor, verifica los datos ingresados");
-            v.setVisible(true);
+            mostrarError("Por favor, verifica los datos ingresados");
         }
 
     }//GEN-LAST:event_setearConfigActionPerformed
+
+    public void mostrarError(String mensaje) {
+        VentanaError v = new VentanaError(mensaje);
+        v.setVisible(true);
+    }
 
     private void configDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configDefectoActionPerformed
         cantJug.setSelectedItem("2");
