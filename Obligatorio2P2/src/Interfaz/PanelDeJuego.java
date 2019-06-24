@@ -71,6 +71,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
         this.setUiJugadores();
         panelJuego.setOpaque(false);
         this.juego = juego;
+        this.indicarTurnoJugador();
+        this.mostrarTurnos();
     }
 
     private void pintarBotones() {
@@ -84,6 +86,22 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 botones[i + 1][j].setBackground(colores[2]);
                 botones[i + 1][j + 1].setBackground(colores[3]);
             }
+        }
+    }
+
+    public void mostrarTurnos() {
+        if (this.partida.getConfTipoTerminacion() == 2) {
+            this.ponerTurnos();
+            this.turnos.setVisible(true);
+        }
+    }
+
+    public void ponerTurnos() {
+        int turno = this.partida.getTotalTurnos();
+        int turnoMax = this.partida.getConfCantTurno();
+        if (turno <= turnoMax) {
+            this.turnos.setText("Turno " + turno + "/" + turnoMax);
+            this.turnos.setForeground(Color.BLACK);
         }
     }
 
@@ -201,9 +219,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 if (this.tablero.conectar()) {
                     this.ponerAvesConectar();
                     this.movimiento = "no";
-                    this.ponerMensaje(2, " ");
-                    this.terminarPartida();
                     this.partida.cambiarTurnoJugador();
+                    this.terminarPartida();
+                    this.indicarTurnoJugador();
                 }
             }
         }
@@ -282,7 +300,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 }
                 break;
             case 'D':
-                for (int i = columna1; i >= extenderHasta[1]; i++) {
+                for (int i = columna1; i <= extenderHasta[1]; i++) {
                     this.botones[fila1][i].setText("X");
                     this.botones[fila1][i].setBackground(color);
                     cantAves++;
@@ -300,7 +318,6 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
     //0 -> Mensaje error
     //1 -> Mensaje exito
-    //2 -> Turno de jugador
     public void ponerMensaje(int tipo, String mensaje) {
         this.mensaje.setText(mensaje);
         switch (tipo) {
@@ -311,12 +328,16 @@ public class PanelDeJuego extends javax.swing.JFrame {
             case 1:
                 this.mensaje.setForeground(Color.GREEN);
                 break;
-
-            case 2:
-                this.mensaje.setText("Es el turno de " + this.jugadores.get(this.partida.getTurnoDeJugador() - 1).getAlias());
-                this.mensaje.setForeground(Color.BLACK);
-                break;
         }
+    }
+
+    public void indicarTurnoJugador() {
+        String jugador = this.jugadores.get(this.partida.getTurnoDeJugador() - 1).getAlias();
+        int cantAvesJug = this.jugadores.get(this.partida.getTurnoDeJugador() - 1).getCantAves();
+        int cantAvesPartida = this.partida.getConfAvesJugador();
+        this.indicadorTurno.setText("Es el turno de " + jugador + " (Aves " + cantAvesJug + "/" + cantAvesPartida + ")");
+        this.indicadorTurno.setForeground(Color.BLACK);
+        this.ponerMensaje(1, "Esperando jugada");
     }
 
     public void terminarPartida() {
@@ -360,7 +381,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
         botonExtenderAbajo = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         mensaje = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        indicadorTurno = new javax.swing.JLabel();
+        turnos = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -403,7 +426,7 @@ public class PanelDeJuego extends javax.swing.JFrame {
 
         avatarJugador2.setText("jLabel1");
         getContentPane().add(avatarJugador2);
-        avatarJugador2.setBounds(210, 20, 74, 68);
+        avatarJugador2.setBounds(200, 20, 74, 68);
         avatarJugador2.setVisible(false);
 
         nombreJugador2.setText("Nombre Jugador");
@@ -498,13 +521,43 @@ public class PanelDeJuego extends javax.swing.JFrame {
         botonSalir.setBounds(500, 530, 150, 32);
 
         mensaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensaje.setText("mensaje");
         getContentPane().add(mensaje);
-        mensaje.setBounds(10, 140, 640, 20);
+        mensaje.setBounds(10, 150, 640, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/56852985_433173064108831_872169598327690153_n.jpg"))); // NOI18N
-        jLabel1.setText("       ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-5, -4, 690, 610);
+        indicadorTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        indicadorTurno.setText("turno de jugador");
+        indicadorTurno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        indicadorTurno.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                indicadorTurnoInputMethodTextChanged(evt);
+            }
+        });
+        indicadorTurno.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                indicadorTurnoPropertyChange(evt);
+            }
+        });
+        indicadorTurno.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                indicadorTurnoVetoableChange(evt);
+            }
+        });
+        getContentPane().add(indicadorTurno);
+        indicadorTurno.setBounds(10, 120, 640, 20);
+
+        turnos.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        turnos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        turnos.setText("Turno 0/0");
+        getContentPane().add(turnos);
+        turnos.setBounds(500, 490, 150, 30);
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfazFondos/56852985_433173064108831_872169598327690153_n.jpg"))); // NOI18N
+        fondo.setText("       ");
+        getContentPane().add(fondo);
+        fondo.setBounds(-5, -4, 690, 610);
 
         setBounds(0, 0, 680, 624);
     }// </editor-fold>//GEN-END:initComponents
@@ -529,9 +582,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('I');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.ponerMensaje(2, " ");
-                this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
+                this.terminarPartida();
+                this.indicarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la izquierda");
             }
@@ -544,9 +597,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('A');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.ponerMensaje(2, " ");
-                this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
+                this.terminarPartida();
+                this.indicarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia arriba");
             }
@@ -559,9 +612,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('D');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.ponerMensaje(2, " ");
-                this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
+                this.terminarPartida();
+                this.indicarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la derecha");
             }
@@ -574,9 +627,9 @@ public class PanelDeJuego extends javax.swing.JFrame {
                 this.ponerAvesExtender('B');
                 this.tablero.aumentarBotonesApretados();
                 this.mostrarBotonesExtender(false);
-                this.ponerMensaje(2, " ");
-                this.terminarPartida();
                 this.partida.cambiarTurnoJugador();
+                this.terminarPartida();
+                this.indicarTurnoJugador();
             } else {
                 this.ponerMensaje(0, "No se puede extender hacia la abajo");
             }
@@ -588,6 +641,59 @@ public class PanelDeJuego extends javax.swing.JFrame {
         VentanaSiNo cerrar = new VentanaSiNo(mensaje, this.partida, this);
         cerrar.setVisible(true);
     }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void indicadorTurnoInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_indicadorTurnoInputMethodTextChanged
+    }//GEN-LAST:event_indicadorTurnoInputMethodTextChanged
+
+    private void indicadorTurnoVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_indicadorTurnoVetoableChange
+    }//GEN-LAST:event_indicadorTurnoVetoableChange
+
+    private void indicadorTurnoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_indicadorTurnoPropertyChange
+        this.ponerTurnos();
+    }//GEN-LAST:event_indicadorTurnoPropertyChange
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PanelDeJuego.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PanelDeJuego.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PanelDeJuego.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PanelDeJuego.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PanelDeJuego(/*new Partida()*/).setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarJugador1;
@@ -601,7 +707,8 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private javax.swing.JButton botonExtenderDerecha;
     private javax.swing.JButton botonExtenderIzquierda;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel indicadorTurno;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mensaje;
     private javax.swing.JLabel nombreJugador1;
@@ -609,5 +716,6 @@ public class PanelDeJuego extends javax.swing.JFrame {
     private javax.swing.JLabel nombreJugador3;
     private javax.swing.JLabel nombreJugador4;
     private javax.swing.JPanel panelJuego;
+    private javax.swing.JLabel turnos;
     // End of variables declaration//GEN-END:variables
 }
