@@ -28,7 +28,7 @@ public class Aves implements Serializable {
         this.setDefaultConfig();
     }
 
-    public void excel() {
+    public void excel(String route) {
         this.getRanking();
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("Datatypes in Java");
@@ -67,7 +67,7 @@ public class Aves implements Serializable {
         }
 
         try {
-            FileOutputStream outputStream = new FileOutputStream("Puntuaciones.xls");
+            FileOutputStream outputStream = new FileOutputStream(route);
             workbook.write(outputStream);
             workbook.close();
         } catch (FileNotFoundException e) {

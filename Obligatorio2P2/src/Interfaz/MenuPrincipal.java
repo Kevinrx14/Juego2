@@ -5,6 +5,7 @@ package Interfaz;
 import java.awt.*;
 import obligatorio2p2.*;
 import java.io.*;
+import javax.swing.*;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
@@ -187,8 +188,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void puntuacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntuacionesActionPerformed
-        a.excel();
-        VentanaError vent = new VentanaError("Se ha creado el archivo Puntuaciones.xls");
+        
+        JFileChooser guardar = new JFileChooser();
+        guardar.showSaveDialog(null);
+        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        File archivo = guardar.getSelectedFile();
+        archivo.getAbsolutePath();
+        a.excel(archivo.getAbsolutePath());
+        VentanaError vent = new VentanaError("Se ha creado el archivo");
         vent.setVisible(true);
     }//GEN-LAST:event_puntuacionesActionPerformed
 
